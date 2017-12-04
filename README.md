@@ -6,8 +6,7 @@ Make a vim ide for develop as personal
 
 ## 安装步骤
 1 ./init.sh
-2 open vim, :PluginInstall
-3 ./init.sh to cotinue install
+提示报错后按回车继续
 
 
 ## 安装内容解释
