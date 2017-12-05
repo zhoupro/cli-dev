@@ -17,6 +17,9 @@ Plugin 'tomasr/molokai'
 " 用于写shell脚本
 Plugin 'WolfgangMehner/bash-support'
 
+" ctrlp
+Plugin 'ctrlpvim/ctrlp.vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 " 上面为Vundle管理内容

@@ -31,6 +31,7 @@ fi
 #-------------------------------------------------------------------------------
 # copy vimrc to home dir, and install from command line
 #-------------------------------------------------------------------------------
+rm -f ~/.vimrc
 cp ./vimrc ~/.vimrc
 set shell=/bin/bash
 vim   +PluginInstall +qall
@@ -61,6 +62,11 @@ fi
 #-------------------------------------------------------------------------------
 # get the ycm conf
 #-------------------------------------------------------------------------------
-wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.c.py 
-mkdir -p ~/.vim/ycmconf
-cp ycm.c.py ~/.vim/ycmconf/ycm.c.py
+
+
+if [ ! -f ~/.vim/ycmconf/ycm.c.py ] ; then
+
+    wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.c.py 
+    mkdir -p ~/.vim/ycmconf
+    cp ycm.c.py ~/.vim/ycmconf/ycm.c.py
+fi
