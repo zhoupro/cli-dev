@@ -20,6 +20,10 @@ Plugin 'WolfgangMehner/bash-support'
 " ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
 
+"代码生成器
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 " 上面为Vundle管理内容
@@ -37,3 +41,7 @@ colorscheme molokai
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+let g:UltiSnipsExpandTrigger="<c-t>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
