@@ -24,6 +24,16 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
+"outline
+"
+Plugin 'majutsushi/tagbar'
+"底部状态提示
+Plugin 'vim-airline/vim-airline'
+"change somethings
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-abolish'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 " 上面为Vundle管理内容
@@ -45,3 +55,8 @@ set expandtab
 let g:UltiSnipsExpandTrigger="<c-t>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+"outline
+"
+nmap <F8> :TagbarToggle<CR>
+let g:airline#extensions#tabline#enabled = 1
