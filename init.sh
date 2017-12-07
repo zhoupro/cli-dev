@@ -63,7 +63,7 @@ if [ ! -f ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
         wget http://releases.llvm.org/5.0.0/clang+llvm-5.0.0-x86_64-linux-gnu-debian8.tar.xz
         tar xJvf clang+llvm-5.0.0-x86_64-linux-gnu-debian8.tar.xz
         cmake -G "Unix Makefiles"  -DPATH_TO_LLVM_ROOT=./clang+llvm-5.0.0-x86_64-linux-gnu-debian8    . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
-    elif ["$com_codename"x = "ubuntu"x ] ; then
+    elif [ "$com_codename"x = "ubuntu"x ] ; then
         wget http://releases.llvm.org/5.0.0/clang+llvm-5.0.0-linux-x86_64-ubuntu16.04.tar.xz
         tar xJvf clang+llvm-5.0.0-linux-x86_64-ubuntu16.04.tar.xz
         cmake -G "Unix Makefiles"  -DPATH_TO_LLVM_ROOT=./clang+llvm-5.0.0-linux-x86_64-ubuntu16.04    . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
