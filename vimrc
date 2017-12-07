@@ -33,6 +33,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-abolish'
+"filebrowser
+Plugin 'tpope/vim-vinegar'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -60,3 +62,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 "
 nmap <F8> :TagbarToggle<CR>
 let g:airline#extensions#tabline#enabled = 1
+
+"netrw 配置
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
