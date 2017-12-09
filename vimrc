@@ -35,6 +35,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-abolish'
 "filebrowser
 Plugin 'tpope/vim-vinegar'
+" python complete
+Plugin 'davidhalter/jedi-vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -66,3 +68,5 @@ let g:airline#extensions#tabline#enabled = 1
 "netrw 配置
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
+
+let g:ycm_python_binary_path = '/usr/bin/python3'
