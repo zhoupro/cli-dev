@@ -20,10 +20,20 @@
 set -o nounset                                  # Treat unset variables as an error
 
 #-------------------------------------------------------------------------------
-# install ctag for tagbar
+# install ctag for tagbar and phpcompelete
 #-------------------------------------------------------------------------------
-sudo apt-get install exuberant-ctags
+which ctags
 
+if (( $? > 0 )) ;then
+    wget https://github.com/b4n/ctags/archive/better-php-parser.zip
+    unzip better-php-parser.zip
+    cd ctags-better-php-parser
+    autoreconf -fi
+    ./configure
+    make
+    sudo make install
+    cd ..
+fi
 #-------------------------------------------------------------------------------
 # install Vundle
 #-------------------------------------------------------------------------------

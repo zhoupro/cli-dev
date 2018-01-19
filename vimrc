@@ -37,7 +37,10 @@ Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-vinegar'
 " python complete
 Plugin 'davidhalter/jedi-vim'
-
+" debug
+Plugin 'joonty/vdebug'
+" php complete
+Plugin 'shawncplus/phpcomplete.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " 上面为Vundle管理内容
@@ -70,3 +73,19 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 
 let g:ycm_python_binary_path = '/usr/bin/python3'
+
+" disable arrow move
+nnoremap <Up> :echomsg "use k"<cr>
+nnoremap <Down> :echomsg "use j"<cr>
+nnoremap <Left> :echomsg "use h"<cr>
+nnoremap <Right> :echomsg "use l"<cr>
+let g:phpcomplete_enhance_jump_to_definition = 1
+
+
+let g:phpcomplete_mappings = {
+   \ 'jump_to_def': '<C-]>',
+   \ 'jump_to_def_split': '<C-W><C-]>',
+   \ 'jump_to_def_vsplit': '<C-W><C-\>',
+   \}
+
+
