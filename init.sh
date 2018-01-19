@@ -9,14 +9,15 @@
 #===============================================================================
 
 set -o nounset                                  # Treat unset variables as an error
+source vim_build.sh
 # install vim having python2
-sudo apt-get install -y vim-nox-py2 autoconf automake
+sudo apt-get install -y autoconf automake
 # install php dev
 sudo apt-get install -y php7.0-cli php-xdebug
 # copy etc
-\cp -f ./data/php-xdebug /usr/local/bin/
+sudo \cp -f ./data/php-xdebug /usr/local/bin/
 sudo chmod 777 -R /usr/local/bin/php-xdebug
-\cp -f ./data/xdebug.ini $(dpkg -L php-xdebug| grep xdebug.ini)
+sudo \cp -f ./data/xdebug.ini $(dpkg -L php-xdebug| grep xdebug.ini)
 
 #-------------------------------------------------------------------------------
 # install ctag for tagbar and phpcompelete
