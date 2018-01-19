@@ -1,16 +1,7 @@
 #!/bin/bash -
 #===============================================================================
-#
-#          FILE: init.sh
-#
 #         USAGE: ./init.sh
 #
-#   DESCRIPTION: After using Vbundle :PluginInstall, install some plugins and make configure.
-#
-#       OPTIONS: ---
-#  REQUIREMENTS: ---
-#          BUGS: ---
-#         NOTES: ---
 #        AUTHOR: Pro Zhou (), zhoushengzheng@gmail.com
 #  ORGANIZATION: 
 #       CREATED: 2017年12月04日 14时55分53秒
@@ -18,6 +9,14 @@
 #===============================================================================
 
 set -o nounset                                  # Treat unset variables as an error
+# install vim having python2
+sudo apt-get install -y vim-nox-py2 autoconf automake
+# install php dev
+sudo apt-get install -y php7.0-cli php-xdebug
+# copy etc
+\cp -f ./data/php-xdebug /usr/local/bin/
+sudo chmod 777 -R /usr/local/bin/php-xdebug
+\cp -f ./data/xdebug.ini $(dpkg -L php-xdebug| grep xdebug.ini)
 
 #-------------------------------------------------------------------------------
 # install ctag for tagbar and phpcompelete
