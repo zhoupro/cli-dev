@@ -104,4 +104,4 @@ let g:vdebug_options= {
     \    "marker_closed_tree" : '▸',
     \    "marker_open_tree" : '▾'
     \}
-
+hi Normal ctermfg=252 ctermbg=none
