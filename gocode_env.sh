@@ -17,6 +17,13 @@ then
         echo 'export PATH=$PATH:$HOME/go/bin' | sudo tee --append   /etc/profile
         cd $OLD_PWD
         echo $OLD_PWD
+        ps -ef | grep -v grep | grep xx.net
+
+        if [ $? -eq 0 ]
+        then
+            cat /opt/soft/xx-net/data/gae_proxy/CA.crt| sudo tee  --append /etc/ssl/certs/ca-certificates.crt
+            bash pxy.sh vim   +GoInstallBinaries +qall
+        fi
     fi
 else
     echo "have install gocode"
