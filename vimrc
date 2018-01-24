@@ -41,6 +41,7 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'joonty/vdebug'
 " php complete
 Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'fatih/vim-go'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " 上面为Vundle管理内容

@@ -9,6 +9,7 @@
 #===============================================================================
 
 set -o nounset                                  # Treat unset variables as an error
+source gocode_env.sh
 source vim_build.sh
 # install vim having python2
 sudo apt-get install -y autoconf automake

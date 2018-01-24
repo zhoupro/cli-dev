@@ -5,6 +5,7 @@ Make a vim ide for develop as personal
 打造自己高效的文本编辑器，主要目标语言为
 - c
 - php
+- golang
 - python
 
 
