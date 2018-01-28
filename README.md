@@ -4,7 +4,7 @@ Make a vim IDE  develop enviroment as personal
 * deepin 
 * ubuntu
 
-###language
+### language
 - c
 - php
 - shell
