@@ -42,6 +42,7 @@ Plugin 'joonty/vdebug'
 " php complete
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'fatih/vim-go'
+Plugin 'iamcco/markdown-preview.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " 上面为Vundle管理内容
@@ -106,3 +107,4 @@ let g:vdebug_options= {
     \    "marker_open_tree" : '▾'
     \}
 hi Normal ctermfg=252 ctermbg=none
+nmap <silent> <F9> <Plug>MarkdownPreview
