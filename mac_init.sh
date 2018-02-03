@@ -5,6 +5,7 @@ if [ $? -gt 0 ];then
     "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+brew cask install iterm2
 which python3
 if [ $? -gt 0 ];then
     brew install python3
