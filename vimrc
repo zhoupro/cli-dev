@@ -108,3 +108,8 @@ let g:vdebug_options= {
     \}
 hi Normal ctermfg=252 ctermbg=none
 nmap <silent> <F9> <Plug>MarkdownPreview
+" buffer shortcut
+nnoremap <silent> [b :bprevious<CR> 
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR> 
+nnoremap <silent> ]B :blast<CR>
