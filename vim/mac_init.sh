@@ -5,13 +5,24 @@ if [ $? -gt 0 ];then
     "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-brew cask install iterm2
-which python3
+brew cask list | grep iterm
 if [ $? -gt 0 ];then
-    brew install python3
+    brew cask install iterm2
 fi
 
-brew install wget cmake
+# install pre app
+pre_app=(
+python3
+wget 
+cmake
+)
+for i in ${pre_app[@]}
+do
+    which $i
+    if [ $? -gt 0 ];then
+        brew install $i
+    fi
+done
 
 vim --version | grep -e "+python"
 if [ $? -gt 0 ];then
@@ -111,7 +122,4 @@ if [ $? -eq 0 ]
 then
     sed -i '' '20,30d' "$HOME/.vim/bundle/bash-support/bash-support/templates/comments.templates"
 fi
-
-
-
 
