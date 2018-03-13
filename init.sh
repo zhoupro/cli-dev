@@ -13,3 +13,7 @@ cd vim
 source "../vim/${sys_os}_init.sh"
 cd ..
 
+#install tmux
+cd tmux
+source "../tmux/${sys_os}_init.sh"
+cd ..
