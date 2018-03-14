@@ -32,4 +32,3 @@ press continue after hang up
 * vim-go  golang
 * jedi-vim  python complete 
 * gocode
-
