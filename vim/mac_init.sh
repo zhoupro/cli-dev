@@ -15,6 +15,8 @@ pre_app=(
 python3
 wget 
 cmake
+automake
+cscope
 )
 for i in ${pre_app[@]}
 do
@@ -55,8 +57,7 @@ fi
 #-------------------------------------------------------------------------------
 # install ctag for tagbar and phpcompelete
 #-------------------------------------------------------------------------------
-which ctags
-
+[ -f /usr/local/bin/ctags ]
 if (( $? > 0 )) ;then
     wget https://github.com/b4n/ctags/archive/better-php-parser.zip
     unzip better-php-parser.zip
