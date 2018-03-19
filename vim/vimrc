@@ -146,7 +146,8 @@ if has("cscope")
      nmap [i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
      nmap [d :cs find d <C-R>=expand("<cword>")<CR><CR>
  endif
-
+" paste format
+ set pastetoggle=<F2>
 
 
 
