@@ -40,6 +40,10 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'davidhalter/jedi-vim'
 " debug
 Plugin 'joonty/vdebug'
+" go debug
+Plugin 'Shougo/vimshell.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'sebdah/vim-delve'
 " php complete
 Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'fatih/vim-go'
