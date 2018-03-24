@@ -17,3 +17,7 @@ cd ..
 cd tmux
 source "../tmux/${sys_os}_init.sh"
 cd ..
+#install zsh
+cd zsh
+source "../zsh/${sys_os}_init.sh"
+cd ..
