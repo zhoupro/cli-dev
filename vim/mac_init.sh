@@ -124,6 +124,3 @@ then
     sed -i '' '20,30d' "$HOME/.vim/bundle/bash-support/bash-support/templates/comments.templates"
 fi
 
-## go debug
-
-go get -u github.com/derekparker/delve/cmd/dlv
