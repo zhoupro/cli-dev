@@ -1,6 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set encoding=utf-8
+let mapleader = ','
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -154,6 +155,8 @@ if has("cscope")
  endif
 " paste format
  set pastetoggle=<F2>
+ inoremap jk <esc>
+
 
 
 
