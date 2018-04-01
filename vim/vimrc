@@ -19,7 +19,8 @@ Plugin 'WolfgangMehner/bash-support'
 
 " ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
-
+" grep on fly
+Plugin 'dkprice/vim-easygrep'
 "代码生成器
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -96,8 +97,6 @@ nnoremap <Down> :echomsg "use j"<cr>
 nnoremap <Left> :echomsg "use h"<cr>
 nnoremap <Right> :echomsg "use l"<cr>
 let g:phpcomplete_enhance_jump_to_definition = 1
-
-
 let g:phpcomplete_mappings = {
    \ 'jump_to_def': '<C-]>',
    \ 'jump_to_def_split': '<C-W><C-]>',
@@ -180,4 +179,17 @@ func! RunProgram()
 endfunc
 autocmd VimEnter * noremap  <leader>t  :call RunProgram()<CR>
 nnoremap  <leader>q  :Dash<CR>
+nnoremap <leader>s/ :FlyGrep<cr>
 
+let g:EasyGrepMode = 2     " All:0, Open Buffers:1, TrackExt:2, 
+let g:EasyGrepCommand = 0  " Use vimgrep:0, grepprg:1
+let g:EasyGrepRecursive  = 1 " Recursive searching
+let g:EasyGrepIgnoreCase = 1 " not ignorecase:0
+let g:EasyGrepFilesToExclude = "tags"
+let g:EasyGrepFilesToExclude = "*.bak"
+let g:EasyGrepFilesToExclude = "*~"
+let g:EasyGrepFilesToExclude = "cscope.*"
+let g:EasyGrepFilesToExclude = "*.a"
+let g:EasyGrepFilesToExclude = "*.o"
+let g:EasyGrepFilesToExclude = "*.pyc"
+let g:EasyGrepFilesToExclude = "*.log"
