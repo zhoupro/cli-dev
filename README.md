@@ -3,6 +3,7 @@
 Make a vim IDE  develop enviroment as personal
 * deepin 
 * ubuntu
+* mac
 
 ### language
 - c
@@ -32,3 +33,9 @@ press continue after hang up
 * vim-go  golang
 * jedi-vim  python complete 
 * gocode
+
+### pre
+* leader  " "
+### usage
+* <leader>t  run program
+* <leader>q  query mac Dash
