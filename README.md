@@ -37,5 +37,5 @@ press continue after hang up
 ### pre
 * leader  " "
 ### usage
-* '<leader>t'  run program
-* '<leader>q'  query mac Dash
+* '\<leader\>t'  run program
+* '\<leader\>q'  query mac Dash
