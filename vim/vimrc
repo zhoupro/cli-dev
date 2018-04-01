@@ -166,7 +166,7 @@ inoremap jk <esc>
 func! RunProgram()
     exec "w"
     if &filetype == 'c'
-        exec "!g++ % -o %<"
+        exec "!gcc % -o %<"
         exec "! ./%<"
     elseif &filetype == 'sh'
         exec "!bash %"
