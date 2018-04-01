@@ -1,7 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-set encoding=utf-8
-let mapleader = ','
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -54,6 +52,13 @@ Plugin 'rizzatti/dash.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " 上面为Vundle管理内容
+"
+set encoding=utf-8
+" our <leader> will be the space key
+let mapleader=" "
+"
+" " our <localleader> will be the '-' key
+let maplocalleader="-"
 " 指定python处理器，要不然会使用python3,会报错
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 "YCM的c语言配置
@@ -75,7 +80,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 "outline
 "
-nmap <F8> :TagbarToggle<CR>
+nmap <F12> :TagbarToggle<CR>
+
 let g:airline#extensions#tabline#enabled = 1
 
 "netrw 配置
@@ -154,9 +160,24 @@ if has("cscope")
      nmap [d :cs find d <C-R>=expand("<cword>")<CR><CR>
  endif
 " paste format
- set pastetoggle=<F2>
- inoremap jk <esc>
+set pastetoggle=<F2>
+inoremap jk <esc>
 
-
-
+func! RunProgram()
+    exec "w"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+    elseif &filetype == 'sh'
+        exec "!bash %"
+    elseif &filetype == 'go'
+        exec "!go run %"
+    elseif &filetype == 'python'
+        exec "!python %"
+    elseif &filetype == 'php'
+        exec "!php %"
+    endif
+endfunc
+autocmd VimEnter * noremap  <leader>t  :call RunProgram()<CR>
+nnoremap  <leader>q  :Dash<CR>
 
