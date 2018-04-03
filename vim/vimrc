@@ -179,8 +179,7 @@ func! RunProgram()
 endfunc
 autocmd VimEnter * noremap  <leader>t  :call RunProgram()<CR>
 nnoremap  <leader>q  :Dash<CR>
-nnoremap <leader>s/ :FlyGrep<cr>
-
+"easy grep
 let g:EasyGrepMode = 2     " All:0, Open Buffers:1, TrackExt:2, 
 let g:EasyGrepCommand = 0  " Use vimgrep:0, grepprg:1
 let g:EasyGrepRecursive  = 1 " Recursive searching
