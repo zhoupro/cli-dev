@@ -50,6 +50,8 @@ Plugin 'fatih/vim-go'
 Plugin 'iamcco/markdown-preview.vim'
 " mac dash
 Plugin 'rizzatti/dash.vim'
+" linux dash
+Plugin 'KabbAmine/zeavim.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " 上面为Vundle管理内容
