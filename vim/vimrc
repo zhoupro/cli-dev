@@ -7,9 +7,18 @@ Plugin 'VundleVim/Vundle.vim'
 
 " YCM 主要是用于c语言 
 Plugin 'Valloric/YouCompleteMe'
-
+Plugin 'vim-scripts/a.vim'
+" git
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
 " c 语言语法高亮
 Plugin 'justinmk/vim-syntax-extra'
+
+" comment
+Plugin 'tomtom/tlib_vim'
+Plugin 'tomtom/tcomment_vim'
+nnoremap // :TComment<CR>
+vnoremap // :TComment<CR>
 
 " shell漂亮的配色方案
 Plugin 'tomasr/molokai'
