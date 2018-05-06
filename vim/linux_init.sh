@@ -12,18 +12,11 @@ set -o nounset                                  # Treat unset variables as an er
 source vim_build.sh
 # install vim having python2
 sudo apt-get install -y autoconf automake
-# install php dev
-sudo apt-get install -y php7.0-cli php-xdebug
-# copy etc
-sudo \cp -f ./data/php-xdebug /usr/local/bin/
-sudo chmod 777 -R /usr/local/bin/php-xdebug
-sudo \cp -f ./data/xdebug.ini $(dpkg -L php-xdebug| grep xdebug.ini)
 
 #-------------------------------------------------------------------------------
 # install ctag for tagbar and phpcompelete
 #-------------------------------------------------------------------------------
 which ctags
-
 if (( $? > 0 )) ;then
     wget https://github.com/b4n/ctags/archive/better-php-parser.zip
     unzip better-php-parser.zip
@@ -41,8 +34,6 @@ if  [ ! -d ~/.vim/bundle/Vundle.vim ] ; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
-
-
 #-------------------------------------------------------------------------------
 # copy vimrc to home dir, and install from command line
 #-------------------------------------------------------------------------------
@@ -50,7 +41,6 @@ rm -f ~/.vimrc
 cp ./vimrc ~/.vimrc
 set shell=/bin/bash
 vim   +PluginInstall +qall
-
 
 if [ ! -d ~/.vim/bundle/YouCompleteMe ] ; then
     echo "You should do :PluginInstall first"
@@ -95,15 +85,9 @@ if [ ! -f ~/.vim/ycmconf/ycm.c.py ] ; then
     mkdir -p ~/.vim/ycmconf
     cp ycm.c.py ~/.vim/ycmconf/ycm.c.py
 fi
-
-
-
 ## shell comment change
-
 grep FILE $HOME/.vim/bundle/bash-support/bash-support/templates/comments.templates
 if [ $? -eq 0 ]
 then
     sed -i 20,30d $HOME/.vim/bundle/bash-support/bash-support/templates/comments.templates
 fi
-
-go get -u github.com/derekparker/delve/cmd/dlv
