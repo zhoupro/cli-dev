@@ -16,10 +16,7 @@ Plugin 'justinmk/vim-syntax-extra'
 
 
 " shell漂亮的配色方案
-Plugin 'tomasr/molokai'
-
-" 用于写shell脚本
-Plugin 'WolfgangMehner/bash-support'
+Plugin 'altercation/vim-colors-solarized'
 
 " ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -72,9 +69,12 @@ let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_global_ycm_extra_conf='~/.vim/ycmconf/ycm.c.py'
 "全局函数手动触发自动补全
 let g:ycm_key_invoke_completion = '<C-a>'
-" 语法高亮，配色方案为molokai
-syntax on 
-colorscheme molokai
+" 语法高亮，配色方案为solarized
+"
+syntax enable
+set background=dark
+colorscheme solarized
+
 
 " tab 替换为4个空格
 set tabstop=4
