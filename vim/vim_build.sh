@@ -1,7 +1,7 @@
 #!/bin/bash
 which vim
 vim_exist=$?
-vim --version | grep -e "-python"
+vim --version | grep -e "python3"
 vim_python=$?
 
 if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x0" ] ;then
@@ -33,7 +33,6 @@ if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x0" ] ;then
 	    --enable-rubyinterp=yes \
 	    --with-ruby-command=/usr/bin/ruby \
 	    --enable-luainterp=yes \
-	    --enable-pythoninterp=yes \
 	    --enable-python3interp=yes \
 	    --enable-tclinterp=yes \
 	    --enable-xim \
@@ -41,11 +40,8 @@ if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x0" ] ;then
 	    --with-x \
 	    --with-compiledby=$USER
 	 
-	make && sudo make install
-	 cd ..
+    	make && sudo make install
+    	 cd ..
 
 fi
-
-
-
 
