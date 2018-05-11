@@ -38,8 +38,6 @@ if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x0" ] ;then
 	    --enable-xim \
 	    --enable-fontset \
 	    --with-x \
-	    --with-compiledby=$USER
-	 
     	make &&  make install
     	 cd ..
 
