@@ -115,12 +115,3 @@ if [ ! -f ~/.vim/ycmconf/ycm.c.py ] ; then
 fi
 
 
-
-## shell comment change
-
-grep FILE $HOME/.vim/bundle/bash-support/bash-support/templates/comments.templates
-if [ $? -eq 0 ]
-then
-    sed -i '' '20,30d' "$HOME/.vim/bundle/bash-support/bash-support/templates/comments.templates"
-fi
-

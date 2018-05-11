@@ -31,6 +31,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'majutsushi/tagbar'
 "底部状态提示
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 "change somethings
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
@@ -215,3 +216,5 @@ let g:EasyGrepFilesToExclude = "*.log"
 
 let g:ctrlp_regexp = 1
 set noswapfile
+
+let g:airline_solarized_bg='dark'
