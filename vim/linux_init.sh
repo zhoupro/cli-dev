@@ -11,7 +11,7 @@
 set -o nounset                                  # Treat unset variables as an error
 source vim_build.sh
 # install vim having python2
-sudo apt-get install -y autoconf automake
+apt-get install -y autoconf automake wget curl cmake
 
 #-------------------------------------------------------------------------------
 # install ctag for tagbar and phpcompelete
@@ -40,7 +40,7 @@ fi
 rm -f ~/.vimrc
 cp ./vimrc ~/.vimrc
 set shell=/bin/bash
-vim   +PluginInstall +qall
+/usr/local/bin/vim   +PluginInstall +qall
 
 if [ ! -d ~/.vim/bundle/YouCompleteMe ] ; then
     echo "You should do :PluginInstall first"
