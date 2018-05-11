@@ -8,5 +8,5 @@
 
 set -o nounset                                  # Treat unset variables as an error
 
-sudo apt-get install zsh -y
+apt-get install zsh -y
 [ ! -d ~/.oh-my-zsh ] && sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"

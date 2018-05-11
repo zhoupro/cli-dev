@@ -5,9 +5,9 @@ vim --version | grep -e "python3"
 vim_python=$?
 
 if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x0" ] ;then
-	sudo apt remove -y vim vim-runtime gvim vim-tiny vim-common vim-gui-common vim-nox*
-	sudo apt-get install -y build-essential libncurses5-dev git
-	sudo apt-get install -y \
+	 apt remove -y vim vim-runtime gvim vim-tiny vim-common vim-gui-common vim-nox*
+	 apt-get install -y build-essential libncurses5-dev git
+	 apt-get install -y \
 	    python-dev \
 	    python3-dev \
 	    ruby-dev \
@@ -21,8 +21,8 @@ if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x0" ] ;then
 
 	git clone https://github.com/vim/vim.git
 	cd vim
-    sudo	make clean
-	sudo git clean -fdx
+    	make clean
+	 git clean -fdx
 
 	./configure \
 	    --prefix=/usr/local/ \
@@ -40,7 +40,7 @@ if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x0" ] ;then
 	    --with-x \
 	    --with-compiledby=$USER
 	 
-    	make && sudo make install
+    	make &&  make install
     	 cd ..
 
 fi
