@@ -4,7 +4,7 @@ vim_exist=$?
 vim --version | grep -e "python3"
 vim_python=$?
 
-if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x0" ] ;then
+if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x1" ] ;then
 	 apt remove -y vim vim-runtime gvim vim-tiny vim-common vim-gui-common vim-nox*
 	 apt-get install -y build-essential libncurses5-dev git
 	 apt-get install -y \
