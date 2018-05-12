@@ -24,7 +24,7 @@ if (( $? > 0 )) ;then
     autoreconf -fi
     ./configure
     make
-    sudo make install
+    make install
     cd ..
 fi
 #-------------------------------------------------------------------------------
