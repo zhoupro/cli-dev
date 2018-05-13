@@ -8,6 +8,7 @@
 
 set -o nounset    
 source ./helper/system_info.sh
+
 #install vim
 cd vim
 source "../vim/${sys_os}_init.sh"

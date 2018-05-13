@@ -13,17 +13,12 @@ if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x1" ] ;then
 	    ruby-dev \
 	    liblua5.2-dev \
 	    libperl-dev \
-	    libtcl8.6 \
-	    libgnomeui-dev \
-	    libx11-dev \
-	    libxt-dev \
-	    libxpm-dev
+	    libtcl8.6 
 
 	git clone https://github.com/vim/vim.git
 	cd vim
-    	make clean
-	 git clean -fdx
-
+   	make clean
+    git clean -fdx
 	./configure \
 	    --prefix=/usr/local/ \
 	    --with-features=huge \
@@ -35,11 +30,8 @@ if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x1" ] ;then
 	    --enable-luainterp=yes \
 	    --enable-python3interp=yes \
 	    --enable-tclinterp=yes \
-	    --enable-xim \
 	    --enable-fontset \
 	    --with-x \
     	make &&  make install
-    	 cd ..
-
+    	cd ..
 fi
-

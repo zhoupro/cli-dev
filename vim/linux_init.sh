@@ -41,6 +41,11 @@ rm -f ~/.vimrc
 cp ./vimrc ~/.vimrc
 set shell=/bin/bash
 /usr/local/bin/vim   +PluginInstall +qall
+grep "colorschem" ~/.vimrc
+if (($? > 0 ))
+then
+    echo "colorscheme solarized" > ~/.vimrc
+fi
 
 if [ ! -d ~/.vim/bundle/YouCompleteMe ] ; then
     echo "You should do :PluginInstall first"
@@ -84,4 +89,5 @@ if [ ! -f ~/.vim/ycmconf/ycm.c.py ] ; then
     wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.c.py 
     mkdir -p ~/.vim/ycmconf
     cp ycm.c.py ~/.vim/ycmconf/ycm.c.py
+    rm -f ycm.c.py
 fi
