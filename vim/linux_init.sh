@@ -60,7 +60,6 @@ fi
 com_codename=$(cat /etc/lsb-release 2>/dev/null|awk -F "=" ' $1 == "DISTRIB_ID" {print $2}'|tr '[A-Z]' '[a-z]')
 
 if [ ! -f ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
-    cd ~
     mkdir ycm_build
     cd ycm_build
 
