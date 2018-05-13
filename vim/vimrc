@@ -74,7 +74,6 @@ let g:ycm_key_invoke_completion = '<C-a>'
 "
 syntax enable
 set background=dark
-colorscheme solarized
 
 
 " tab 替换为4个空格
