@@ -44,7 +44,7 @@ set shell=/bin/bash
 grep "colorschem" ~/.vimrc
 if (($? > 0 ))
 then
-    echo "colorscheme solarized" > ~/.vimrc
+    echo "colorscheme solarized" >> ~/.vimrc
 fi
 
 if [ ! -d ~/.vim/bundle/YouCompleteMe ] ; then
