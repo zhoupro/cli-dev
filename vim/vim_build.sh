@@ -6,14 +6,10 @@ vim_python=$?
 
 if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x1" ] ;then
 	 apt remove -y vim vim-runtime gvim vim-tiny vim-common vim-gui-common vim-nox*
-	 apt-get install -y build-essential libncurses5-dev git
-	 apt-get install -y \
-	    python-dev \
-	    python3-dev \
-	    ruby-dev \
-	    liblua5.2-dev \
-	    libperl-dev \
-	    libtcl8.6 
+	 apt-get install -y --no-install-recommends build-essential libncurses5-dev git gdb
+	 apt-get install -y --no-install-recommends \
+	    python3-dev  python-dev 
+     rm -rf /var/lib/apt/lists/*
 
 	git clone https://github.com/vim/vim.git
 	cd vim
@@ -24,14 +20,10 @@ if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x1" ] ;then
 	    --with-features=huge \
 	    --enable-multibyte \
 	    --enable-cscope=yes \
-	    --enable-perlinterp=yes \
-	    --enable-rubyinterp=yes \
-	    --with-ruby-command=/usr/bin/ruby \
-	    --enable-luainterp=yes \
 	    --enable-python3interp=yes \
-	    --enable-tclinterp=yes \
 	    --enable-fontset \
 	    --with-x \
     	make &&  make install
     	cd ..
+        rm -rf vim
 fi

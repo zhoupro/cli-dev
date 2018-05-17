@@ -10,8 +10,7 @@
 
 set -o nounset                                  # Treat unset variables as an error
 source vim_build.sh
-# install vim having python2
-apt-get install -y autoconf automake wget curl cmake
+apt-get install -y --no-install-recommends autoconf automake wget curl cmake
 
 #-------------------------------------------------------------------------------
 # install ctag for tagbar and phpcompelete
@@ -26,6 +25,7 @@ if (( $? > 0 )) ;then
     make
     make install
     cd ..
+    rm -rf better-php-parser*
 fi
 #-------------------------------------------------------------------------------
 # install Vundle
