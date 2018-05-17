@@ -10,6 +10,7 @@
 
 set -o nounset                                  # Treat unset variables as an error
 source vim_build.sh
+apt-get install -y git 
 apt-get install -y --no-install-recommends autoconf automake wget curl cmake
 
 #-------------------------------------------------------------------------------

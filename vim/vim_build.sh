@@ -6,7 +6,7 @@ vim_python=$?
 
 if [ x"$vim_exist" == "x1" ]  || [ x"$vim_python" == "x1" ] ;then
 	 apt remove -y vim vim-runtime gvim vim-tiny vim-common vim-gui-common vim-nox*
-	 apt-get install -y --no-install-recommends build-essential libncurses5-dev git gdb
+	 apt-get install -y --no-install-recommends build-essential libncurses5-dev  gdb
 	 apt-get install -y --no-install-recommends \
 	    python3-dev  python-dev 
      rm -rf /var/lib/apt/lists/*
