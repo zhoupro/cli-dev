@@ -9,11 +9,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/a.vim'
 " git
-Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-fugitive'
 " c 语言语法高亮
 Plugin 'justinmk/vim-syntax-extra'
-
 
 " shell漂亮的配色方案
 Plugin 'altercation/vim-colors-solarized'
@@ -27,7 +25,6 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 "outline
-"
 Plugin 'majutsushi/tagbar'
 "底部状态提示
 Plugin 'vim-airline/vim-airline'
@@ -54,6 +51,8 @@ Plugin 'iamcco/markdown-preview.vim'
 Plugin 'rizzatti/dash.vim'
 " linux dash
 Plugin 'KabbAmine/zeavim.vim'
+
+Plugin 'terryma/vim-multiple-cursors'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " 上面为Vundle管理内容
