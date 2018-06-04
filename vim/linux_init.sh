@@ -45,8 +45,8 @@ set shell=/bin/bash
 grep "colorschem" ~/.vimrc
 if (($? > 0 ))
 then
-    sed -i "/set background=black/a\
-        acolorscheme solarized"  ~/.vimrc
+    sed -i "/set background=dark/a\
+        colorscheme solarized"  ~/.vimrc
 fi
 
 if [ ! -d ~/.vim/bundle/YouCompleteMe ] ; then

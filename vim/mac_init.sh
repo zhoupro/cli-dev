@@ -88,7 +88,6 @@ vim   +PluginInstall +qall
 grep "colorschem" ~/.vimrc
 if (($? > 0 ))
 then
-    echo "hhhh"
     sed -i ""  '/set background=dark/a\
         colorscheme solarized'  ~/.vimrc
 fi                               

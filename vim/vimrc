@@ -96,11 +96,6 @@ let g:netrw_liststyle = 3
 
 let g:ycm_python_binary_path = '/usr/bin/python3'
 
-" disable arrow move
-nnoremap <Up> :echomsg "use k"<cr>
-nnoremap <Down> :echomsg "use j"<cr>
-nnoremap <Left> :echomsg "use h"<cr>
-nnoremap <Right> :echomsg "use l"<cr>
 let g:phpcomplete_enhance_jump_to_definition = 1
 let g:phpcomplete_mappings = {
    \ 'jump_to_def': '<C-]>',
@@ -195,8 +190,6 @@ func! RunProgram()
 endfunc
 autocmd VimEnter * noremap  <leader>t  :call RunProgram()<CR>
 
-
-
 nnoremap  <leader>q  :Dash<CR>
 "easy grep
 let g:EasyGrepMode = 2     " All:0, Open Buffers:1, TrackExt:2, 
@@ -211,8 +204,8 @@ let g:EasyGrepFilesToExclude = "*.a"
 let g:EasyGrepFilesToExclude = "*.o"
 let g:EasyGrepFilesToExclude = "*.pyc"
 let g:EasyGrepFilesToExclude = "*.log"
-
 let g:ctrlp_regexp = 1
 set noswapfile
-
-let g:airline_solarized_bg='dark'
+let g:airline_theme="solarized"
+let g:airline_solarized_normal_green = 1
+let g:airline_solarized_dark_inactive_border = 1
