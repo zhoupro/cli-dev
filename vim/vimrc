@@ -8,6 +8,7 @@ Plugin 'VundleVim/Vundle.vim'
 " YCM 主要是用于c语言 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/a.vim'
+Plugin 'hari-rangarajan/CCTree'
 " git
 Plugin 'tpope/vim-fugitive'
 " c 语言语法高亮
@@ -209,3 +210,11 @@ set noswapfile
 let g:airline_theme="solarized"
 let g:airline_solarized_normal_green = 1
 let g:airline_solarized_dark_inactive_border = 1
+
+" cctree
+let g:CCTreeKeyTraceForwardTree = '<C-\>h' 
+let g:CCTreeKeyTraceReverseTree = '<C-\>l' 
+let g:CCTreeKeyDepthPlus = '<C-\>j' 
+let g:CCTreeKeyDepthMinus = '<C-\>k'
+
+
