@@ -229,3 +229,5 @@ autocmd VimEnter * call LoadCCTree()
 set hlsearch
 " Makes search act like search in modern browsers
 set incsearch 
+" clear highlight
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
