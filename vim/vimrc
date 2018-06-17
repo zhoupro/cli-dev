@@ -217,4 +217,15 @@ let g:CCTreeKeyTraceReverseTree = '<C-\>l'
 let g:CCTreeKeyDepthPlus = '<C-\>j' 
 let g:CCTreeKeyDepthMinus = '<C-\>k'
 
+function! LoadCCTree()
+    if filereadable('cscope.out')
+        CCTreeLoadDB cscope.out
+    endif
+endfunc
+autocmd VimEnter * call LoadCCTree()
 
+" search
+" Highlight search results
+set hlsearch
+" Makes search act like search in modern browsers
+set incsearch 
