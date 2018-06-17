@@ -231,3 +231,6 @@ set hlsearch
 set incsearch 
 " clear highlight
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+set cursorline
+autocmd InsertEnter * highlight CursorLine cterm=NONE ctermbg=25   ctermfg=white 
+autocmd InsertLeave * highlight CursorLine cterm=NONE ctermbg=25   ctermfg=white 
