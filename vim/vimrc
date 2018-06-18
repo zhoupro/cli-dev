@@ -218,9 +218,15 @@ let g:CCTreeKeyDepthPlus = '<C-\>j'
 let g:CCTreeKeyDepthMinus = '<C-\>k'
 
 function! LoadCCTree()
-    if filereadable('cscope.out')
-        CCTreeLoadDB cscope.out
-    endif
+        let c_cnt = 0
+        if filereadable('cscope.out')
+            let script="bash ~/.vim/c_cnt.sh " . expand('%:p:h')
+            let c_cnt = system(script)
+            "echom c_cnt
+        endif
+        if l:c_cnt !=  0
+            CCTreeLoadDB cscope.out
+        endif
 endfunc
 autocmd VimEnter * call LoadCCTree()
 

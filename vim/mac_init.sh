@@ -124,4 +124,6 @@ if [ ! -f ~/.vim/ycmconf/ycm.c.py ] ; then
     cp ycm.c.py ~/.vim/ycmconf/ycm.c.py
 fi
 
-
+if [ ! -f ~/.vim/c_cnt.sh ] ; then
+    cp ./c_cnt.sh  ~/.vim/c_cnt.sh
+fi
