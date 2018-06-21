@@ -9,6 +9,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/a.vim'
 Plugin 'hari-rangarajan/CCTree'
+Plugin 'vim-syntastic/syntastic'
 " git
 Plugin 'tpope/vim-fugitive'
 " c 语言语法高亮
@@ -240,3 +241,17 @@ nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 set cursorline
 autocmd InsertEnter * highlight CursorLine cterm=NONE ctermbg=25   ctermfg=white 
 autocmd InsertLeave * highlight CursorLine cterm=NONE ctermbg=25   ctermfg=white 
+
+" ctrl p root path
+let g:ctrlp_cmd='CtrlP :pwd'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_php_checkers = ['phplint']
+let g:syntastic_sh_checkers = ['shellcheck']
