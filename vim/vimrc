@@ -5,11 +5,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
-" YCM 主要是用于c语言 
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-scripts/a.vim'
-Plugin 'hari-rangarajan/CCTree'
-Plugin 'vim-syntastic/syntastic'
 " git
 Plugin 'tpope/vim-fugitive'
 " c 语言语法高亮
@@ -65,12 +60,6 @@ let mapleader=","
 "
 " " our <localleader> will be the '-' key
 let maplocalleader="-"
-" 指定python处理器，要不然会使用python3,会报错
-let g:ycm_server_python_interpreter = '/usr/bin/python'
-"YCM的c语言配置
-let g:ycm_global_ycm_extra_conf='~/.vim/ycmconf/ycm.c.py'
-"全局函数手动触发自动补全
-let g:ycm_key_invoke_completion = '<C-a>'
 " 语法高亮，配色方案为solarized
 "
 syntax enable
@@ -96,7 +85,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 
-let g:ycm_python_binary_path = '/usr/bin/python3'
 
 let g:phpcomplete_enhance_jump_to_definition = 1
 let g:phpcomplete_mappings = {
@@ -212,24 +200,6 @@ let g:airline_theme="solarized"
 let g:airline_solarized_normal_green = 1
 let g:airline_solarized_dark_inactive_border = 1
 
-" cctree
-let g:CCTreeKeyTraceForwardTree = '<C-\>h' 
-let g:CCTreeKeyTraceReverseTree = '<C-\>l' 
-let g:CCTreeKeyDepthPlus = '<C-\>j' 
-let g:CCTreeKeyDepthMinus = '<C-\>k'
-
-function! LoadCCTree()
-        let c_cnt = 0
-        if filereadable('cscope.out')
-            let script="bash ~/.vim/c_cnt.sh " . expand('%:p:h')
-            let c_cnt = system(script)
-            "echom c_cnt
-        endif
-        if l:c_cnt !=  0
-            CCTreeLoadDB cscope.out
-        endif
-endfunc
-autocmd VimEnter * call LoadCCTree()
 
 " search
 " Highlight search results

@@ -43,5 +43,37 @@ function c_pre(){
 }
 
 function c_vimrc(){
- echo "hhh"
+    # plugins
+    sed -i  "/VundleVim\\/Vundle/aPlugin 'Valloric/YouCompleteMe'" ~/.vimrc
+    sed -i  "/VundleVim\\/Vundle/a\"YCM 主要是用于c语言" ~/.vimrc
+    sed -i  "/VundleVim\\/Vundle/aPlugin 'vim-scripts/a.vim'" ~/.vimrc
+    sed -i  "/VundleVim\\/Vundle/aPlugin 'hari-rangarajan/CCTree'" ~/.vimrc
+
+   cat >>  ~/.vimrc <<END
+let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_key_invoke_completion = '<C-a>'
+"YCM的c语言配置
+let g:ycm_global_ycm_extra_conf='~/.vim/ycmconf/ycm.c.py'
+" 指定python处理器，要不然会使用python3,会报错
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+" cctree
+let g:CCTreeKeyTraceForwardTree = '<C-\\>h'
+let g:CCTreeKeyTraceReverseTree = '<C-\\>l'
+let g:CCTreeKeyDepthPlus = '<C-\\>j'
+let g:CCTreeKeyDepthMinus = '<C-\\>k'
+
+function! LoadCCTree()
+        let c_cnt = 0
+        if filereadable('cscope.out')
+            let script="bash ~/.vim/c_cnt.sh " . expand('%:p:h')
+            let c_cnt = system(script)
+            "echom c_cnt
+        endif
+        if l:c_cnt !=  0
+            CCTreeLoadDB cscope.out
+        endif
+endfunc
+autocmd VimEnter * call LoadCCTree()
+
+END
 }
