@@ -14,14 +14,16 @@ function helper(){
 }
 IFPHP=0
 IFC=0
+IFGOLANG=0
 
 
-while getopts "hpc" OPT;
+while getopts "hpcg" OPT;
 do
      case $OPT in
          h) helper;exit 1;;
          p)  export IFPHP=1;;
          c)  export IFC=1;;
+         g)  export IFGOLANG=1;;
          *) ;;
      esac
 done
