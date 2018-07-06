@@ -32,17 +32,8 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-abolish'
 "filebrowser
 Plugin 'tpope/vim-vinegar'
-" python complete
-Plugin 'davidhalter/jedi-vim'
-" debug
-Plugin 'joonty/vdebug'
-" go debug
-Plugin 'Shougo/vimshell.vim'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'sebdah/vim-delve'
-" php complete
-Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'fatih/vim-go'
+
+
 Plugin 'iamcco/markdown-preview.vim'
 " mac dash
 Plugin 'rizzatti/dash.vim'
@@ -85,30 +76,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 
-
-let g:phpcomplete_enhance_jump_to_definition = 1
-let g:phpcomplete_mappings = {
-   \ 'jump_to_def': '<C-]>',
-   \ 'jump_to_def_split': '<C-W><C-]>',
-   \ 'jump_to_def_vsplit': '<C-W><C-\>',
-   \}
-
-let g:vdebug_options= {
-    \    "port" : 9000,
-    \    "server" : '0.0.0.0',
-    \    "timeout" : 100,
-    \    "on_close" : 'detach',
-    \    "break_on_open" : 1,
-    \    "ide_key" : 'xdebug',
-    \    "path_maps" : {},
-    \    "debug_window_level" : 0,
-    \    "debug_file_level" : 0,
-    \    "debug_file" : "",
-    \    "watch_window_style" : 'expanded',
-    \    "marker_default" : '⬦',
-    \    "marker_closed_tree" : '▸',
-    \    "marker_open_tree" : '▾'
-    \}
 hi Normal ctermfg=252 ctermbg=none
 nmap <silent> <F9> <Plug>MarkdownPreview
 " buffer shortcut
@@ -223,5 +190,4 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_php_checkers = ['phplint']
 let g:syntastic_sh_checkers = ['shellcheck']

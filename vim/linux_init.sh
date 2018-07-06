@@ -14,7 +14,6 @@ apt-get install -y --no-install-recommends git unzip wget curl
 #读取参数
 # shellcheck disable=SC1091
 source lib/readinput.sh
-apt-get install -y gcc  autoconf automake
 if ((IFC == 1)) ;then
     # shellcheck disable=SC1091
     source vim_build.sh
@@ -22,20 +21,23 @@ else
     apt-get install -y --no-install-recommends vim
 fi 
 
-#-------------------------------------------------------------------------------
-# install ctag for tagbar and phpcompelete
-#-------------------------------------------------------------------------------
-if ! command -v  ctags ;then
-    wget https://github.com/b4n/ctags/archive/better-php-parser.zip
-    unzip better-php-parser.zip
-    cd ctags-better-php-parser || exit
-    autoreconf -fi
-    ./configure
-    make
-    make install
-    cd ..
-    rm -rf better-php-parser*
-fi
+function ini_ctags(){
+    #-------------------------------------------------------------------------------
+    # install ctag for tagbar and phpcompelete
+    #-------------------------------------------------------------------------------
+    apt-get install -y gcc  autoconf automake
+    if ! command -v  ctags ;then
+        wget https://github.com/b4n/ctags/archive/better-php-parser.zip
+        unzip better-php-parser.zip
+        cd ctags-better-php-parser || exit
+        autoreconf -fi
+        ./configure
+        make
+        make install
+        cd ..
+        rm -rf better-php-parser*
+    fi
+}
 #-------------------------------------------------------------------------------
 # install Vundle
 #-------------------------------------------------------------------------------
@@ -53,12 +55,14 @@ export shell=/bin/bash
 
 # pre and make vimrc
 if ((IFC == 1)) ;then
+    ini_ctags
     # shellcheck disable=SC1091
     source language/c.sh
     c_pre
     c_vimrc
 fi 
 if ((IFPHP == 1)) ;then
+    ini_ctags
     # shellcheck disable=SC1091
     source language/php.sh
     php_pre
