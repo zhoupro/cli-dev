@@ -39,7 +39,7 @@ function c_post(){
 }
 
 function c_pre(){
-    apt-get install -y --no-install-recommends autoconf automake cmake    
+    apt-get install -y --no-install-recommends  cmake    
 }
 
 function c_vimrc(){

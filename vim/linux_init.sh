@@ -14,7 +14,7 @@ apt-get install -y --no-install-recommends git unzip wget curl
 #读取参数
 # shellcheck disable=SC1091
 source lib/readinput.sh
-
+apt-get install -y  autoconf automake
 if ((IFC == 1)) ;then
     # shellcheck disable=SC1091
     source vim_build.sh
