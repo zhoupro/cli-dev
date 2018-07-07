@@ -28,17 +28,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 "change somethings
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-abolish'
 "filebrowser
 Plugin 'tpope/vim-vinegar'
-
-
-Plugin 'iamcco/markdown-preview.vim'
-" mac dash
-Plugin 'rizzatti/dash.vim'
-" linux dash
-Plugin 'KabbAmine/zeavim.vim'
 
 Plugin 'terryma/vim-multiple-cursors'
 call vundle#end()            " required
@@ -147,7 +138,6 @@ func! RunProgram()
 endfunc
 autocmd VimEnter * noremap  <leader>t  :call RunProgram()<CR>
 
-nnoremap  <leader>q  :Dash<CR>
 "easy grep
 let g:EasyGrepMode = 2     " All:0, Open Buffers:1, TrackExt:2, 
 let g:EasyGrepCommand = 0  " Use vimgrep:0, grepprg:1

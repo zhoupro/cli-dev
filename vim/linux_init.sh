@@ -25,7 +25,7 @@ function ini_ctags(){
     #-------------------------------------------------------------------------------
     # install ctag for tagbar and phpcompelete
     #-------------------------------------------------------------------------------
-    apt-get install -y gcc  autoconf automake
+    apt-get install -y gcc  autoconf automake make
     if ! command -v  ctags ;then
         wget https://github.com/b4n/ctags/archive/better-php-parser.zip
         unzip better-php-parser.zip
@@ -74,6 +74,12 @@ if ((IFGOLANG == 1)) ;then
     go_pre
     go_vimrc
 fi 
+if ((IFHOST == 1)) ;then
+    # shellcheck disable=SC1091
+    source language/host.sh
+    host_pre
+    host_vimrc
+fi 
 
 
 vim   +PluginInstall +qall
@@ -87,6 +93,9 @@ if ((IFPHP == 1)) ;then
 fi 
 if ((IFGOLANG == 1)) ;then
     go_post
+fi 
+if ((IFHOST == 1)) ;then
+    host_post
 fi 
 
 
