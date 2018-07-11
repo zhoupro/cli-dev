@@ -53,21 +53,22 @@ if [ $? -gt 0 ];then
 	make && sudo make install
 	cd ..
 fi
-
-#-------------------------------------------------------------------------------
-# install ctag for tagbar and phpcompelete
-#-------------------------------------------------------------------------------
-[ -f /usr/local/bin/ctags ]
-if (( $? > 0 )) ;then
-    wget https://github.com/b4n/ctags/archive/better-php-parser.zip
-    unzip better-php-parser.zip
-    cd ctags-better-php-parser
-    autoreconf -fi
-    ./configure
-    make
-    sudo make install
-    cd ..
-fi
+function ini_ctags(){
+    #-------------------------------------------------------------------------------
+    # install ctag for tagbar and phpcompelete
+    #-------------------------------------------------------------------------------
+	[ -f /usr/local/bin/ctags ]
+	if (( $? > 0 )) ;then
+		wget https://github.com/b4n/ctags/archive/better-php-parser.zip
+		unzip better-php-parser.zip
+		cd ctags-better-php-parser
+		autoreconf -fi
+		./configure
+		make
+		sudo make install
+		cd ..
+	fi
+}
 #-------------------------------------------------------------------------------
 # install Vundle
 #-------------------------------------------------------------------------------
@@ -75,15 +76,64 @@ if  [ ! -d ~/.vim/bundle/Vundle.vim ] ; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
-
+#读取参数
+# shellcheck disable=SC1091
+source lib/readinput.sh
 
 #-------------------------------------------------------------------------------
 # copy vimrc to home dir, and install from command line
 #-------------------------------------------------------------------------------
 rm -f ~/.vimrc
+#common config
 cp ./vimrc ~/.vimrc
-set shell=/bin/bash
+export shell=/bin/bash
+
+# pre and make vimrc
+if ((IFC == 1)) ;then
+    ini_ctags
+    # shellcheck disable=SC1091
+    source language/c_mac.sh
+    c_pre
+    c_vimrc
+fi
+if ((IFPHP == 1)) ;then
+    ini_ctags
+    # shellcheck disable=SC1091
+    source language/php_mac.sh
+    php_pre
+    php_vimrc
+fi
+
+if ((IFGOLANG == 1)) ;then
+    # shellcheck disable=SC1091
+    source language/go_mac.sh
+    go_pre
+    go_vimrc
+fi
+if ((IFHOST == 1)) ;then
+    # shellcheck disable=SC1091
+    source language/host_mac.sh
+    host_pre
+    host_vimrc
+fi
+
+
 vim   +PluginInstall +qall
+
+# post
+if ((IFC == 1)) ;then
+    c_post
+fi
+if ((IFPHP == 1)) ;then
+    php_post
+fi
+if ((IFGOLANG == 1)) ;then
+    go_post
+fi
+if ((IFHOST == 1)) ;then
+    host_post
+fi
+
 
 grep "colorschem" ~/.vimrc
 if (($? > 0 ))
@@ -92,38 +142,3 @@ then
         colorscheme solarized'  ~/.vimrc
 fi                               
                                      
-
-
-
-
-#-------------------------------------------------------------------------------
-# compile ycm_core
-#-------------------------------------------------------------------------------
-
-if [ ! -f ~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
-    cd ~
-    mkdir ycm_build
-    cd ycm_build
-    wget http://releases.llvm.org/5.0.0/clang+llvm-5.0.0-x86_64-apple-darwin.tar.xz
-    tar xJvf clang+llvm-5.0.0-x86_64-apple-darwin.tar.xz
-    cmake -G "Unix Makefiles"  -DPATH_TO_LLVM_ROOT=./clang+llvm-5.0.0-x86_64-apple-darwin    . ~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp
-    cmake --build . --target ycm_core --config Release
-    cd ..
-    rm -rf ycm_build
-fi
-
-#-------------------------------------------------------------------------------
-# get the ycm conf
-#-------------------------------------------------------------------------------
-
-
-if [ ! -f ~/.vim/ycmconf/ycm.c.py ] ; then
-
-    wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.c.py
-    mkdir -p ~/.vim/ycmconf
-    cp ycm.c.py ~/.vim/ycmconf/ycm.c.py
-fi
-
-if [ ! -f ~/.vim/c_cnt.sh ] ; then
-    cp ./c_cnt.sh  ~/.vim/c_cnt.sh
-fi

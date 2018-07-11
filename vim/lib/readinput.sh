@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
-# check root
-if [ $UID -ne 0 ]; then
-    echo "Superuser privileges are required to run this script."
-    echo "e.g. \"sudo $0\""
-    exit 1
-fi
 #参数说明函数
 function helper(){
     echo "-h: help info"
