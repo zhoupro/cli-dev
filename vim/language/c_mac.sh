@@ -38,15 +38,20 @@ function c_pre(){
 
 function c_vimrc(){
     # plugins
-    sed -i ""  "/VundleVim\\/Vundle/a\\
-Plugin 'Valloric/YouCompleteMe'
-" ~/.vimrc
     sed -i "" "/VundleVim\\/Vundle/a\\
 Plugin 'vim-scripts/a.vim'
 " ~/.vimrc
     sed -i "" "/VundleVim\\/Vundle/a\\
+Plugin 'vim-syntastic/syntastic'
+" ~/.vimrc
+
+    sed -i "" "/VundleVim\\/Vundle/a\\
 Plugin 'hari-rangarajan/CCTree'
 " ~/.vimrc
+    sed -i ""  "/VundleVim\\/Vundle/a\\
+Plugin 'Valloric/YouCompleteMe'
+" ~/.vimrc
+
 
    cat >>  ~/.vimrc <<END
 let g:ycm_python_binary_path = '/usr/bin/python3'

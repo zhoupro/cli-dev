@@ -44,10 +44,11 @@ function c_pre(){
 
 function c_vimrc(){
     # plugins
-    sed -i  "/VundleVim\\/Vundle/aPlugin 'Valloric/YouCompleteMe'" ~/.vimrc
+    sed -i  "/VundleVim\\/Vundle/aPlugin 'vim-syntastic/syntastic'" ~/.vimrc
     sed -i  "/VundleVim\\/Vundle/a\"YCM 主要是用于c语言" ~/.vimrc
     sed -i  "/VundleVim\\/Vundle/aPlugin 'vim-scripts/a.vim'" ~/.vimrc
     sed -i  "/VundleVim\\/Vundle/aPlugin 'hari-rangarajan/CCTree'" ~/.vimrc
+    sed -i  "/VundleVim\\/Vundle/aPlugin 'Valloric/YouCompleteMe'" ~/.vimrc
 
    cat >>  ~/.vimrc <<END
 let g:ycm_python_binary_path = '/usr/bin/python3'
