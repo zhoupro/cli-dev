@@ -9,33 +9,21 @@ Make a vim IDE  develop enviroment as personal
 - c
 - php
 - shell
-- golang
-- python
+- go
 - markdown
 
 ### set up
+#### common
  ./init.sh
-press continue after hang up
+#### c 
+./init.sh -c
+#### php
+./init.sh -p
+#### go
+./init.sh -g
+#### markdown
+./init.sh -l
 
-### install item
-* you complete me 
-* vim-syntax-extra for c 
-* phpcomplet php complete
-* vdebug debug
-* molokai color
-* bash-support shell
-* ctrl-p
-* tagbar
-* vim-surround
-* vim-repeat
-* vim-abolish
-* vim-vinegar  filebrowser
-* vim-go  golang
-* jedi-vim  python complete 
-* gocode
+#### all feature
+./init.sh -c -p -g -l
 
-### pre
-* leader  " "
-### usage
-* '\<leader\>t'  run program
-* '\<leader\>q'  query mac Dash
