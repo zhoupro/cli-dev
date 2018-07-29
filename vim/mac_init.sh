@@ -28,30 +28,7 @@ done
 
 vim --version | grep -e "+python"
 if [ $? -gt 0 ];then
-	git clone https://github.com/vim/vim.git
-	cd vim
-	sudo	make clean
-	sudo git clean -fdx
-
-	./configure \
-		--prefix=/usr/local/ \
-		--with-features=huge \
-		--enable-multibyte \
-		--enable-cscope=yes \
-		--enable-perlinterp=yes \
-		--enable-rubyinterp=yes \
-		--with-ruby-command=/usr/bin/ruby \
-		--enable-luainterp=yes \
-		--enable-pythoninterp=yes \
-		--enable-python3interp=yes \
-		--enable-tclinterp=yes \
-		--enable-xim \
-		--enable-fontset \
-		--with-x \
-		--with-compiledby=$USER
-
-	make && sudo make install
-	cd ..
+    brew install vim --with-cscope --with-lua -with-python3 --override-system-vim
 fi
 function ini_ctags(){
     #-------------------------------------------------------------------------------
