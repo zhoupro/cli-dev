@@ -27,5 +27,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
 " Syntastic configuration for PHP
-let g:syntastic_php_checkers = ['php']
+let g:syntastic_php_checkers = ['php', 'phpmd']
+let g:syntastic_php_phpmd_exec = 'phpmd'
+let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,unusedcode,naming'
