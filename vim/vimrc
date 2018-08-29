@@ -29,7 +29,10 @@ Plugin 'vim-airline/vim-airline-themes'
 "change somethings
 Plugin 'tpope/vim-surround'
 "filebrowser
-Plugin 'tpope/vim-vinegar'
+"Plugin 'tpope/vim-vinegar'
+Plugin 'scrooloose/nerdtree'
+
+Plugin 'tpope/vim-commentary'
 
 Plugin 'terryma/vim-multiple-cursors'
 call vundle#end()            " required
