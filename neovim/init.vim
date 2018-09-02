@@ -8,6 +8,16 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'phpactor/ncm2-phpactor'
     Plug 'arnaud-lb/vim-php-namespace'
     Plug 'vim-syntastic/syntastic'
+    "outline
+    Plug 'majutsushi/tagbar'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    " explore 
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'mileszs/ack.vim'
+    Plug 'vim-scripts/ctags.vim'
+    "git
+    Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " ncm2
@@ -23,12 +33,30 @@ autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
 " Syntastic configuration
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+ set statusline+=%#warningmsg#
+ set statusline+=%{SyntasticStatuslineFlag()}
+ set statusline+=%*
+ let g:syntastic_check_on_open = 1
+ let g:syntastic_check_on_wq = 0
 
-" Syntastic configuration for PHP
-let g:syntastic_php_checkers = ['php', 'phpmd']
-let g:syntastic_php_phpmd_exec = 'phpmd'
-let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,unusedcode,naming'
+ " Syntastic configuration for PHP
+ let g:syntastic_php_checkers = ['php', 'phpmd', 'phpcs']
+ let g:syntastic_php_phpmd_exec = 'phpmd'
+ let g:syntastic_php_phpcs_exec = 'phpcs'
+ let g:syntastic_php_phpcs_args = '--standard=psr2'
+ let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,unusedcode'
+
+ " ack
+ " Ack -> Ag
+ if executable('ag')
+   let g:ackprg = 'ag --vimgrep'
+ endif
+
+ autocmd FileType php nnoremap <c-]> :call phpactor#GotoDefinition()<CR>
+
+ " ctrlp
+let g:ctrlp_regexp = 1
+let g:ctrlp_cmd='CtrlP :pwd'
+
+" outline
+nmap <F12> :TagbarToggle<CR>
