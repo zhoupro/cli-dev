@@ -16,9 +16,20 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'mileszs/ack.vim'
     Plug 'vim-scripts/ctags.vim'
-    "git
+    "git 
     Plug 'tpope/vim-fugitive'
+    Plug 'scrooloose/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
+
+"""""""""""""""""""""""""""""""""""""
+" Mappings configurationn
+"""""""""""""""""""""""""""""""""""""
+map <C-n> :NERDTreeToggle<CR>
+map <C-m> :TagbarToggle<CR>
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
 
 " ncm2
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -55,8 +66,5 @@ autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
  autocmd FileType php nnoremap <c-]> :call phpactor#GotoDefinition()<CR>
 
  " ctrlp
-let g:ctrlp_regexp = 1
+let g:ctrlp_regexp=1
 let g:ctrlp_cmd='CtrlP :pwd'
-
-" outline
-nmap <F12> :TagbarToggle<CR>
