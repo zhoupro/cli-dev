@@ -35,6 +35,9 @@ fi
 #-------------------------------------------------------------------------------
 # copy init.vim to home dir, and install from command line
 #-------------------------------------------------------------------------------
+if [ ! -f ~/.vim/c_cnt.sh ] ; then
+	cp ./c_cnt.sh  ~/.config/nvim/c_cnt.sh
+fi
 rm -f ~/.config/nvim/init.vim
 #common config
 mkdir -p ~/.config/nvim
