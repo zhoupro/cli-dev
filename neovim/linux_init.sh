@@ -1,29 +1,11 @@
 #!/bin/bash -
 set -o nounset                                  # Treat unset variables as an error
-apt-get install -y --no-install-recommends git unzip wget curl 
+apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope ctags
 #读取参数
 # shellcheck disable=SC1091
-source lib/readinput.sh
 apt install neovim python3-pip
 pip3 install neovim --upgrade
 
-function ini_ctags(){
-    #-------------------------------------------------------------------------------
-    # install ctag for tagbar and phpcompelete
-    #-------------------------------------------------------------------------------
-    apt-get install -y gcc  autoconf automake make
-    if ! command -v  ctags ;then
-        wget https://github.com/b4n/ctags/archive/better-php-parser.zip
-        unzip better-php-parser.zip
-        cd ctags-better-php-parser || exit
-        autoreconf -fi
-        ./configure
-        make
-        make install
-        cd ..
-        rm -rf better-php-parser*
-    fi
-}
 #-------------------------------------------------------------------------------
 # install vim-plug 
 #-------------------------------------------------------------------------------
@@ -37,6 +19,14 @@ fi
 #-------------------------------------------------------------------------------
 if [ ! -f ~/.vim/c_cnt.sh ] ; then
 	cp ./c_cnt.sh  ~/.config/nvim/c_cnt.sh
+	cp ./add_swap.sh  ~/.config/nvim/add_swap.sh
+	cp ./del_swap.sh  ~/.config/nvim/del_swap.sh
+fi
+if [ ! -f ~/.config/nvim/ycm.c.py ] ; then
+    wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.c.py
+    mkdir -p ~/.config/nvim
+    cp ycm.c.py ~/.config/nvim/ycm.c.py
+    rm -f ycm.c.py
 fi
 rm -f ~/.config/nvim/init.vim
 #common config
@@ -44,3 +34,6 @@ mkdir -p ~/.config/nvim
 cp ./init.vim ~/.config/nvim/init.vim
 export shell=/bin/bash
 nvim +'PlugInstall --sync' +qall
+bash ~/.config/nvim/add_swap.sh
+python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
+bash ~/.config/nvim/del_swap.sh

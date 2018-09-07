@@ -34,7 +34,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     " c 语言语法高亮
     Plug 'justinmk/vim-syntax-extra'
     Plug 'altercation/vim-colors-solarized'
-
+    Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 " our <leader> will be the space key
@@ -200,3 +200,8 @@ autocmd VimEnter * call LoadCCTree()
 
 set background=dark
 colorscheme solarized
+
+let g:ycm_global_ycm_extra_conf='/root/.local/share/nvim/plugged/YouCompleteMe/ycm.c.py'
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_key_invoke_completion = '<C-a>'
