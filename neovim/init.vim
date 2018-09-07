@@ -199,7 +199,6 @@ endfunc
 autocmd VimEnter * call LoadCCTree()
 
 set background=dark
-colorscheme solarized
 
 let g:ycm_global_ycm_extra_conf='/root/.local/share/nvim/plugged/YouCompleteMe/ycm.c.py'
 let g:ycm_server_python_interpreter = '/usr/bin/python'
