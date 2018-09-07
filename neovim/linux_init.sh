@@ -1,6 +1,6 @@
 #!/bin/bash -
 set -o nounset                                  # Treat unset variables as an error
-apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope ctags
+apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope ctags cmake
 #读取参数
 # shellcheck disable=SC1091
 apt-get  install -y  neovim python3-pip
