@@ -200,7 +200,7 @@ autocmd VimEnter * call LoadCCTree()
 
 set background=dark
 
-let g:ycm_global_ycm_extra_conf='/root/.local/share/nvim/plugged/YouCompleteMe/ycm.c.py'
+let g:ycm_global_ycm_extra_conf='~/.config/nvim/ycm.c.py'
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_key_invoke_completion = '<C-a>'

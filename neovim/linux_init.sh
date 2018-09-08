@@ -1,6 +1,6 @@
 #!/bin/bash -
 set -o nounset                                  # Treat unset variables as an error
-apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope ctags cmake
+apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope ctags cmake gdb
 #读取参数
 # shellcheck disable=SC1091
 apt-get  install -y  neovim python3-pip
@@ -37,3 +37,5 @@ nvim +'PlugInstall --sync' +qall
 bash ~/.config/nvim/add_swap.sh
 python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
 bash ~/.config/nvim/del_swap.sh
+rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
+rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/.git
