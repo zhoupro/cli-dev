@@ -39,3 +39,4 @@ python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
 bash ~/.config/nvim/del_swap.sh
 rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
 rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/.git
+echo "colorscheme solarized" >> ~/.config/nvim/init.vim
