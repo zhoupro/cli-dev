@@ -9,9 +9,9 @@
 set -o nounset    
 source ./helper/system_info.sh
 
-#install vim
-cd vim
-source "../vim/${sys_os}_init.sh"
+#install neovim
+cd neovim
+source "../neovim/${sys_os}_init.sh"
 cd ..
 
 #install tmux
