@@ -9,4 +9,7 @@
 set -o nounset                                  # Treat unset variables as an error
 
 apt-get install zsh -y
+echo 'export LC_ALL=en_US.UTF-8'  >> ~/.zshrc
+echo 'export LANG=en_US.UTF-8' >> ~/.zshrc
 [ ! -d ~/.oh-my-zsh ] && sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
