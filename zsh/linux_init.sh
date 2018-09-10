@@ -8,9 +8,9 @@
 
 set -o nounset                                  # Treat unset variables as an error
 
-apt-get install zsh -y
-echo 'export LC_ALL=en_US.UTF-8'  >> ~/.zshrc
-echo 'export LANG=en_US.UTF-8' >> ~/.zshrc
-usermod -s /bin/zsh `whoami`
+apt-get install zsh language-pack-zh-hans language-pack-zh-hans-base -y
+echo 'export LC_ALL=zh_CN.UTF-8' >> ~/.zshrc
+echo 'export LANG=zh_CN.UTF-8' >> ~/.zshrc
+sudo usermod -s /bin/zsh root
 [ ! -d ~/.oh-my-zsh ] && sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
