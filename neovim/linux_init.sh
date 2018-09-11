@@ -40,3 +40,5 @@ bash ~/.config/nvim/del_swap.sh
 rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
 rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/.git
 echo "colorscheme solarized" >> ~/.config/nvim/init.vim
+# fix <c-p> confilict
+sed -i 's/c-p/c-e/g' ~/.local/share/nvim/plugged/nvim-gdb/autoload/nvimgdb.vim
