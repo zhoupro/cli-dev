@@ -35,6 +35,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'justinmk/vim-syntax-extra'
     Plug 'altercation/vim-colors-solarized'
     Plug 'Valloric/YouCompleteMe'
+    " fold
+    Plug 'pseewald/vim-anyfold'
 call plug#end()
 
 " our <leader> will be the space key
@@ -204,3 +206,12 @@ let g:ycm_global_ycm_extra_conf='~/.config/nvim/ycm.c.py'
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_key_invoke_completion = '<C-a>'
+
+" fold
+let anyfold_activate=1
+let anyfold_fold_comments=1
+set foldlevel=10
+hi Folded term=NONE cterm=NONE
+
+" color change fix in tmux
+set t_Co=256
