@@ -13,7 +13,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     " explore 
-    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+    Plug 'vim-scripts/mru.vim'
     Plug 'mileszs/ack.vim'
     Plug 'vim-scripts/ctags.vim'
     Plug 'tpope/vim-commentary'
@@ -215,3 +217,7 @@ hi Folded term=NONE cterm=NONE
 
 " color change fix in tmux
 set t_Co=256
+
+" exploer
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>e :MRU<CR><Paste>
