@@ -9,16 +9,17 @@
 set -o nounset    
 source ./helper/system_info.sh
 
-#install neovim
-cd neovim
-source "../neovim/${sys_os}_init.sh"
-cd ..
-
 #install tmux
 cd tmux
-source "../tmux/${sys_os}_init.sh"
+source "./${sys_os}_init.sh"
 cd ..
+
 #install zsh
 cd zsh
-source "../zsh/${sys_os}_init.sh"
+source "./${sys_os}_init.sh"
+cd ..
+
+#install neovim
+cd neovim
+source "./${sys_os}_init.sh"
 cd ..
