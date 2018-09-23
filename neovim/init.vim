@@ -84,8 +84,6 @@ endfunction
 autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
-" Syntastic configuration
-"
 " ale-setting {{{
 let g:ale_set_highlights = 0
 "自定义error和warning图标
@@ -93,6 +91,8 @@ let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚡'
 "打开文件时不进行检查
 let g:ale_lint_on_enter = 0
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
 
 "普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
 nmap sp <Plug>(ale_previous_wrap)
@@ -104,8 +104,9 @@ nmap <Leader>d :ALEDetail<CR>
 " Only run linters named in ale_linters settings.
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-\   'php': ['phpcs'],
+\   'php': ['phpcs','phpmd'],
 \}
+let g:ale_php_phpcs_standard = 'psr2'
 " }}}
 
  " ack
