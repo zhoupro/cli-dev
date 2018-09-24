@@ -42,3 +42,9 @@ rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/.git
 echo "colorscheme solarized" >> ~/.config/nvim/init.vim
 # fix <c-p> confilict
 sed -i 's/c-p/c-e/g' ~/.local/share/nvim/plugged/nvim-gdb/autoload/nvimgdb.vim
+       cat >> /usr/local/bin/phpxd <<END
+#!/bin/zsh
+export XDEBUG_CONFIG="idekey=xdebug remote_host=localhost"
+php "$@"
+END
+chmod u+x 755 /usr/local/bin/phpxd

@@ -228,3 +228,21 @@ set t_Co=256
 " exploer
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>e :MRU<CR><Paste>
+
+" PHP debug
+let g:vdebug_options= {
+    \    "port" : 9010,
+    \    "server" : '0.0.0.0',
+    \    "timeout" : 100,
+    \    "on_close" : 'detach',
+    \    "break_on_open" : 1,
+    \    "ide_key" : 'xdebug',
+    \    "path_maps" : {},
+    \    "debug_window_level" : 0,
+    \    "debug_file_level" : 0,
+    \    "debug_file" : "",
+    \    "watch_window_style" : 'expanded',
+    \    "marker_default" : '⬦',
+    \    "marker_closed_tree" : '▸',
+    \    "marker_open_tree" : '▾'
+    \}
