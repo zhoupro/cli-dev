@@ -45,6 +45,6 @@ sed -i 's/c-p/c-e/g' ~/.local/share/nvim/plugged/nvim-gdb/autoload/nvimgdb.vim
        cat >> /usr/local/bin/phpxd <<END
 #!/bin/zsh
 export XDEBUG_CONFIG="idekey=xdebug remote_host=localhost"
-php "$@"
+php "\$@"
 END
-chmod u+x 755 /usr/local/bin/phpxd
+chmod u+x  /usr/local/bin/phpxd

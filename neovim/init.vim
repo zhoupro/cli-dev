@@ -7,12 +7,14 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'phpactor/ncm2-phpactor'
     Plug 'arnaud-lb/vim-php-namespace'
+    Plug 'stephpy/vim-php-cs-fixer'
     Plug 'w0rp/ale'
     "outline
     Plug 'majutsushi/tagbar'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     " explore 
+    Plug 'scrooloose/nerdtree'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'vim-scripts/mru.vim'
@@ -21,15 +23,15 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-commentary'
     "git 
     Plug 'tpope/vim-fugitive'
-    Plug 'scrooloose/nerdtree'
     Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'mhinz/vim-signify'
     " go
-    "
     Plug 'fatih/vim-go'
     Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
     Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
-    " gdb
+    " debug 
     Plug 'sakhnik/nvim-gdb'
+    Plug 'vim-vdebug/vdebug'
     " c
     Plug 'hari-rangarajan/CCTree'
     Plug 'vim-scripts/a.vim'
@@ -39,6 +41,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'Valloric/YouCompleteMe'
     " fold
     Plug 'pseewald/vim-anyfold'
+    " transform
+    Plug 'tpope/vim-abolish'
 call plug#end()
 
 " our <leader> will be the space key
@@ -246,3 +250,10 @@ let g:vdebug_options= {
     \    "marker_closed_tree" : '▸',
     \    "marker_open_tree" : '▾'
     \}
+" Vim-php-cs-fixer
+" If you use php-cs-fixer version 2.x
+let g:php_cs_fixer_rules = "@PSR2"          " options: --rules (default:@PSR2)
+let g:php_cs_fixer_php_path = "php"               " Path to PHP
+let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
