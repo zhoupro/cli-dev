@@ -6,4 +6,4 @@ fi
 
 rm -f ~/.tmux.conf
 cp ./tmux.conf  ~/.tmux.conf
-echo 'alias tmux="tmux -2"' >> ~/.zshrc
+echo 'alias tmux="tmux -2"' >> "$HOME/.env"
