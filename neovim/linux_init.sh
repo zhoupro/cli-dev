@@ -18,6 +18,7 @@ fi
 # copy init.vim to home dir, and install from command line
 #-------------------------------------------------------------------------------
 if [ ! -f ~/.vim/c_cnt.sh ] ; then
+    mkdir -p  ~/.config/nvim
 	cp ./c_cnt.sh  ~/.config/nvim/c_cnt.sh
 	cp ./add_swap.sh  ~/.config/nvim/add_swap.sh
 	cp ./del_swap.sh  ~/.config/nvim/del_swap.sh
