@@ -127,6 +127,7 @@ let g:ale_php_phpcs_standard = 'psr2'
 "----------------------------------------------
 " Run goimports when running gofmt
 let g:go_fmt_command = "goimports"
+let g:go_version_warning = 0
 
 
 let g:go_highlight_build_constraints = 1
