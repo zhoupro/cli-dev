@@ -35,11 +35,13 @@ mkdir -p ~/.config/nvim
 cp ./init.vim ~/.config/nvim/init.vim
 export shell=/bin/bash
 nvim +'PlugInstall --sync' +qall
-bash ~/.config/nvim/add_swap.sh
-python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
-bash ~/.config/nvim/del_swap.sh
-rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
-rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/.git
+if [ ! -f .local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
+    bash ~/.config/nvim/add_swap.sh
+    python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
+    bash ~/.config/nvim/del_swap.sh
+    rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
+    rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/.git
+fi
 echo "colorscheme solarized" >> ~/.config/nvim/init.vim
 # fix <c-p> confilict
 sed -i 's/c-p/c-e/g' ~/.local/share/nvim/plugged/nvim-gdb/autoload/nvimgdb.vim
