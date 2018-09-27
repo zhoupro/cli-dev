@@ -12,8 +12,7 @@ apt-get install netcat iproute2
 #install proxy tool
 if   netcat -z `/sbin/ip route|awk '/default/ { print $3 }'` 8085 && [ ! -f /usr/local/bin/pxy ] ;then
     cp ./helper/pxy.sh /usr/local/bin/pxy && chmod u+x /usr/local/bin/pxy 
-    curl http://`/sbin/ip route|awk '/default/ { print $3 }'`:8085/module/gae_proxy/control/download_cert | sudo tee  --append /etc/ssl/certs
-  /ca-certificates.crt
+    curl http://`/sbin/ip route|awk '/default/ { print $3 }'`:8085/module/gae_proxy/control/download_cert | sudo tee  --append /etc/ssl/certs/ca-certificates.crt
 fi
 
 source ./helper/system_info.sh
