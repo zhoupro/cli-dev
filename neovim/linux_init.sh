@@ -49,3 +49,8 @@ export XDEBUG_CONFIG="idekey=xdebug remote_host=localhost"
 php "\$@"
 END
 chmod u+x  /usr/local/bin/phpxd
+
+if `which go`;then
+    pxy nvim +'GoInstallBinaries' +qall
+fi
+echo 'alias vim="nvim"' >> "$HOME/.env"
