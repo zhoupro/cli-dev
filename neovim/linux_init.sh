@@ -35,7 +35,7 @@ mkdir -p ~/.config/nvim
 cp ./init.vim ~/.config/nvim/init.vim
 export shell=/bin/bash
 nvim +'PlugInstall --sync' +qall
-if [ ! -f .local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
+if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
     bash ~/.config/nvim/add_swap.sh
     python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
     bash ~/.config/nvim/del_swap.sh
