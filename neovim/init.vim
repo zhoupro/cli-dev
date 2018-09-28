@@ -27,11 +27,11 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'mhinz/vim-signify'
     " go
     Plug 'fatih/vim-go'
-    Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
-    Plug 'zchee/deoplete-go', { 'do': 'make'}      " Go auto completion
+    Plug 'ncm2/ncm2-go'
     " debug 
     Plug 'sakhnik/nvim-gdb'
     Plug 'vim-vdebug/vdebug'
+    Plug 'sebdah/vim-delve'
     " c
     Plug 'hari-rangarajan/CCTree'
     Plug 'vim-scripts/a.vim'

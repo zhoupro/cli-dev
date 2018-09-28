@@ -54,5 +54,7 @@ chmod u+x  /usr/local/bin/phpxd
 
 if which go;then
     pxy nvim +'GoInstallBinaries' +qall
+    go get -u github.com/derekparker/delve/cmd/dlv
+    go get -u github.com/mdempsky/gocode
 fi
 echo 'alias vim="nvim"' >> "$HOME/.env"
