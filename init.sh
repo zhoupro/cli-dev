@@ -8,7 +8,7 @@
 
 set -o nounset    
 
-apt-get install netcat iproute2
+apt-get install -y netcat iproute2
 #install proxy tool
 if   netcat -z `/sbin/ip route|awk '/default/ { print $3 }'` 8085 && [ ! -f /usr/local/bin/pxy ] ;then
     cp ./helper/pxy.sh /usr/local/bin/pxy && chmod u+x /usr/local/bin/pxy 
