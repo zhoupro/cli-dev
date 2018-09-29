@@ -43,6 +43,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'pseewald/vim-anyfold'
     " transform
     Plug 'tpope/vim-abolish'
+    " snips
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
 call plug#end()
 
 " our <leader> will be the space key
@@ -258,3 +261,5 @@ let g:php_cs_fixer_php_path = "php"               " Path to PHP
 let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
 let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
+" snips
+let g:UltiSnipsExpandTrigger="<c-c>"
