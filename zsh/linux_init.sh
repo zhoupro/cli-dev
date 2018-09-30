@@ -22,7 +22,7 @@ echo "export PATH=\$PATH:$HOME/.composer/vendor/bin" >> "$HOME/.env"
 ! (grep -F 'zsh-syntax-highlighting' ~/.cus_zshrc )  && \
 cat >> ~/.cus_zshrc <<END
 export ZPLUG_HOME=~/.zplug
-source $ZPLUG_HOME/init.zsh
+source \$ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 source /root/.zplug/repos/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 END 
