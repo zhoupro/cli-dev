@@ -234,6 +234,10 @@ hi Folded term=NONE cterm=NONE
 " color change fix in tmux
 set t_Co=256
 
+" for debug
+set nu
+set list
+
 " exploer
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>e :MRU<CR><Paste>
