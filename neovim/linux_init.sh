@@ -42,10 +42,13 @@ if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so
     rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
     rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/.git
 fi
-echo "colorscheme solarized" >> ~/.config/nvim/init.vim
+! ( grep -F dracula_colorterm ~/.config/nvim/init.vim ) && \
+    echo "let g:dracula_colorterm = 0" >> ~/.config/nvim/init.vim && \
+    echo "color dracula" >> ~/.config/nvim/init.vim
+
 # fix <c-p> confilict
 sed -i 's/c-p/c-e/g' ~/.local/share/nvim/plugged/nvim-gdb/autoload/nvimgdb.vim
-       cat > /usr/local/bin/phpxd <<END
+cat > /usr/local/bin/phpxd <<END
 #!/bin/zsh
 export XDEBUG_CONFIG="idekey=xdebug remote_host=localhost"
 php "\$@"
@@ -55,6 +58,7 @@ chmod u+x  /usr/local/bin/phpxd
 if which go;then
     pxy nvim +'GoInstallBinaries' +qall
     go get -u github.com/derekparker/delve/cmd/dlv
-    go get -u github.com/mdempsky/gocode
+    #go get -u github.com/mdempsky/gocode
 fi
 echo 'alias vim="nvim"' >> "$HOME/.env"
+echo 'alias vi="nvim"' >> "$HOME/.env"
