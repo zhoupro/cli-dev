@@ -16,7 +16,7 @@ echo 'export LANG=zh_CN.UTF-8' >> "$HOME/.env" && \
 echo "export PATH=\$PATH:$HOME/.composer/vendor/bin" >> "$HOME/.env"
 
 #env
-! (grep -F '.env' ~/.zshrc /dev/null )  && \
+! (grep -F '.env' ~/.zshrc >/dev/null )  && \
     echo 'if [ -f ~/.env ];then; source ~/.env;fi' >> ~/.zshrc
 
 ! (grep -F 'zsh-syntax-highlighting' ~/.cus_zshrc )  && \
@@ -28,6 +28,6 @@ source /root/.zplug/repos/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlight
 END 
 
 #zsh plugin
-! (grep -F '.cus_zshrc' ~/.zshrc )  && \
+! (grep -F '.cus_zshrc' ~/.zshrc >/dev/null )  && \
     echo 'if [ -f ~/.cus_zshrc ];then; source ~/.cus_zshrc;fi' >> ~/.zshrc && \
     zplug install
