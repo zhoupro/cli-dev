@@ -113,6 +113,7 @@ nmap <Leader>d :ALEDetail<CR>
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
 \   'php': ['phpcs','phpmd'],
+\   'sh': ['shellcheck'],
 \}
 let g:ale_php_phpcs_standard = 'psr2'
 " }}}
