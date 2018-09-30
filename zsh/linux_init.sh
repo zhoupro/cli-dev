@@ -30,4 +30,4 @@ END
 #zsh plugin
 ! (grep -F '.cus_zshrc' ~/.zshrc >/dev/null )  && \
     echo 'if [ -f ~/.cus_zshrc ];then; source ~/.cus_zshrc;fi' >> ~/.zshrc && \
-    zplug install
+    echo 'zplug install' >> ~/.zshrc
