@@ -25,7 +25,7 @@ export ZPLUG_HOME=~/.zplug
 source \$ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 source /root/.zplug/repos/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-END 
+END
 
 #zsh plugin
 ! (grep -F '.cus_zshrc' ~/.zshrc >/dev/null )  && \
