@@ -31,3 +31,6 @@ cd ..
 cd neovim
 source "./${sys_os}_init.sh"
 cd ..
+
+#reload zsh
+zsh
