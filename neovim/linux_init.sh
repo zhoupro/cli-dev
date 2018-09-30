@@ -42,9 +42,6 @@ if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so
     rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
     rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/.git
 fi
-! ( grep -F dracula_colorterm ~/.config/nvim/init.vim ) && \
-    echo "let g:dracula_colorterm = 0" >> ~/.config/nvim/init.vim && \
-    echo "color dracula" >> ~/.config/nvim/init.vim
 
 # fix <c-p> confilict
 sed -i 's/c-p/c-e/g' ~/.local/share/nvim/plugged/nvim-gdb/autoload/nvimgdb.vim
@@ -62,3 +59,6 @@ if which go;then
 fi
 echo 'alias vim="nvim"' >> "$HOME/.env"
 echo 'alias vi="nvim"' >> "$HOME/.env"
+! ( grep -F dracula_colorterm ~/.config/nvim/init.vim ) && \
+    echo "let g:dracula_colorterm = 0" >> ~/.config/nvim/init.vim && \
+    echo "color dracula" >> ~/.config/nvim/init.vim

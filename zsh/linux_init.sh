@@ -10,13 +10,13 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 sudo usermod -s /bin/zsh root
 
-! (grep -F 'LC_ALL' ~/.env )  && \
+! (grep -F 'LC_ALL' ~/.env >/dev/null )  && \
 echo 'export LC_ALL=zh_CN.UTF-8' >> "$HOME/.env" && \
 echo 'export LANG=zh_CN.UTF-8' >> "$HOME/.env" && \
 echo "export PATH=\$PATH:$HOME/.composer/vendor/bin" >> "$HOME/.env"
 
 #env
-! (grep -F '.env' ~/.zshrc )  && \
+! (grep -F '.env' ~/.zshrc /dev/null )  && \
     echo 'if [ -f ~/.env ];then; source ~/.env;fi' >> ~/.zshrc
 
 ! (grep -F 'zsh-syntax-highlighting' ~/.cus_zshrc )  && \
