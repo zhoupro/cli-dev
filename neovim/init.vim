@@ -46,7 +46,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
     " themes
-    Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'joshdick/onedark.vim'
 call plug#end()
 
 " our <leader> will be the space key
