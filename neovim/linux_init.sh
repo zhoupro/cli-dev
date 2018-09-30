@@ -59,6 +59,6 @@ if which go;then
 fi
 echo 'alias vim="nvim"' >> "$HOME/.env"
 echo 'alias vi="nvim"' >> "$HOME/.env"
-! ( grep -F onedark ~/.config/nvim/init.vim ) && \
+! ( grep -F "color onedark" ~/.config/nvim/init.vim ) && \
     echo "color onedark" >> ~/.config/nvim/init.vim && \
     echo "highlight Normal ctermbg=None" >> ~/.config/nvim/init.vim
