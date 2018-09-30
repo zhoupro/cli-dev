@@ -37,7 +37,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-scripts/a.vim'
     " c 语言语法高亮
     Plug 'justinmk/vim-syntax-extra'
-    Plug 'altercation/vim-colors-solarized'
     Plug 'Valloric/YouCompleteMe'
     " fold
     Plug 'pseewald/vim-anyfold'
@@ -46,6 +45,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     " snips
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
+    " themes
+    Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 " our <leader> will be the space key
