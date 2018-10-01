@@ -79,11 +79,6 @@ map <C-m> :TagbarToggle<CR>
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-
-" ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
 " vim-php-namespace
 function! IPhpInsertUse()
     call PhpInsertUse()
@@ -207,6 +202,13 @@ if has("cscope")
  endif
 
  function! LoadCCTree()
+        if &filetype == 'c'
+            let mock_test = 1
+        else
+            " ncm2
+            autocmd BufEnter * call ncm2#enable_for_buffer()
+            set completeopt=noinsert,menuone,noselect
+        endif
         let c_cnt = 0
         if filereadable('cscope.out')
             let script="bash ~/.vim/c_cnt.sh " . expand('%:p:h')
