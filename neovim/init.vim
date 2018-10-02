@@ -262,6 +262,10 @@ let g:vdebug_options= {
     \    "marker_closed_tree" : '▸',
     \    "marker_open_tree" : '▾'
     \}
+highlight DbgBreakptLine ctermbg=none ctermfg=none
+highlight DbgBreakptSign ctermbg=none ctermfg=10
+highlight DbgCurrentLine ctermbg=none ctermfg=none
+highlight DbgCurrentSign ctermbg=none ctermfg=red
 " Vim-php-cs-fixer
 " If you use php-cs-fixer version 2.x
 let g:php_cs_fixer_rules = "@PSR2"          " options: --rules (default:@PSR2)
