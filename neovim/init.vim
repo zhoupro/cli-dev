@@ -211,7 +211,7 @@ if has("cscope")
         endif
         let c_cnt = 0
         if filereadable('cscope.out')
-            let script="bash ~/.vim/c_cnt.sh " . expand('%:p:h')
+            let script="bash ~/.config/nvim/c_cnt.sh " . expand('%:p:h')
             let c_cnt = system(script)
             "echom c_cnt
         endif
