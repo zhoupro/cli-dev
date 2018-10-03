@@ -218,8 +218,6 @@ let anyfold_fold_comments=1
 set foldlevel=10
 hi Folded term=NONE cterm=NONE
 
-" color change fix in tmux
-set t_Co=256
 
 " for debug
 set nu
@@ -264,3 +262,11 @@ let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
 let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 nnoremap <leader>y :call system('nc -q 1 host.docker.internal 8377', @0)<CR>
 nnoremap <leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
+
+if has("termguicolors")
+    " enable true color
+    set termguicolors
+else
+    " color change fix in tmux
+    set t_Co=256
+endif

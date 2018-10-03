@@ -1,10 +1,17 @@
 #!/bin/bash -
 set -o nounset                                  # Treat unset variables as an error
 apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope  cmake gdb
-apt-get remove -y exuberant-ctags 
 #读取参数
 # shellcheck disable=SC1091
-apt-get  install -y  neovim python3-pip shellcheck libtool-bin gettext
+apt-get  install -y   python3-pip shellcheck libtool-bin gettext
+apt-get remove -y neovim exuberant-ctags 
+# install neovim
+! which nvim >/dev/null &&\
+    wget https://github.com/neovim/neovim/archive/v0.3.1.tar.gz &&\
+    tar xzvf v0.3.1.tar.gz && cd neovim-0.3.1 && \
+    pxy make && make install &&\
+    cd .. && rm -rf neovim-0.3.1  v0.3.1.tar.gz
+
 pip3 install neovim --upgrade
 
 
@@ -59,10 +66,6 @@ chmod u+x  /usr/local/bin/phpxd
     cd ctags && ./autogen.sh && ./configure && make && make install &&\
     cd .. && rm -rf ctags
 
-! which nvim >/dev/null &&\
-    wget https://github.com/neovim/neovim/archive/v0.3.1.tar.gz &&\
-    tar xzvf v0.3.1.tar.gz && cd neovim-0.3.1 && \
-    pxy make && make install
     
 
 if which go;then
