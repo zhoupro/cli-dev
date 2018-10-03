@@ -1,7 +1,7 @@
 #!/bin/bash -
 set -o nounset                                  # Treat unset variables as an error
 apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope  cmake gdb
-apt-get remove -y ctags
+apt-get remove -y exuberant-ctags 
 #读取参数
 # shellcheck disable=SC1091
 apt-get  install -y  neovim python3-pip shellcheck
@@ -53,7 +53,7 @@ php "\$@"
 END
 chmod u+x  /usr/local/bin/phpxd
 
-which ctags >/dev/null && \
+! which ctags >/dev/null && \
     git clone https://github.com/universal-ctags/ctags.git &&\
     cd ctags && ./autogen.sh && make && make install &&\
     cd .. && rm -rf ctags
