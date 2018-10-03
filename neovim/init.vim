@@ -203,7 +203,7 @@ function! s:completeFileTypeOpt()
             set completeopt=noinsert,menuone,noselect
         endif
 endfunc
-autocmd VimEnter * call completeFileTypeOpt()
+autocmd VimEnter * call s:completeFileTypeOpt()
 
 set background=dark
 
