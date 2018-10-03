@@ -55,7 +55,8 @@ chmod u+x  /usr/local/bin/phpxd
 
 which ctags >/dev/null && \
     git clone https://github.com/universal-ctags/ctags.git &&\
-    cd ctags && ./autogen.sh && make && make install
+    cd ctags && ./autogen.sh && make && make install &&\
+    cd .. && rm -rf ctags
 
 if which go;then
     pxy nvim +'GoInstallBinaries' +qall
