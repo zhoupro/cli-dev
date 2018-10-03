@@ -175,10 +175,10 @@ if has("cscope")
 
      " add any cscope database in current directory
      if filereadable("cscope.out")
-         slient cs add cscope.out
+         silent cs add cscope.out
      " else add the database pointed to by environment variable
      elseif $CSCOPE_DB !=""
-         slient cs add $CSCOPE_DB
+         silent cs add $CSCOPE_DB
      endif
 
      " show msg when any other cscope db added
