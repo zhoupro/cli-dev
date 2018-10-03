@@ -194,7 +194,7 @@ if has("cscope")
      nmap [d :cs find d <C-R>=expand("<cword>")<CR><CR>
  endif
 
-function! completeFileTypeOpt()
+function! s:completeFileTypeOpt()
         if &filetype == 'c'
             let mock_test = 1
         else
