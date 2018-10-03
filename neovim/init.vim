@@ -33,7 +33,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-vdebug/vdebug'
     Plug 'sebdah/vim-delve'
     " c
-    Plug 'hari-rangarajan/CCTree'
     Plug 'vim-scripts/a.vim'
     " c 语言语法高亮
     Plug 'justinmk/vim-syntax-extra'
@@ -60,12 +59,6 @@ set incsearch
 " clear highlight
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
-
-" cctree
-let g:CCTreeKeyTraceForwardTree = '<C-\>h'
-let g:CCTreeKeyTraceReverseTree = '<C-\>l'
-let g:CCTreeKeyDepthPlus = '<C-\>j'
-let g:CCTreeKeyDepthMinus = '<C-\>k'
 
 " tab 替换为4个空格
 set tabstop=4
@@ -201,7 +194,7 @@ if has("cscope")
      nmap [d :cs find d <C-R>=expand("<cword>")<CR><CR>
  endif
 
- function! LoadCCTree()
+function! completeFileTypeOpt()
         if &filetype == 'c'
             let mock_test = 1
         else
@@ -209,17 +202,8 @@ if has("cscope")
             autocmd BufEnter * call ncm2#enable_for_buffer()
             set completeopt=noinsert,menuone,noselect
         endif
-        let c_cnt = 0
-        if filereadable('cscope.out')
-            let script="bash ~/.config/nvim/c_cnt.sh " . expand('%:p:h')
-            let c_cnt = system(script)
-            "echom c_cnt
-        endif
-        if l:c_cnt !=  0
-            CCTreeLoadDB cscope.out
-        endif
 endfunc
-autocmd VimEnter * call LoadCCTree()
+autocmd VimEnter * call completeFileTypeOpt()
 
 set background=dark
 
