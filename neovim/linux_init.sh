@@ -1,6 +1,7 @@
 #!/bin/bash -
 set -o nounset                                  # Treat unset variables as an error
-apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope ctags cmake gdb
+apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope  cmake gdb
+apt-get remove -y ctags
 #读取参数
 # shellcheck disable=SC1091
 apt-get  install -y  neovim python3-pip shellcheck
@@ -51,6 +52,10 @@ export XDEBUG_CONFIG="idekey=xdebug remote_host=localhost"
 php "\$@"
 END
 chmod u+x  /usr/local/bin/phpxd
+
+which ctags >/dev/null && \
+    git clone https://github.com/universal-ctags/ctags.git &&\
+    cd ctags && ./autogen.sh && make && make install
 
 if which go;then
     pxy nvim +'GoInstallBinaries' +qall
