@@ -30,22 +30,6 @@ vim --version | grep -e "+python"
 if [ $? -gt 0 ];then
     brew install vim --with-cscope --with-lua -with-python3 --override-system-vim
 fi
-function ini_ctags(){
-    #-------------------------------------------------------------------------------
-    # install ctag for tagbar and phpcompelete
-    #-------------------------------------------------------------------------------
-	[ -f /usr/local/bin/ctags ]
-	if (( $? > 0 )) ;then
-		wget https://github.com/b4n/ctags/archive/better-php-parser.zip
-		unzip better-php-parser.zip
-		cd ctags-better-php-parser
-		autoreconf -fi
-		./configure
-		make
-		sudo make install
-		cd ..
-	fi
-}
 #-------------------------------------------------------------------------------
 # install Vundle
 #-------------------------------------------------------------------------------
@@ -54,9 +38,6 @@ if  [ ! -d ~/.vim/bundle/Vundle.vim ] ; then
 fi
 
 #读取参数
-# shellcheck disable=SC1091
-source lib/readinput.sh
-
 #-------------------------------------------------------------------------------
 # copy vimrc to home dir, and install from command line
 #-------------------------------------------------------------------------------
@@ -65,51 +46,11 @@ rm -f ~/.vimrc
 cp ./vimrc ~/.vimrc
 export shell=/bin/bash
 
-# pre and make vimrc
-if ((IFC == 1)) ;then
-    ini_ctags
-    # shellcheck disable=SC1091
-    source language/c_mac.sh
-    c_pre
-    c_vimrc
-fi
-if ((IFPHP == 1)) ;then
-    ini_ctags
-    # shellcheck disable=SC1091
-    source language/php_mac.sh
-    php_pre
-    php_vimrc
-fi
-
-if ((IFGOLANG == 1)) ;then
-    # shellcheck disable=SC1091
-    source language/go_mac.sh
-    go_pre
-    go_vimrc
-fi
-if ((IFHOST == 1)) ;then
-    # shellcheck disable=SC1091
-    source language/host_mac.sh
-    host_pre
-    host_vimrc
-fi
-
-
+source language/host_mac.sh
+host_pre
+host_vimrc
 vim   +PluginInstall +qall
-
-# post
-if ((IFC == 1)) ;then
-    c_post
-fi
-if ((IFPHP == 1)) ;then
-    php_post
-fi
-if ((IFGOLANG == 1)) ;then
-    go_post
-fi
-if ((IFHOST == 1)) ;then
-    host_post
-fi
+host_post
 
 
 grep "colorschem" ~/.vimrc
