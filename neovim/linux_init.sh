@@ -78,3 +78,7 @@ echo 'alias vi="nvim"' >> "$HOME/.env"
 ! ( grep -F "color onedark" ~/.config/nvim/init.vim ) && \
     echo "color onedark" >> ~/.config/nvim/init.vim && \
     echo "highlight Normal ctermbg=None" >> ~/.config/nvim/init.vim
+
+
+[-f rm /etc/dpkg/dpkg.cfg.d/excludes ] && rm -rf /etc/dpkg/dpkg.cfg.d/excludes
+apt-get install -y man manpages manpages-dev manpages-posix manpages-posix-dev
