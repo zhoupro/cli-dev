@@ -46,6 +46,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'honza/vim-snippets'
     " themes
     Plug 'joshdick/onedark.vim'
+    Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " our <leader> will be the space key
