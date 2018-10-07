@@ -17,12 +17,10 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-    Plug 'mileszs/ack.vim'
     Plug 'vim-scripts/ctags.vim'
     Plug 'tpope/vim-commentary'
     "git 
     Plug 'tpope/vim-fugitive'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'mhinz/vim-signify'
     " go
     Plug 'fatih/vim-go'
@@ -106,13 +104,7 @@ let g:ale_linters = {
 let g:ale_php_phpcs_standard = 'psr2'
 " }}}
 
- " ack
- " Ack -> Ag
- if executable('ag')
-   let g:ackprg = 'ag --vimgrep'
- endif
-
- autocmd FileType php nnoremap <c-]> :call phpactor#GotoDefinition()<CR>
+autocmd FileType php nnoremap <c-]> :call phpactor#GotoDefinition()<CR>
 
 
 "----------------------------------------------
@@ -272,4 +264,3 @@ else
     " color change fix in tmux
     set t_Co=256
 endif
-
