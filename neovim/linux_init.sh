@@ -3,16 +3,17 @@ set -o nounset                                  # Treat unset variables as an er
 apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope  cmake gdb
 #读取参数
 # shellcheck disable=SC1091
-apt-get  install -y   python3-pip shellcheck libtool-bin gettext silversearcher-ag
+apt-get  install -y   python3-pip python2-pip shellcheck libtool-bin gettext silversearcher-ag
 apt-get remove -y neovim exuberant-ctags 
 # install neovim
 ! which nvim >/dev/null &&\
     wget https://github.com/neovim/neovim/archive/v0.3.1.tar.gz &&\
     tar xzvf v0.3.1.tar.gz && cd neovim-0.3.1 && \
-    pxy make && make install &&\
+    pxy make CMAKE_BUILD_TYPE=Release && make install &&\
     cd .. && rm -rf neovim-0.3.1  v0.3.1.tar.gz
 
 pip3 install neovim --upgrade
+pip2 install neovim --upgrade
 
 
 #-------------------------------------------------------------------------------
