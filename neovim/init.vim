@@ -17,7 +17,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-    Plug 'vim-scripts/mru.vim'
     Plug 'mileszs/ack.vim'
     Plug 'vim-scripts/ctags.vim'
     Plug 'tpope/vim-commentary'
@@ -262,7 +261,9 @@ let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
 let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 nnoremap <leader>y :call system('nc -q 1 host.docker.internal 8377', @0)<CR>
-nnoremap <leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
+nnoremap <leader>] :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+nnoremap <silent> <Leader>a :Ag <C-R><C-W><CR>
 
 if has("termguicolors")
     " enable true color
@@ -271,3 +272,4 @@ else
     " color change fix in tmux
     set t_Co=256
 endif
+

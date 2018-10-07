@@ -3,7 +3,7 @@ set -o nounset                                  # Treat unset variables as an er
 apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope  cmake gdb
 #读取参数
 # shellcheck disable=SC1091
-apt-get  install -y   python3-pip shellcheck libtool-bin gettext
+apt-get  install -y   python3-pip shellcheck libtool-bin gettext silversearcher-ag
 apt-get remove -y neovim exuberant-ctags 
 # install neovim
 ! which nvim >/dev/null &&\
