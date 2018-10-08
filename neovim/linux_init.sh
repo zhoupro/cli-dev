@@ -7,10 +7,13 @@ apt-get  install -y   python3-pip python-pip shellcheck libtool-bin gettext silv
 apt-get remove -y neovim exuberant-ctags 
 # install neovim
 ! which nvim >/dev/null &&\
-    wget https://github.com/neovim/neovim/archive/v0.3.1.tar.gz &&\
-    tar xzvf v0.3.1.tar.gz && cd neovim-0.3.1 && \
-    pxy make CMAKE_BUILD_TYPE=Release && make install &&\
-    cd .. && rm -rf neovim-0.3.1  v0.3.1.tar.gz
+    if [ ! -f v0.3.1.tar.gz ];then
+        wget https://github.com/neovim/neovim/archive/v0.3.1.tar.gz
+    else
+        tar xzvf v0.3.1.tar.gz && cd neovim-0.3.1 
+        pxy make CMAKE_BUILD_TYPE=Release && make install 
+        cd .. && rm -rf neovim-0.3.1  v0.3.1.tar.gz
+    fi
 
 pip3 install neovim --upgrade
 pip2 install neovim --upgrade
