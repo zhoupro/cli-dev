@@ -31,8 +31,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'sebdah/vim-delve'
     " c
     Plug 'vim-scripts/a.vim'
-    " c 语言语法高亮
-    Plug 'justinmk/vim-syntax-extra'
     Plug 'Valloric/YouCompleteMe'
     " fold
     Plug 'pseewald/vim-anyfold'
@@ -43,7 +41,14 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'honza/vim-snippets'
     " themes
     Plug 'joshdick/onedark.vim'
+    " 语言语法高亮
     Plug 'sheerun/vim-polyglot'
+    " num rep
+    Plug 'glts/vim-magnum'
+    Plug 'glts/vim-radical'
+    " mru
+    Plug 'vim-scripts/mru.vim'
+
 call plug#end()
 
 " our <leader> will be the space key
