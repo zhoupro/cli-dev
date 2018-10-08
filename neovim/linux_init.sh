@@ -9,7 +9,6 @@ apt-get remove -y neovim exuberant-ctags
 ! which nvim >/dev/null &&\
     if [ ! -f v0.3.1.tar.gz ];then
         wget https://github.com/neovim/neovim/archive/v0.3.1.tar.gz
-    else
         tar xzvf v0.3.1.tar.gz && cd neovim-0.3.1 
         pxy make CMAKE_BUILD_TYPE=Release && make install 
         cd .. && rm -rf neovim-0.3.1  v0.3.1.tar.gz
