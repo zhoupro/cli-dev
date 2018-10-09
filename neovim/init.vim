@@ -276,3 +276,26 @@ else
     " color change fix in tmux
     set t_Co=256
 endif
+"switch windows
+if has('nvim')
+  " Terminal mode:
+  tnoremap <leader>h <c-\><c-n><c-w>h
+  tnoremap <leader>j <c-\><c-n><c-w>j
+  tnoremap <leader>k <c-\><c-n><c-w>k
+  tnoremap <leader>l <c-\><c-n><c-w>l
+  " Insert mode:
+  inoremap <leader>h <Esc><c-w>h
+  inoremap <leader>j <Esc><c-w>j
+  inoremap <leader>k <Esc><c-w>k
+  inoremap <leader>l <Esc><c-w>l
+  " Visual mode:
+  vnoremap <leader>h <Esc><c-w>h
+  vnoremap <leader>j <Esc><c-w>j
+  vnoremap <leader>k <Esc><c-w>k
+  vnoremap <leader>l <Esc><c-w>l
+  " Normal mode:
+  nnoremap <leader>h <c-w>h
+  nnoremap <leader>j <c-w>ji
+  nnoremap <leader>k <c-w>k
+  nnoremap <leader>l <c-w>l
+endif
