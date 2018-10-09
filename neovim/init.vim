@@ -48,6 +48,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'glts/vim-radical'
     " mru
     Plug 'vim-scripts/mru.vim'
+    " start screen
+    Plug 'mhinz/vim-startify'
 
 call plug#end()
 
