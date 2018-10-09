@@ -76,9 +76,11 @@ set expandtab
 " Mappings configurationn
 """""""""""""""""""""""""""""""""""""
 map <C-n> :NERDTreeToggle<CR>
-map <C-m> :TagbarToggle<CR>
+map <c-h> :TagbarOpenAutoClose<CR>
+
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDTreeQuitOnOpen=1
 
 " vim-php-namespace
 function! IPhpInsertUse()
