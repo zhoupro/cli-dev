@@ -82,4 +82,6 @@ echo 'alias vi="nvim"' >> "$HOME/.env"
     echo "color onedark" >> ~/.config/nvim/init.vim && \
     echo "highlight Normal ctermbg=None" >> ~/.config/nvim/init.vim
 
+! ( grep -F "cus_ini_vim" ~/.config/nvim/init.vim ) && \
+    cat ./cfg.ini >> ~/.config/nvim/init.vim
 
