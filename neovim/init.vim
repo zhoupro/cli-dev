@@ -50,6 +50,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-scripts/mru.vim'
     " start screen
     Plug 'mhinz/vim-startify'
+    " add header
+    Plug 'alpertuna/vim-header'
+
 
 call plug#end()
 
