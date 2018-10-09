@@ -299,3 +299,4 @@ if has('nvim')
   nnoremap <leader>k <c-w>k
   nnoremap <leader>l <c-w>l
 endif
+set scrolloff=5
