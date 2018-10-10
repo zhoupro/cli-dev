@@ -1,10 +1,14 @@
-#!/bin/bash -
-#===============================================================================
-#        AUTHOR: YOUR NAME (), 
-#  ORGANIZATION: 
-#       CREATED: 2018/03/24 18时08分31秒
-#      REVISION:  ---
-#===============================================================================
+#!/bin/bash
+which brew
+if [ $? -gt 0 ];then
+    /usr/bin/ruby -e \
+    "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
-set -o nounset                                  # Treat unset variables as an error
+brew cask list | grep hyper 
+if [ $? -gt 0 ];then
+    brew cask install hyper
+fi
+cp ./hyper.js ~/.hyper.js
 [ ! -d ~/.oh-my-zsh ] && sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
