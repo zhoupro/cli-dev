@@ -50,7 +50,7 @@ man() {
 }
 END
 
-! (grep -F 'robbyrussell' ~/.zshrc >/dev/null )  && \
-    git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" && \
-    ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" &&\
-    sed -i 's#ZSH_THEME="robbyrussell"#ZSH_THEME="spaceship"#g' ~/.zshrc
+! (grep -F 'spaceship' ~/.zshrc >/dev/null )  && \
+    rm -rf "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt" &&\
+    git clone https://github.com/denysdovhan/spaceship-prompt.git "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt" && \
+    ln -s "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme" "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme" &&\
