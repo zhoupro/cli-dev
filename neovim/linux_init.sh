@@ -76,12 +76,12 @@ if which go;then
     go get -u github.com/derekparker/delve/cmd/dlv
     #go get -u github.com/mdempsky/gocode
 fi
-echo 'alias vim="nvim"' >> "$HOME/.env"
-echo 'alias vi="nvim"' >> "$HOME/.env"
 ! ( grep -F "color onedark" ~/.config/nvim/init.vim ) && \
     echo "color onedark" >> ~/.config/nvim/init.vim && \
     echo "highlight Normal ctermbg=None" >> ~/.config/nvim/init.vim
 
 ! ( grep -F "cus_ini_vim" ~/.config/nvim/init.vim ) && \
     cat ./cfg.ini >> ~/.config/nvim/init.vim
+! ( grep -F "cus_ini_env" ~/.env ) && \
+    cat ./env.ini >> ~/.env
 
