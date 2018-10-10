@@ -85,3 +85,4 @@ fi
 ! ( grep -F "cus_ini_env" ~/.env ) && \
     cat ./env.ini >> ~/.env
 
+rm -rf  ~/.gdbinit  && cp ./gdbinit ~/.gdbinit
