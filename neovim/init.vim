@@ -125,8 +125,6 @@ autocmd FileType php nnoremap <c-]> :call phpactor#GotoDefinition()<CR>
 " Run goimports when running gofmt
 let g:go_fmt_command = "goimports"
 let g:go_version_warning = 0
-
-
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
@@ -194,7 +192,7 @@ if has("cscope")
      nmap [t :cs find t <C-R>=expand("<cword>")<CR><CR>
      nmap [e :cs find e <C-R>=expand("<cword>")<CR><CR>
      nmap [f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-     nmap [i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+     nmap [i :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
      nmap [d :cs find d <C-R>=expand("<cword>")<CR><CR>
  endif
 
@@ -229,7 +227,7 @@ set list
 
 " exploer
 nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>e :MRU<CR><Paste>
+nnoremap <Leader>e :MRU<CR>
 
 " PHP debug
 let g:vdebug_options= {
@@ -300,3 +298,4 @@ if has('nvim')
   nnoremap <leader>l <c-w>l
 endif
 set scrolloff=5
+let g:header_auto_add_header = 0
