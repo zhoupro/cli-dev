@@ -138,6 +138,9 @@ module.exports = {
   plugins: [
     'hyper-one-dark',
     'hyper-tabs-enhanced',
+    "hyperfullscreen",
+    "hyper-hide-title",
+    "hyper-dark-scrollbar"
   ],
 
   
