@@ -74,7 +74,7 @@ chmod u+x  /usr/local/bin/phpxd
 if which go;then
     pxy nvim +'GoInstallBinaries' +qall
     go get -u github.com/derekparker/delve/cmd/dlv
-    #go get -u github.com/mdempsky/gocode
+    go get -u github.com/mdempsky/gocode
 fi
 ! ( grep -F "color onedark" ~/.config/nvim/init.vim ) && \
     echo "color onedark" >> ~/.config/nvim/init.vim && \
