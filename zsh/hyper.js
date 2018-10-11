@@ -124,8 +124,10 @@ module.exports = {
     // for advanced config flags please refer to https://hyper.is/#cfg
 
     hyperTabs: {
-      activityColor: 'salmon',
-      closeAlign: 'right',
+        trafficButtons: true,
+        border: true,
+        tabIconsColored: true,
+        activityColor: 'salmon',
     },
     visor: {
       hotkey: 'Command+P',
@@ -143,10 +145,8 @@ module.exports = {
     'hyper-one-dark',
     'hyper-tabs-enhanced',
     "hyper-dark-scrollbar",
-    "hyperline",
     "hyper-search",
-    "hyperterm-visor",
-    "hyper-autohide-tabs"
+    "hyperterm-visor"
   ],
 
   
