@@ -267,13 +267,8 @@ nnoremap <leader>] :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--ex
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 nnoremap <silent> <Leader>a :Ag <C-R><C-W><CR>
 
-if has("termguicolors")
-    " enable true color
-    set termguicolors
-else
-    " color change fix in tmux
-    set t_Co=256
-endif
+" color change fix in tmux
+set t_Co=256
 "switch windows
 if has('nvim')
   " Terminal mode:
