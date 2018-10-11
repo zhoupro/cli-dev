@@ -175,16 +175,16 @@ if has("cscope")
     " set to 1 if you want the reverse search order.
      set csto=1
 
-     " add any cscope database in current directory
-     if filereadable("cscope.out")
-         silent cs add cscope.out
-     " else add the database pointed to by environment variable
-     elseif $CSCOPE_DB !=""
-         silent cs add $CSCOPE_DB
+     let db = findfile("cscope.out", ".;")
+     if (!empty(db))
+        let path = strpart(db, 0, match(db, "/cscope.out$"))
+        set nocscopeverbose " suppress 'duplicate connection' error
+        exe "cs add " . db . " " . path
+        set cscopeverbose
+      " else add the database pointed to by environment variable 
+     elseif $CSCOPE_DB != "" 
+        cs add $CSCOPE_DB
      endif
-
-     " show msg when any other cscope db added
-     set cscopeverbose
 
      nmap [s :cs find s <C-R>=expand("<cword>")<CR><CR>
      nmap [g :cs find g <C-R>=expand("<cword>")<CR><CR>
