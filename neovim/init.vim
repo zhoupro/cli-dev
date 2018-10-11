@@ -165,7 +165,7 @@ func! GenCscope()
     elseif &filetype == 'c'
         exec '!find . -name "*.c" -o -name "*.h" > cscope.files'
         exec "!cscope -bkq -i cscope.files"
-        exec "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+        exec "!ctags -R --c++-kinds=+p --fields=+iaS --extras=+q ."
     endif
 endfunc
 
@@ -174,18 +174,6 @@ if has("cscope")
     " check cscope for definition of a symbol before checking ctags:
     " set to 1 if you want the reverse search order.
      set csto=1
-
-     let db = findfile("cscope.out", ".;")
-     if (!empty(db))
-        let path = strpart(db, 0, match(db, "/cscope.out$"))
-        set nocscopeverbose " suppress 'duplicate connection' error
-        exe "cs add " . db . " " . path
-        set cscopeverbose
-      " else add the database pointed to by environment variable 
-     elseif $CSCOPE_DB != "" 
-        cs add $CSCOPE_DB
-     endif
-
      nmap [s :cs find s <C-R>=expand("<cword>")<CR><CR>
      nmap [g :cs find g <C-R>=expand("<cword>")<CR><CR>
      nmap [c :cs find c <C-R>=expand("<cword>")<CR><CR>
@@ -194,7 +182,22 @@ if has("cscope")
      nmap [f :cs find f <C-R>=expand("<cfile>")<CR><CR>
      nmap [i :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
      nmap [d :cs find d <C-R>=expand("<cword>")<CR><CR>
- endif
+endif
+" Autoloading Cscope Database
+function! LoadCscope()
+  let db = findfile("cscope.out", ".;")
+  if (!empty(db))
+    let path = strpart(db, 0, match(db, "/cscope.out$"))
+    set nocscopeverbose " suppress 'duplicate connection' error
+    exe "cs add " . db . " " . path
+    set cscopeverbose
+  " else add the database pointed to by environment variable 
+  elseif $CSCOPE_DB != "" 
+    cs add $CSCOPE_DB
+  endif
+endfunction
+au BufEnter /* call LoadCscope()
+
 
 function! s:completeFileTypeOpt()
         if &filetype == 'c'
