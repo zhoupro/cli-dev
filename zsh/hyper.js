@@ -60,7 +60,7 @@ module.exports = {
     showWindowControls: '',
 
     // custom padding (CSS format, i.e.: `top right bottom left`)
-    padding: '0px 0px 14px 0px',
+    padding: '3px 0px 14px 0px',
 
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
@@ -127,6 +127,10 @@ module.exports = {
       activityColor: 'salmon',
       closeAlign: 'right',
     },
+    visor: {
+      hotkey: 'Command+P',
+      position: 'top', // or left, right, bottom
+    },
   },
 
   // a list of plugins to fetch and install from npm
@@ -138,9 +142,11 @@ module.exports = {
   plugins: [
     'hyper-one-dark',
     'hyper-tabs-enhanced',
-    "hyperfullscreen",
-    "hyper-hide-title",
-    "hyper-dark-scrollbar"
+    "hyper-dark-scrollbar",
+    "hyperline",
+    "hyper-search",
+    "hyperterm-visor",
+    "hyper-autohide-tabs"
   ],
 
   
