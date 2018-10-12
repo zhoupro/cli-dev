@@ -22,6 +22,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     "git 
     Plug 'tpope/vim-fugitive'
     Plug 'mhinz/vim-signify'
+    Plug 'gregsexton/gitv'
     " go
     Plug 'fatih/vim-go'
     Plug 'ncm2/ncm2-go'
@@ -52,6 +53,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'mhinz/vim-startify'
     " add header
     Plug 'alpertuna/vim-header'
+    Plug 'terryma/vim-expand-region'
+    Plug 'terryma/vim-multiple-cursors'
+
 
 
 call plug#end()
@@ -66,6 +70,9 @@ set hlsearch
 set incsearch
 " clear highlight
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+map K <Plug>(expand_region_expand)
+map J <Plug>(expand_region_shrink)
 
 
 " tab 替换为4个空格
