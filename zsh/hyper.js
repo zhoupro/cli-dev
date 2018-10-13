@@ -12,7 +12,7 @@ module.exports = {
     fontSize: 18,
 
     // font family with optional fallbacks
-    fontFamily: '"Fira Code", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
+    fontFamily: '"FuraCode Nerd Font","Fira Code", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
     // default font weight: 'normal' or 'bold'
     fontWeight: 'normal',
 
