@@ -56,7 +56,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'alpertuna/vim-header'
     " select
     Plug 'terryma/vim-expand-region'
-    Plug 'terryma/vim-multiple-cursors'
+    Plug 'mg979/vim-visual-multi'
     "nginx
     Plug 'chr4/nginx.vim'
 call plug#end()
