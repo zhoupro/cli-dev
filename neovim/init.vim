@@ -23,6 +23,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'mhinz/vim-signify'
     Plug 'gregsexton/gitv'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
     " go
     Plug 'fatih/vim-go'
     Plug 'ncm2/ncm2-go'
@@ -53,11 +54,11 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'mhinz/vim-startify'
     " add header
     Plug 'alpertuna/vim-header'
+    " select
     Plug 'terryma/vim-expand-region'
     Plug 'terryma/vim-multiple-cursors'
-
-
-
+    "nginx
+    Plug 'chr4/nginx.vim'
 call plug#end()
 
 " our <leader> will be the space key
@@ -82,8 +83,8 @@ set expandtab
 """""""""""""""""""""""""""""""""""""
 " Mappings configurationn
 """""""""""""""""""""""""""""""""""""
-map <C-n> :NERDTreeToggle<CR>
-map <c-h> :TagbarOpenAutoClose<CR>
+map <leader>n :NERDTreeToggle<CR>
+map <leader>m :TagbarOpenAutoClose<CR>
 
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -304,3 +305,17 @@ if has('nvim')
 endif
 set scrolloff=5
 let g:header_auto_add_header = 0
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
