@@ -59,6 +59,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'mg979/vim-visual-multi'
     "nginx
     Plug 'chr4/nginx.vim'
+    " icon
+    Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " our <leader> will be the space key
