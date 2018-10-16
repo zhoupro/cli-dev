@@ -209,17 +209,10 @@ function! LoadCscope()
 endfunction
 au BufEnter /* call LoadCscope()
 
+" ncm2
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
 
-function! s:completeFileTypeOpt()
-        if &filetype == 'c'
-            let mock_test = 1
-        else
-            " ncm2
-            autocmd BufEnter * call ncm2#enable_for_buffer()
-            set completeopt=noinsert,menuone,noselect
-        endif
-endfunc
-autocmd VimEnter * call s:completeFileTypeOpt()
 
 set background=dark
 
@@ -322,3 +315,4 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
+let g:ycm_show_diagnostics_ui = 0
