@@ -62,6 +62,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     " icon
     Plug 'ryanoasis/vim-devicons'
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    " tmux
+    Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " our <leader> will be the space key
@@ -316,3 +318,9 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 
 let g:ycm_show_diagnostics_ui = 0
+nnoremap <silent> <C-l> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-h> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
