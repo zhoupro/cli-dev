@@ -318,7 +318,10 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 
 let g:ycm_show_diagnostics_ui = 0
+
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-h> :TmuxNavigateRight<cr>
-nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
+
 
