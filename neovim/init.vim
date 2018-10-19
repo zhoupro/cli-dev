@@ -64,6 +64,10 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     " tmux
     Plug 'christoomey/vim-tmux-navigator'
+    " markdown
+    Plug 'vim-scripts/vim-auto-save'
+    Plug 'zhoupro/markdown-remote'
+
 call plug#end()
 
 " our <leader> will be the space key
@@ -323,5 +327,3 @@ let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
-
-

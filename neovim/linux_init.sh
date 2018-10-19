@@ -1,6 +1,6 @@
 #!/bin/bash -
 set -o nounset                                  # Treat unset variables as an error
-apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope  cmake gdb
+apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope  cmake gdb lsof
 #读取参数
 # shellcheck disable=SC1091
 apt-get  install -y   python3-pip python-pip shellcheck libtool-bin gettext silversearcher-ag
@@ -76,6 +76,7 @@ if which go;then
     go get -u github.com/derekparker/delve/cmd/dlv
     go get -u github.com/mdempsky/gocode
 fi
+go get -u github.com/labstack/echo/...
 ! ( grep -F "color onedark" ~/.config/nvim/init.vim ) && \
     echo "color onedark" >> ~/.config/nvim/init.vim && \
     echo "highlight Normal ctermbg=None" >> ~/.config/nvim/init.vim
@@ -84,5 +85,6 @@ fi
     cat ./cfg.ini >> ~/.config/nvim/init.vim
 ! ( grep -F "cus_ini_env" ~/.env ) && \
     cat ./env.ini >> ~/.env
-
+[ ! -f /usr/local/bin/genUrl ] &&\
+    cp ./genUrl.sh /usr/local/bin/genUrl && chmod u+x /usr/local/bin/genUrl
 rm -rf  ~/.gdbinit  && cp ./gdbinit ~/.gdbinit
