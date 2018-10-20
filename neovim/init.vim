@@ -21,7 +21,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-commentary'
     "git 
     Plug 'tpope/vim-fugitive'
-    Plug 'mhinz/vim-signify'
+    Plug 'airblade/vim-gitgutter'
     Plug 'gregsexton/gitv'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     " go
