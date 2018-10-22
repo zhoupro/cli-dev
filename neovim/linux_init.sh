@@ -43,7 +43,7 @@ export shell=/bin/bash
 nvim +'PlugInstall --sync' +qall
 if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
     bash ~/.config/nvim/add_swap.sh
-    python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
+    pxy python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
     bash ~/.config/nvim/del_swap.sh
     rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
     rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/.git
