@@ -1,10 +1,6 @@
 #!/bin/bash -
 set -o nounset                                  # Treat unset variables as an error
-apt-get install -y --no-install-recommends git unzip wget curl python-dev cscope  cmake gdb lsof
 #读取参数
-# shellcheck disable=SC1091
-apt-get  install -y   python3-pip python-pip shellcheck libtool-bin gettext silversearcher-ag
-apt-get remove -y neovim exuberant-ctags 
 # install neovim
 ! which nvim >/dev/null &&\
     if [ ! -f v0.3.1.tar.gz ];then
@@ -13,10 +9,8 @@ apt-get remove -y neovim exuberant-ctags
         pxy make CMAKE_BUILD_TYPE=Release && make install 
         cd .. && rm -rf neovim-0.3.1  v0.3.1.tar.gz
     fi
-
 pip3 install neovim --upgrade
 pip2 install neovim --upgrade
-
 
 #-------------------------------------------------------------------------------
 # install vim-plug 
@@ -55,8 +49,6 @@ if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so
     rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/.git
 fi
 
-# fix <c-p> confilict
-sed -i 's/c-p/c-e/g' ~/.local/share/nvim/plugged/nvim-gdb/autoload/nvimgdb.vim
 cat > /usr/local/bin/phpxd <<END
 #!/bin/zsh
 export XDEBUG_CONFIG="idekey=xdebug remote_host=localhost"
@@ -73,10 +65,11 @@ chmod u+x  /usr/local/bin/phpxd
 
 if which go;then
     pxy nvim +'GoInstallBinaries' +qall
-    go get -u github.com/derekparker/delve/cmd/dlv
-    go get -u github.com/mdempsky/gocode
+    pxy go get -u github.com/derekparker/delve/cmd/dlv
+    pxy go get -u github.com/mdempsky/gocode
 fi
-go get -u github.com/labstack/echo/...
+
+pxy go get -u github.com/labstack/echo/...
 ! ( grep -F "color onedark" ~/.config/nvim/init.vim ) && \
     echo "color onedark" >> ~/.config/nvim/init.vim && \
     echo "highlight Normal ctermbg=None" >> ~/.config/nvim/init.vim

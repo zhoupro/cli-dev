@@ -5,9 +5,7 @@
 #===============================================================================
 
 set -o nounset                                  # Treat unset variables as an error
-apt-get install gawk curl  zsh language-pack-zh-hans language-pack-zh-hans-base -y
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-
 [ ! -d $HOME/.zplug ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 sudo usermod -s /bin/zsh root
 
@@ -34,7 +32,6 @@ END
     echo 'zplug install' >> ~/.zshrc
 
 [ -f  /etc/dpkg/dpkg.cfg.d/excludes ] && rm -rf /etc/dpkg/dpkg.cfg.d/excludes
-apt-get install -y man manpages manpages-dev manpages-posix manpages-posix-dev 
 ! (grep -F 'LESS_TERMCAP_mb' ~/.env >/dev/null )  && \
 cat >> ~/.env <<END
 man() {

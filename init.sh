@@ -9,6 +9,7 @@
 set -o nounset    
 
 source ./helper/system_info.sh
+source "./helper/${sys_os}_dep.sh"
 
 if [ $sys_os != "mac" ]; then
     apt-get install -y netcat iproute2
@@ -18,6 +19,7 @@ if [ $sys_os != "mac" ]; then
         curl http://`/sbin/ip route|awk '/default/ { print $3 }'`:8085/module/gae_proxy/control/download_cert | sudo tee  --append /etc/ssl/certs/ca-certificates.crt
     fi
 fi
+
 #install tmux
 cd tmux
 source "./${sys_os}_init.sh"
