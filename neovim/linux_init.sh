@@ -46,7 +46,6 @@ if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so
     pxy python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
     bash ~/.config/nvim/del_swap.sh
     rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
-    rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/.git
 fi
 
 cat > /usr/local/bin/phpxd <<END
@@ -67,9 +66,9 @@ if which go;then
     pxy nvim +'GoInstallBinaries' +qall
     pxy go get -u github.com/derekparker/delve/cmd/dlv
     pxy go get -u github.com/mdempsky/gocode
+    pxy go get -u github.com/labstack/echo/...
 fi
 
-pxy go get -u github.com/labstack/echo/...
 ! ( grep -F "color onedark" ~/.config/nvim/init.vim ) && \
     echo "color onedark" >> ~/.config/nvim/init.vim && \
     echo "highlight Normal ctermbg=None" >> ~/.config/nvim/init.vim
