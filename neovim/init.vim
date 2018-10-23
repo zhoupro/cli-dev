@@ -67,7 +67,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     " markdown
     Plug 'vim-scripts/vim-auto-save'
     Plug 'zhoupro/markdown-remote'
-
+    " auto root
+    Plug 'airblade/vim-rooter'
 call plug#end()
 
 " our <leader> will be the space key
@@ -327,3 +328,4 @@ let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
+let g:rooter_patterns = ['tags', '.git/']
