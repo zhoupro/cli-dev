@@ -85,6 +85,15 @@ let mapleader=","
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 let g:deoplete#ignore_sources.php = ['omni']
+"lua
+let g:lua_check_syntax = 0
+let g:lua_complete_omni = 1
+let g:lua_complete_dynamic = 0
+let g:lua_define_completion_mappings = 0
+
+call deoplete#custom#var('omni', 'functions', {
+\ 'lua': 'xolox#lua#omnifunc',
+\ })
 " Highlight search results
 set hlsearch
 " Makes search act like search in modern browsers
