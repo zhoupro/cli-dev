@@ -1,14 +1,18 @@
 call plug#begin('~/.local/share/nvim/plugged')
     "for php 
-    " Include Phpactor
-    Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
-    " Require ncm2 and this plugin
-    Plug 'ncm2/ncm2'
-    Plug 'roxma/nvim-yarp'
-    Plug 'phpactor/ncm2-phpactor'
+    Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
     Plug 'arnaud-lb/vim-php-namespace'
     Plug 'stephpy/vim-php-cs-fixer'
     Plug 'w0rp/ale'
+    " complete
+    if has('nvim')
+      Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+      Plug 'Shougo/deoplete.nvim'
+      Plug 'roxma/nvim-yarp'
+      Plug 'roxma/vim-hug-neovim-rpc'
+    endif
+
     "outline
     Plug 'majutsushi/tagbar'
     Plug 'vim-airline/vim-airline'
@@ -26,7 +30,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'Xuyuanp/nerdtree-git-plugin'
     " go
     Plug 'fatih/vim-go'
-    Plug 'ncm2/ncm2-go'
+    Plug 'zchee/deoplete-go', { 'do': 'make'}
     " debug 
     Plug 'sakhnik/nvim-gdb'
     Plug 'vim-vdebug/vdebug'
@@ -76,8 +80,9 @@ call plug#end()
 
 " our <leader> will be the space key
 let mapleader=","
-
-" search
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+let g:deoplete#ignore_sources.php = ['omni']
 " Highlight search results
 set hlsearch
 " Makes search act like search in modern browsers
@@ -218,14 +223,6 @@ function! LoadCscope()
   endif
 endfunction
 au BufEnter /* call LoadCscope()
-
-function! Ncm2_option()
-    " ncm2
-    autocmd BufEnter * call ncm2#enable_for_buffer()
-    set completeopt=noinsert,menuone,noselect
-endfunction
-autocmd Filetype php call Ncm2_option()
-autocmd Filetype go call Ncm2_option()
 
 set background=dark
 
