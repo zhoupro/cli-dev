@@ -33,7 +33,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'sebdah/vim-delve'
     " c
     Plug 'vim-scripts/a.vim'
-    Plug 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe',{'for':'c'}
     " fold
     Plug 'pseewald/vim-anyfold'
     " transform
@@ -69,6 +69,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'zhoupro/markdown-remote'
     " auto root
     Plug 'airblade/vim-rooter'
+    " lua dev
+    Plug 'xolox/vim-misc'
+    Plug 'xolox/vim-lua-ftplugin'
 call plug#end()
 
 " our <leader> will be the space key
@@ -216,10 +219,13 @@ function! LoadCscope()
 endfunction
 au BufEnter /* call LoadCscope()
 
-" ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
+function! Ncm2_option()
+    " ncm2
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+    set completeopt=noinsert,menuone,noselect
+endfunction
+autocmd Filetype php call Ncm2_option()
+autocmd Filetype go call Ncm2_option()
 
 set background=dark
 
