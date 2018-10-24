@@ -76,6 +76,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     " lua dev
     Plug 'xolox/vim-misc'
     Plug 'xolox/vim-lua-ftplugin'
+    " emmet
+    Plug 'mattn/emmet-vim'
 call plug#end()
 
 " our <leader> will be the space key
