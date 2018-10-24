@@ -175,7 +175,7 @@ func! RunProgram()
     elseif &filetype == 'php'
         exec "!php %"
     elseif &filetype == 'lua'
-        exec "!php %"
+        exec "!lua %"
     endif
 endfunc
 autocmd VimEnter * noremap  <leader>t  :call RunProgram()<CR>
