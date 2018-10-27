@@ -7,6 +7,7 @@ Make a vim IDE  develop enviroment as personal
 - c
 - php
 - shell
+- lua
 - go
 - markdown
 
