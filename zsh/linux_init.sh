@@ -56,3 +56,6 @@ END
 #autojump
 ! (grep -F 'autojump' ~/.zshrc &>/dev/null )  && \
     sed -in '/^plugins=/a autojump' ~/.zshrc
+#hostname
+! (grep -F 'hostname' ~/.cus_zshrc &>/dev/null )  && \
+    echo "hostname docker-dev" >> ~/.cus_zshrc
