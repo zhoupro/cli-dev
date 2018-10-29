@@ -1,6 +1,5 @@
 #!/bin/bash
-which tmux
-if [ $? -gt 0 ];then
+if which tmux;then
    apt-get install tmux -y 
 fi
 

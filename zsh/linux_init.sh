@@ -6,7 +6,7 @@
 
 set -o nounset                                  # Treat unset variables as an error
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-[ ! -d $HOME/.zplug ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+[ ! -d "$HOME/.zplug" ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 sudo usermod -s /bin/zsh root
 
 ! (grep -F 'LC_ALL' ~/.env &>/dev/null )  && \
@@ -31,7 +31,6 @@ END
     echo 'if [ -f ~/.cus_zshrc ];then; source ~/.cus_zshrc;fi' >> ~/.zshrc && \
     echo 'zplug install' >> ~/.zshrc
 
-[ -f  /etc/dpkg/dpkg.cfg.d/excludes ] && rm -rf /etc/dpkg/dpkg.cfg.d/excludes
 ! (grep -F 'LESS_TERMCAP_mb' ~/.env &>/dev/null )  && \
 cat >> ~/.env <<END
 man() {
@@ -56,6 +55,3 @@ END
 #autojump
 ! (grep -F 'autojump' ~/.zshrc &>/dev/null )  && \
     sed -in '/^plugins=/a autojump' ~/.zshrc
-#hostname
-! (grep -F 'hostname' ~/.cus_zshrc &>/dev/null )  && \
-    echo "hostname docker-dev" >> ~/.cus_zshrc
