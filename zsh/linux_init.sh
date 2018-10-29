@@ -55,3 +55,7 @@ END
 #autojump
 ! (grep -F 'autojump' ~/.zshrc &>/dev/null )  && \
     sed -in '/^plugins=/a autojump' ~/.zshrc
+#auto suggest
+! (grep -F 'zsh-autosuggestions' ~/.zshrc &>/dev/null )  && \
+    git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" && \
+    sed -in '/^plugins=/a zsh-autosuggestions' ~/.zshrc
