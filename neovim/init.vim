@@ -347,3 +347,5 @@ nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
 let g:rooter_patterns = ['tags', '.git/']
+" ydcv
+nnoremap tr :let a=expand("<cword>")<Bar>exec '!ydcv ' .a<CR>

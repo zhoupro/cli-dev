@@ -11,3 +11,6 @@ apt-get install -y gawk curl  zsh language-pack-zh-hans language-pack-zh-hans-ba
     
 
 apt-get remove -y neovim exuberant-ctags
+
+# install youdao console version
+wget https://raw.githubusercontent.com/felixonmars/ydcv/master/src/ydcv.py -O /usr/local/bin/ydcv && chmod u+x /usr/local/bin/ydcv
