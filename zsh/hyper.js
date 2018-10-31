@@ -9,7 +9,7 @@ module.exports = {
     updateChannel: 'stable',
 
     // default font size in pixels for all tabs
-    fontSize: 18,
+    fontSize: 20,
 
     // font family with optional fallbacks
     fontFamily: '"FuraCode Nerd Font", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
@@ -133,7 +133,9 @@ module.exports = {
       hotkey: 'Command+P',
       position: 'top', // or left, right, bottom
     },
+    commands: ['cd $HOME/opt/lnmp'],
   },
+
 
   // a list of plugins to fetch and install from npm
   // format: [@org/]project[#version]
@@ -146,7 +148,8 @@ module.exports = {
     'hyper-tabs-enhanced',
     "hyper-dark-scrollbar",
     "hyper-search",
-    "hyperterm-visor"
+    "hyperterm-visor",
+    "hyper-startup"
   ],
 
   
