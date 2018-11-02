@@ -349,3 +349,60 @@ nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
 let g:rooter_patterns = ['tags', '.git/']
 " ydcv
 nnoremap tr :let a=expand("<cword>")<Bar>exec '!ydcv ' .a<CR>
+
+" buf tab
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#fnametruncate = 16
+let g:airline#extensions#tabline#fnamecollapse = 2
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+function! Tab_chose(num) abort
+    if exists('g:feat_enable_airline') && g:feat_enable_airline == 1
+        execute 'normal '."\<Plug>AirlineSelectTab".a:num
+    else
+        if exists( '*tabpagenr' ) && tabpagenr('$') != 1
+            " Tab support && tabs open
+            execute 'normal '.a:num.'gt'
+        else
+            let l:temp=a:num
+            let l:buf_index=a:num
+            let l:buf_count=len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+            if l:temp > l:buf_count
+                return
+            endif
+            while l:buf_index != 0
+                while !buflisted(l:temp)
+                    let l:temp += 1
+                endw
+                let l:buf_index -= 1
+                if l:buf_index != 0
+                    let l:temp += 1
+                endif
+            endw
+            execute ':'.l:temp.'b'
+        endif
+    endif
+endfunction
+
+" tab or buf 1
+nnoremap <leader>1 :call Tab_chose(1)<cr>
+" tab or buf 2
+nnoremap <leader>2 :call Tab_chose(2)<cr>
+" tab or buf 3
+nnoremap  <leader>3 :call Tab_chose(3)<cr>
+" tab or buf 4
+nnoremap  <leader>4 :call Tab_chose(4)<cr>
+" tab or buf 5
+nnoremap  <leader>5 :call Tab_chose(5)<cr>
+" tab or buf 6
+nnoremap  <leader>6 :call Tab_chose(6)<cr>
+" tab or buf 7
+nnoremap  <leader>7 :call Tab_chose(7)<cr>
+" tab or buf 8
+nnoremap  <leader>8 :call Tab_chose(8)<cr>
+" tab or buf 9
+nnoremap  <leader>9 :call Tab_chose(9)<cr>
