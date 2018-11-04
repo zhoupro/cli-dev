@@ -9,6 +9,8 @@ Make a vim IDE  develop enviroment as personal
 - shell
 - lua
 - go
+- java
+- python
 - markdown
 
 ### set up

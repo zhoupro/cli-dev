@@ -10,6 +10,7 @@ set -o nounset
 
 source ./helper/system_info.sh
 source "./helper/${sys_os}_dep.sh"
+source "./helper/jdk.sh"
 
 if [ $sys_os != "mac" ]; then
     apt-get install -y netcat iproute2

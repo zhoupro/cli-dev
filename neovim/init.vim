@@ -78,6 +78,11 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'xolox/vim-lua-ftplugin'
     " emmet
     Plug 'mattn/emmet-vim'
+    "python
+    Plug 'zchee/deoplete-jedi'
+    "java
+    Plug 'artur-shaik/vim-javacomplete2'
+
 call plug#end()
 
 " our <leader> will be the space key
@@ -189,6 +194,9 @@ func! RunProgram()
         exec "!php %"
     elseif &filetype == 'lua'
         exec "!lua %"
+    elseif &filetype == 'java'
+        exec "!javac %"
+        exec "!java -cp %:p:h %:t:r"
     endif
 endfunc
 autocmd VimEnter * noremap  <leader>t  :call RunProgram()<CR>
@@ -247,7 +255,6 @@ let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_key_invoke_completion = '<C-a>'
 
 " fold
-let anyfold_activate=1
 let anyfold_fold_comments=1
 set foldlevel=10
 hi Folded term=NONE cterm=NONE
@@ -406,3 +413,5 @@ nnoremap  <leader>7 :call Tab_chose(7)<cr>
 nnoremap  <leader>8 :call Tab_chose(8)<cr>
 " tab or buf 9
 nnoremap  <leader>9 :call Tab_chose(9)<cr>
+autocmd Filetype * AnyFoldActivate
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
