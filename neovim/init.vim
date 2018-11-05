@@ -82,6 +82,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'zchee/deoplete-jedi'
     "java
     Plug 'artur-shaik/vim-javacomplete2'
+    "indent
+    Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
