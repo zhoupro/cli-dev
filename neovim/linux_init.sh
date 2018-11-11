@@ -79,4 +79,6 @@ fi
     cat ./env.ini >> ~/.env
 [ ! -f /usr/local/bin/genUrl ] &&\
     cp ./genUrl.sh /usr/local/bin/genUrl && chmod u+x /usr/local/bin/genUrl
+[ ! -d /usr/local/vimsplain ] &&\
+    git clone https://github.com/pafcu/vimsplain.git  /usr/local/vimsplain
 rm -rf  ~/.gdbinit  && cp ./gdbinit ~/.gdbinit

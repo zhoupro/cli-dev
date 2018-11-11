@@ -417,3 +417,5 @@ nnoremap  <leader>8 :call Tab_chose(8)<cr>
 nnoremap  <leader>9 :call Tab_chose(9)<cr>
 autocmd Filetype * AnyFoldActivate
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
+" backward
+noremap \ ,
