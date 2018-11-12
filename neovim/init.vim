@@ -71,6 +71,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     " markdown
     Plug 'vim-scripts/vim-auto-save'
     Plug 'zhoupro/markdown-remote'
+    Plug 'junegunn/goyo.vim'
     " auto root
     Plug 'airblade/vim-rooter'
     " lua dev
@@ -419,3 +420,4 @@ autocmd Filetype * AnyFoldActivate
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 " backward
 noremap \ ,
+let g:polyglot_disabled = ['markdown']
