@@ -62,7 +62,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     " tmux
     Plug 'christoomey/vim-tmux-navigator'
     " markdown
-    Plug 'vim-scripts/vim-auto-save',{'for':'markdown'}
+    " Plug 'vim-scripts/vim-auto-save',{'for':'markdown'}
 
     Plug 'zhoupro/markdown-remote',{'for':'markdown'}
     Plug 'junegunn/goyo.vim',{'for':'markdown'}
