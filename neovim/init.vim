@@ -1,42 +1,35 @@
 call plug#begin('~/.local/share/nvim/plugged')
     "for php 
     Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
-    Plug 'arnaud-lb/vim-php-namespace'
-    Plug 'stephpy/vim-php-cs-fixer'
-    Plug 'w0rp/ale'
-    " complete
-    if has('nvim')
-      Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-      Plug 'Shougo/deoplete.nvim'
-      Plug 'roxma/nvim-yarp'
-      Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-
+    Plug 'arnaud-lb/vim-php-namespace' , {'for': 'php'}
+    Plug 'stephpy/vim-php-cs-fixer', {'for': 'php'}
+    Plug 'w0rp/ale' , {'for': ['php','java']}
+    "complete
+    Plug 'Shougo/deoplete.nvim', {'for':['c','java','lua','go','php'], 'do': ':UpdateRemotePlugins' }
     "outline
     Plug 'majutsushi/tagbar'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    " explore 
+    " explore
     Plug 'scrooloose/nerdtree'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'vim-scripts/ctags.vim'
     Plug 'tpope/vim-commentary'
-    "git 
+    "git
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
     Plug 'gregsexton/gitv'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     " go
-    Plug 'fatih/vim-go'
-    Plug 'zchee/deoplete-go', { 'do': 'make'}
+    Plug 'fatih/vim-go', {'for': 'go'}
+    Plug 'zchee/deoplete-go', {'for':'go', 'do': 'make'}
     " debug 
-    Plug 'sakhnik/nvim-gdb'
-    Plug 'vim-vdebug/vdebug'
-    Plug 'sebdah/vim-delve'
+    Plug 'sakhnik/nvim-gdb', {'for': 'php'}
+    Plug 'vim-vdebug/vdebug', {'for': 'php'}
+    Plug 'sebdah/vim-delve', {'for': 'go'}
     " c
-    Plug 'vim-scripts/a.vim'
+    Plug 'vim-scripts/a.vim' , {'for': 'c'}
     Plug 'Valloric/YouCompleteMe',{'for':'c'}
     " fold
     Plug 'pseewald/vim-anyfold'
@@ -69,20 +62,21 @@ call plug#begin('~/.local/share/nvim/plugged')
     " tmux
     Plug 'christoomey/vim-tmux-navigator'
     " markdown
-    Plug 'vim-scripts/vim-auto-save'
-    Plug 'zhoupro/markdown-remote'
-    Plug 'junegunn/goyo.vim'
+    Plug 'vim-scripts/vim-auto-save',{'for':'markdown'}
+
+    Plug 'zhoupro/markdown-remote',{'for':'markdown'}
+    Plug 'junegunn/goyo.vim',{'for':'markdown'}
     " auto root
     Plug 'airblade/vim-rooter'
     " lua dev
-    Plug 'xolox/vim-misc'
-    Plug 'xolox/vim-lua-ftplugin'
+    Plug 'xolox/vim-misc',{'for':'lua'}
+    Plug 'xolox/vim-lua-ftplugin',{'for':'lua'}
     " emmet
     Plug 'mattn/emmet-vim'
     "python
-    Plug 'zchee/deoplete-jedi'
+    Plug 'zchee/deoplete-jedi',{'for':'py'}
     "java
-    Plug 'artur-shaik/vim-javacomplete2'
+    Plug 'artur-shaik/vim-javacomplete2',{'for':'java'}
     "indent
     Plug 'Yggdroot/indentLine'
 
@@ -98,11 +92,13 @@ let g:lua_check_syntax = 0
 let g:lua_complete_omni = 1
 let g:lua_complete_dynamic = 0
 let g:lua_define_completion_mappings = 0
-call deoplete#custom#var('omni', 'functions', {
+
+autocmd FileType lua call deoplete#custom#var('omni', 'functions', {
 \ 'lua': 'xolox#lua#omnifunc',
 \ })
+
 "words
-call deoplete#custom#source('ultisnips', 'rank', 1000)
+"call deoplete#custom#source('ultisnips', 'rank', 1000)
 set dictionary=/usr/share/dict/words
 " Highlight search results
 set hlsearch
@@ -110,11 +106,8 @@ set hlsearch
 set incsearch
 " clear highlight
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
-
 map K <Plug>(expand_region_expand)
 map J <Plug>(expand_region_shrink)
-
-
 " tab 替换为4个空格
 set tabstop=4
 set shiftwidth=4
@@ -124,7 +117,6 @@ set expandtab
 """""""""""""""""""""""""""""""""""""
 map <leader>n :NERDTreeToggle<CR>
 map <leader>m :TagbarOpenAutoClose<CR>
-
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen=1
@@ -164,8 +156,6 @@ let g:ale_php_phpcs_standard = 'psr2'
 " }}}
 
 autocmd FileType php nnoremap <c-]> :call phpactor#GotoDefinition()<CR>
-
-
 "----------------------------------------------
 " Language: Golang
 "----------------------------------------------
@@ -180,7 +170,6 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
-
 
 func! RunProgram()
     exec "w"
@@ -203,10 +192,8 @@ func! RunProgram()
     endif
 endfunc
 autocmd VimEnter * noremap  <leader>t  :call RunProgram()<CR>
-
 " ctags
 set tags=tags;  " ; 不可省略，表示若当前目录中不存在tags， 则在父目录中寻找。
-
 nmap <silent> ]s  :call GenCscope() <CR>
 func! GenCscope()
     exec "w"
