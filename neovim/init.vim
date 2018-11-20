@@ -10,6 +10,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'majutsushi/tagbar'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'bling/vim-bufferline'
     " explore
     Plug 'scrooloose/nerdtree'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -293,8 +294,6 @@ let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
 let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
 nnoremap <leader>y :call system('nc -q 1 host.docker.internal 8377', @0)<CR>
 nnoremap <leader>] :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
-nnoremap <silent> <Leader>a :Ag <C-R><C-W><CR>
 
 " color change fix in tmux
 set t_Co=256
@@ -347,6 +346,12 @@ let g:rooter_patterns = ['tags', '.git/']
 " ydcv
 nnoremap tr :let a=expand("<cword>")<Bar>exec '!ydcv ' .a<CR>
 
+autocmd Filetype * AnyFoldActivate
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+" backward
+noremap \ ,
+let g:polyglot_disabled = ['markdown']
+
 " buf tab
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
@@ -356,55 +361,19 @@ let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tabline#fnametruncate = 16
 let g:airline#extensions#tabline#fnamecollapse = 2
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-
-function! Tab_chose(num) abort
-    if exists('g:feat_enable_airline') && g:feat_enable_airline == 1
-        execute 'normal '."\<Plug>AirlineSelectTab".a:num
-    else
-        if exists( '*tabpagenr' ) && tabpagenr('$') != 1
-            " Tab support && tabs open
-            execute 'normal '.a:num.'gt'
-        else
-            let l:temp=a:num
-            let l:buf_index=a:num
-            let l:buf_count=len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-            if l:temp > l:buf_count
-                return
-            endif
-            while l:buf_index != 0
-                while !buflisted(l:temp)
-                    let l:temp += 1
-                endw
-                let l:buf_index -= 1
-                if l:buf_index != 0
-                    let l:temp += 1
-                endif
-            endw
-            execute ':'.l:temp.'b'
-        endif
-    endif
-endfunction
-
-" tab or buf 1
-nnoremap <leader>1 :call Tab_chose(1)<cr>
-" tab or buf 2
-nnoremap <leader>2 :call Tab_chose(2)<cr>
-" tab or buf 3
-nnoremap  <leader>3 :call Tab_chose(3)<cr>
-" tab or buf 4
-nnoremap  <leader>4 :call Tab_chose(4)<cr>
-" tab or buf 5
-nnoremap  <leader>5 :call Tab_chose(5)<cr>
-" tab or buf 6
-nnoremap  <leader>6 :call Tab_chose(6)<cr>
-" tab or buf 7
-nnoremap  <leader>7 :call Tab_chose(7)<cr>
-" tab or buf 8
-nnoremap  <leader>8 :call Tab_chose(8)<cr>
-" tab or buf 9
-nnoremap  <leader>9 :call Tab_chose(9)<cr>
-autocmd Filetype * AnyFoldActivate
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-" backward
-noremap \ ,
-let g:polyglot_disabled = ['markdown']
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.<q-args>, 1,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+  \   <bang>0)
+nnoremap <silent> <Leader>a :Rg <C-R><C-W><CR>
