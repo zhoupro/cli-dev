@@ -14,9 +14,6 @@ echo 'export LC_ALL=zh_CN.UTF-8' >> "$HOME/.env" && \
 echo 'export LANG=zh_CN.UTF-8' >> "$HOME/.env" && \
 echo "export PATH=\$PATH:$HOME/.composer/vendor/bin" >> "$HOME/.env"
 
-#env
-! (grep -F '.env' ~/.zshrc &>/dev/null )  && \
-    echo 'if [ -f ~/.env ];then; source ~/.env;fi' >> ~/.zshrc
 
 ! (grep -F 'zsh-syntax-highlighting' ~/.cus_zshrc &>/dev/null )  && \
 cat >> ~/.cus_zshrc <<END
@@ -59,3 +56,6 @@ END
 ! (grep -F 'zsh-autosuggestions' ~/.zshrc &>/dev/null )  && \
     git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" && \
     sed -in '/^plugins=/a zsh-autosuggestions' ~/.zshrc
+#env
+! (grep -F '.env' ~/.zshrc &>/dev/null )  && \
+    echo 'if [ -f ~/.env ];then; source ~/.env;fi' >> ~/.zshrc
