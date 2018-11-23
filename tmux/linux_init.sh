@@ -1,7 +1,6 @@
 #!/bin/bash
-if which tmux;then
+! which tmux && \
    apt-get install tmux -y 
-fi
 
 rm -f ~/.tmux.conf ~/.tmux.conf.local
 cp ./tmux.conf  ~/.tmux.conf

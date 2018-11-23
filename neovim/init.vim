@@ -1,11 +1,11 @@
 call plug#begin('~/.local/share/nvim/plugged')
     "for php 
     Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
-    Plug 'arnaud-lb/vim-php-namespace' , {'for': 'php'}
-    Plug 'stephpy/vim-php-cs-fixer', {'for': 'php'}
-    Plug 'w0rp/ale' , {'for': ['php','java']}
+    Plug 'arnaud-lb/vim-php-namespace' 
+    Plug 'stephpy/vim-php-cs-fixer'
+    Plug 'w0rp/ale'
     "complete
-    Plug 'Shougo/deoplete.nvim', {'for':['c','java','lua','go','php'], 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     "outline
     Plug 'majutsushi/tagbar'
     Plug 'vim-airline/vim-airline'
@@ -23,15 +23,15 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'gregsexton/gitv'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     " go
-    Plug 'fatih/vim-go', {'for': 'go'}
-    Plug 'zchee/deoplete-go', {'for':'go', 'do': 'make'}
+    Plug 'fatih/vim-go'
+    Plug 'zchee/deoplete-go', { 'do': 'make'}
     " debug 
-    Plug 'sakhnik/nvim-gdb', {'for': 'php'}
-    Plug 'vim-vdebug/vdebug', {'for': 'php'}
-    Plug 'sebdah/vim-delve', {'for': 'go'}
+    Plug 'sakhnik/nvim-gdb'
+    Plug 'vim-vdebug/vdebug'
+    Plug 'sebdah/vim-delve'
     " c
-    Plug 'vim-scripts/a.vim' , {'for': 'c'}
-    Plug 'Valloric/YouCompleteMe',{'for':'c'}
+    Plug 'vim-scripts/a.vim' 
+    Plug 'Valloric/YouCompleteMe'
     " fold
     Plug 'pseewald/vim-anyfold'
     " transform
@@ -65,19 +65,19 @@ call plug#begin('~/.local/share/nvim/plugged')
     " markdown
     " Plug 'vim-scripts/vim-auto-save',{'for':'markdown'}
 
-    Plug 'zhoupro/markdown-remote',{'for':'markdown'}
-    Plug 'junegunn/goyo.vim',{'for':'markdown'}
+    Plug 'zhoupro/markdown-remote'
+    Plug 'junegunn/goyo.vim'
     " auto root
     Plug 'airblade/vim-rooter'
     " lua dev
-    Plug 'xolox/vim-misc',{'for':'lua'}
-    Plug 'xolox/vim-lua-ftplugin',{'for':'lua'}
+    Plug 'xolox/vim-misc'
+    Plug 'xolox/vim-lua-ftplugin'
     " emmet
     Plug 'mattn/emmet-vim'
     "python
-    Plug 'zchee/deoplete-jedi',{'for':'py'}
+    Plug 'zchee/deoplete-jedi'
     "java
-    Plug 'artur-shaik/vim-javacomplete2',{'for':'java'}
+    Plug 'artur-shaik/vim-javacomplete2'
     "indent
     Plug 'Yggdroot/indentLine'
 
