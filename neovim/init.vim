@@ -80,6 +80,8 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'artur-shaik/vim-javacomplete2'
     "indent
     Plug 'Yggdroot/indentLine'
+    "undo
+    Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -377,3 +379,7 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
   \   <bang>0)
 nnoremap <silent> <Leader>a :Rg <C-R><C-W><CR>
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
