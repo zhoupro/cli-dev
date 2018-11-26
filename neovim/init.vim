@@ -10,7 +10,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'majutsushi/tagbar'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'bling/vim-bufferline'
     " explore
     Plug 'scrooloose/nerdtree'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -36,6 +35,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'pseewald/vim-anyfold'
     " transform
     Plug 'tpope/vim-abolish'
+    Plug 'tpope/vim-surround'
     " snips
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
