@@ -112,10 +112,6 @@ set incsearch
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 map K <Plug>(expand_region_expand)
 map J <Plug>(expand_region_shrink)
-" tab 替换为4个空格
-set tabstop=4
-set shiftwidth=4
-set expandtab
 """""""""""""""""""""""""""""""""""""
 " Mappings configurationn
 """""""""""""""""""""""""""""""""""""
@@ -375,7 +371,7 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.<q-args>, 1,
+  \   'rg --column --line-number --hidden --ignore-case --ignore-file ~/.ignore --no-heading --color=always '.<q-args>, 1,
   \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
   \   <bang>0)
@@ -384,3 +380,18 @@ if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
 endif
+" tab 替换为4个空格
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d %set :",
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
