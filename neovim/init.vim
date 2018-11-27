@@ -24,12 +24,12 @@ call plug#begin('~/.local/share/nvim/plugged')
     " go
     Plug 'fatih/vim-go'
     Plug 'zchee/deoplete-go', { 'do': 'make'}
-    " debug 
+    " debug
     Plug 'sakhnik/nvim-gdb'
     Plug 'vim-vdebug/vdebug'
     Plug 'sebdah/vim-delve'
     " c
-    Plug 'vim-scripts/a.vim' 
+    Plug 'vim-scripts/a.vim'
     Plug 'Valloric/YouCompleteMe'
     " fold
     Plug 'pseewald/vim-anyfold'
