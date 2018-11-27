@@ -36,6 +36,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     " transform
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
     " snips
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
