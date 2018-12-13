@@ -5,11 +5,13 @@
 # Last Modified Date: 27.11.2018
 # Last Modified By  : prozhou <zhoushengzheng@gmail.com>
 
-set -o nounset    
+source "./helper/system_info.sh"
+source "./helper/installer.sh"
 
-source ./helper/system_info.sh
-source "./helper/${sys_os}_dep.sh"
-source "./helper/jdk.sh"
+ins dep 
+ins jdk 
+ins neovim
+exit
 
 if [ $sys_os != "mac" ]; then
     apt-get install -y netcat iproute2

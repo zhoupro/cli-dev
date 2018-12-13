@@ -11,7 +11,7 @@ function jdk(){
 
 
 	JDK_VERSION=1.8
-	mkdir -p /usr/lib/jvm
+	sudo mkdir -p /usr/lib/jvm && sudo chmod 777   /usr/lib/jvm
 	if [ ! -d "/usr/lib/jvm/jdk${JDK_VERSION}" ]; then
         if [ ! -f jdk1.8.tar.gz ];
             then
@@ -21,10 +21,15 @@ function jdk(){
         JAVA_PACKAGE=jdk${JDK_VERSION}.tar.gz
         rm -rf /usr/lib/jvm/*
         tar zxvf $JAVA_PACKAGE  -C /usr/lib/jvm/
-      echo "export JAVA_HOME=/usr/lib/jvm/jdk${JDK_VERSION}" >> "$HOME/.cus_zshrc" 
+          echo "export JAVA_HOME=/usr/lib/jvm/jdk${JDK_VERSION}" >> "$HOME/.cus_zshrc" 
 	  echo "export CLASSPATH=\".:/usr/lib/jvm/jdk${JDK_VERSION}/lib:/usr/lib/jvm/jdk${JDK_VERSION}\""  >> "$HOME/.cus_zshrc"
 	  echo "export PATH=\"/usr/lib/jvm/jdk${JDK_VERSION}/bin:$PATH\"" >>  "$HOME/.cus_zshrc" 
+         export JAVA_HOME="/usr/lib/jdk${JDK_VERSION}"
+         export CLASSPATH=".:/usr/lib/jvm/jdk${JDK_VERSION}/lib:/usr/lib/jvm/jdk${JDK_VERSION}" 
+         export PATH="/usr/lib/jvm/jdk${JDK_VERSION}/bin:$PATH"
 	fi
 
 }
-! which java && jdk
+if [ ! -f /usr/lib/jvm/jdk1.8/bin/java ];then
+    jdk
+fi

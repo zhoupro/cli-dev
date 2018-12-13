@@ -1,8 +1,8 @@
-# VIM IDE 
+# CLI develop env 
 ### os
-Make a vim IDE  develop enviroment as personal
 * ubuntu
-
+* centos
+* mac
 ### language
 - c
 - php
@@ -13,5 +13,5 @@ Make a vim IDE  develop enviroment as personal
 - python
 - markdown
 
-### set up
+### setup
  ./init.sh
