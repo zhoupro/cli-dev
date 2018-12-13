@@ -1,9 +1,5 @@
 #!/bin/bash
-which tmux
-if [ $? -gt 0 ];then
-    brew install tmux
-fi
-
+! brew list | grep tmux && brew install tmux
 rm -f ~/.tmux.conf ~/.tmux.conf.local
-cp ./tmux.conf  ~/.tmux.conf
-cp ./tmux.conf.local  ~/.tmux.conf.local
+cp tools/tmux/tmux.conf  ~/.tmux.conf
+cp tools/tmux/tmux.conf.local  ~/.tmux.conf.local

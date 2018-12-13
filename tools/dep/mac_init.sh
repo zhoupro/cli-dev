@@ -4,4 +4,8 @@ if ! which brew;then
     "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-brew install wget
+apps="wget fzf ripgrep"
+for app in $apps
+do
+    ! brew list | grep $app && brew install $app
+done

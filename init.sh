@@ -7,10 +7,12 @@
 
 source "./helper/system_info.sh"
 source "./helper/installer.sh"
-
 ins dep 
 ins jdk 
 ins neovim
+ins tmux 
+ins hyper 
+ins zsh 
 exit
 
 if [ $sys_os != "mac" ]; then
@@ -22,22 +24,4 @@ if [ $sys_os != "mac" ]; then
     }'`:8085/module/gae_proxy/control/download_cert |sudo tee  --append /etc/ssl/certs/ca-certificates.crt
     fi
 fi
-
-#install tmux
-cd tmux
-source "./${sys_os}_init.sh"
-cd ..
-
-#install zsh
-cd zsh
-source "./${sys_os}_init.sh"
-cd ..
-
-#install neovim
-cd neovim
-source "./${sys_os}_init.sh"
-cd ..
-
-#reload zsh
-zsh
 # vim: set ts=4 sw=4 tw=0 et :
