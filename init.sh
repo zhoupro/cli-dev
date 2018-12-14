@@ -7,12 +7,13 @@
 
 source "./helper/system_info.sh"
 source "./helper/installer.sh"
-ins dep 
-ins zsh 
-ins hyper 
+ins dep
+ins zsh
+ins hyper
 ins neovim
-ins tmux 
-ins jdk 
+ins tmux
+ins jdk
+ins karabiner
 exit
 
 if [ $sys_os != "mac" ]; then
