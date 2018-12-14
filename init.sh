@@ -8,11 +8,11 @@
 source "./helper/system_info.sh"
 source "./helper/installer.sh"
 ins dep 
-ins jdk 
+ins zsh 
+ins hyper 
 ins neovim
 ins tmux 
-ins hyper 
-ins zsh 
+ins jdk 
 exit
 
 if [ $sys_os != "mac" ]; then
