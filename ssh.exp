@@ -1,0 +1,16 @@
+#!/usr/bin/expect
+set loginstring [lindex $argv 0]
+set fields [split $loginstring "@"]
+lassign $fields user host
+puts $user
+puts $host
+return
+spawn ssh   "root@59.110.217.133"
+expect {
+    -re "continue" {send "yes\r"}
+}
+expect {
+    -re "password" {send "zszw@5m\r"}
+}
+interact
+
