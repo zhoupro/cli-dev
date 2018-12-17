@@ -10,3 +10,11 @@ tar xzvf fzf-0.17.5-linux_amd64.tgz && sudo mv fzf "/usr/local/bin" && rm fzf-*.
 
 sudo yum install -y python34-pip
 sudo yum install -y python2-pip
+
+
+! which netcat && \
+wget http://sourceforge.net/projects/netcat/files/netcat/0.7.1/netcat-0.7.1.tar.gz && \
+tar xzvf netcat-0.7.1.tar.gz && \
+cd netcat-0.7.1 && \
+./configure && make && make install && \
+cd ..

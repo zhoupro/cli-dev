@@ -19,6 +19,22 @@ if  [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ] ; then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 sudo rm -f ~/.config/nvim/base_init.vim
+sudo rm -f ~/.config/nvim/yy.sh
 sudo mkdir -p ~/.config/nvim
 sudo cp tools/neovim/base_init.vim ~/.config/nvim/init.vim
+sudo cp tools/neovim/yy.sh ~/.config/nvim/
 vim +'PlugInstall --sync' +qall
+
+# copy
+if nmap localhost -p 8377 | grep open 2>/dev/null;then
+    sed -in 's#NCHOST#localhost#g' ~/.config/nvim/init.vim
+else
+    sed -in 's#NCHOST#host.docker.internal#g' ~/.config/nvim/init.vim
+fi
+
+if [ "$sys_os" == "ubuntu" ];then
+    sed -in 's#NCCOMMAND#nc -q 1#g'  ~/.config/nvim/init.vim
+else
+    sed -in 's#NCCOMMAND#nc -c#g' ~/.config/nvim/init.vim
+fi
+

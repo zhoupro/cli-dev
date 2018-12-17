@@ -17,5 +17,4 @@ ins karabiner
 ins ssh
 ins clipper
 ins pxy
-
 # vim: set ts=4 sw=4 tw=0 et :
