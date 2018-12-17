@@ -291,7 +291,7 @@ let g:php_cs_fixer_verbose = 0                    " Return the output of command
 let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
 let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
-nnoremap <leader>y :call system('nc -q 1 host.docker.internal 8377', @0)<CR>
+nnoremap <leader>y :call system('bash ~/.config/nvim/yy.sh', @0)<CR>
 nnoremap <leader>] :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
 
 " color change fix in tmux
