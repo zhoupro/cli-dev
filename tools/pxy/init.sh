@@ -1,4 +1,5 @@
 #!/bin/bash -
+
 export http_proxy=http://`/sbin/ip route|awk '/default/ { print $3 }'`:8087
 export https_proxy=http://`/sbin/ip route|awk '/default/ { print $3 }'`:8087
 

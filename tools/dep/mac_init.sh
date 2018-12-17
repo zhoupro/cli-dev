@@ -4,7 +4,7 @@ if ! which brew;then
     "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-apps="wget fzf ripgrep autojump"
+apps="wget fzf ripgrep autojump netcat iproute2mac clipper"
 for app in $apps
 do
     ! brew list | grep $app && brew install $app

@@ -14,6 +14,8 @@ ins neovim
 ins tmux
 ins jdk
 ins karabiner
+ins ssh
+ins clipper
 exit
 
 if [ $sys_os != "mac" ]; then
