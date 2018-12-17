@@ -1,19 +1,25 @@
 #!/bin/bash -
+export http_proxy=""
+export https_proxy=""
 
-if netcat -z localhost 8087 2>/dev/null;then
+if  nmap localhost -p 8077 | grep open 2&>/dev/null;then
     export http_proxy=http://localhost:8087
     export https_proxy=http://localhost:8087
     curl http://localhost:8085/module/gae_proxy/control/download_cert |sudo tee  --append /usr/local/share/ca-certificates/goagent.crt
-elif netcat -z host.docker.internal 8087 2>/dev/null
+elif  nmap host.docker.internal -p 8377 | grep open 2&>/dev/null;then
     ip=`/sbin/ip route|awk '/default/ { print $3 }'`
+    if [ !-f /usr/local/share/ca-certificates/goagent.crt ];then
+        wget http://$ip:8085/module/gae_proxy/control/download_cert -O  /usr/local/share/ca-certificates/goagent.crt
+        mkdir -p /usr/local/share/ca-certificates
+        touch /usr/local/share/ca-certificates/goagent.crt
+    fi
     export http_proxy=http://$ip:8087
     export https_proxy=http://$ip:8087
-    curl http://$ip:8085/module/gae_proxy/control/download_cert |sudo tee  --append /usr/local/share/ca-certificates/goagent.crt
 else
     export http_proxy=""
     export https_proxy=""
 fi
-
+echo $http_proxy
 starttime=`date +%s`
 #执行程序
 $*

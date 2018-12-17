@@ -2,13 +2,17 @@
 set -o nounset                                  # Treat unset variables as an error
 #读取参数
 # install neovim
-! which nvim >/dev/null &&\
-    if [ ! -f v0.3.1.tar.gz ];then
-        wget https://github.com/neovim/neovim/archive/v0.3.1.tar.gz
-        tar xzvf v0.3.1.tar.gz && cd neovim-0.3.1 || exit 
-        pxy make CMAKE_BUILD_TYPE=Release && make install 
-        cd .. && rm -rf neovim-0.3.1  v0.3.1.tar.gz
-    fi
+if [ ! -f /usr/local/bin/vim ];then
+	if [ ! -f nvim.appimage ];then
+	    wget https://github.com/neovim/neovim/releases/download/v0.3.1/nvim.appimage
+	fi
+        sudo chmod u+x nvim.appimage && sudo ./nvim.appimage --appimage-extract
+	mkdir -p ~/opt/soft
+        sudo mv squashfs-root ~/opt/soft/nvim
+	sudo ln -s  ~/opt/soft/nvim/usr/bin/nvim /usr/local/bin/vim
+	sudo ln -s  ~/opt/soft/nvim/usr/bin/nvim /usr/local/bin/nvim
+	rm -rf nvim.appimage
+fi
 pip3 install neovim --upgrade
 pip2 install neovim --upgrade
 
@@ -25,9 +29,9 @@ fi
 #-------------------------------------------------------------------------------
 if [ ! -f ~/.vim/c_cnt.sh ] ; then
     mkdir -p  ~/.config/nvim
-	cp ./c_cnt.sh  ~/.config/nvim/c_cnt.sh
-	cp ./add_swap.sh  ~/.config/nvim/add_swap.sh
-	cp ./del_swap.sh  ~/.config/nvim/del_swap.sh
+	cp tools/neovim/c_cnt.sh  ~/.config/nvim/c_cnt.sh
+	cp tools/neovim/add_swap.sh  ~/.config/nvim/add_swap.sh
+	cp tools/neovim/del_swap.sh  ~/.config/nvim/del_swap.sh
 fi
 if [ ! -f ~/.config/nvim/ycm.c.py ] ; then
     wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.c.py
@@ -38,7 +42,7 @@ fi
 rm -f ~/.config/nvim/init.vim
 #common config
 mkdir -p ~/.config/nvim
-cp ./init.vim ~/.config/nvim/init.vim
+cp tools/neovim/init.vim ~/.config/nvim/init.vim
 export shell=/bin/bash
 nvim +'PlugInstall --sync' +qall
 if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
@@ -74,11 +78,11 @@ fi
     echo "highlight Normal ctermbg=None" >> ~/.config/nvim/init.vim
 
 ! ( grep -F "cus_ini_vim" ~/.config/nvim/init.vim ) && \
-    cat ./cfg.ini >> ~/.config/nvim/init.vim
+    cat tools/neovim/cfg.ini >> ~/.config/nvim/init.vim
 ! ( grep -F "cus_ini_env" ~/.env ) && \
-    cat ./env.ini >> ~/.env
+    cat tools/neovim/env.ini >> ~/.env
 [ ! -f /usr/local/bin/genUrl ] &&\
-    cp ./genUrl.sh /usr/local/bin/genUrl && chmod u+x /usr/local/bin/genUrl
+    cp tools/neovim/genUrl.sh /usr/local/bin/genUrl && chmod u+x /usr/local/bin/genUrl
 [ ! -d /usr/local/vimsplain ] &&\
     git clone https://github.com/pafcu/vimsplain.git  /usr/local/vimsplain
-rm -rf  ~/.gdbinit  && cp ./gdbinit ~/.gdbinit
+rm -rf  ~/.gdbinit  && cp tools/neovim/gdbinit ~/.gdbinit
