@@ -20,7 +20,19 @@ if  [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ] ; then
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-rm -f ~/.config/nvim/mac_init.vim
+rm -f ~/.config/nvim/base_init.vim
 mkdir -p ~/.config/nvim
-cp tools/neovim/mac_init.vim ~/.config/nvim/init.vim
+cp tools/neovim/base_init.vim ~/.config/nvim/init.vim
 vim +'PlugInstall --sync' +qall
+# copy
+if nmap localhost -p 8377 | grep open 2>/dev/null;then
+    sed -in 's#NCHOST#localhost#g' ~/.config/nvim/init.vim
+else
+    sed -in 's#NCHOST#host.docker.internal#g' ~/.config/nvim/init.vim
+fi
+
+if [ "$sys_os" == "ubuntu" ];then
+    sed -in 's#NCCOMMAND#nc -q 1#g'  ~/.config/nvim/init.vim
+else
+    sed -in 's#NCCOMMAND#nc -c#g' ~/.config/nvim/init.vim
+fi
