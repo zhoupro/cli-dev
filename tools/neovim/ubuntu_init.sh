@@ -43,6 +43,18 @@ rm -f ~/.config/nvim/init.vim
 #common config
 mkdir -p ~/.config/nvim
 cp tools/neovim/init.vim ~/.config/nvim/init.vim
+# copy
+if nmap localhost -p 8377 | grep open 2>/dev/null;then
+    sed -in 's#NCHOST#localhost#g' ~/.config/nvim/init.vim
+else
+    sed -in 's#NCHOST#host.docker.internal#g' ~/.config/nvim/init.vim
+fi
+
+if [ "$sys_os" == "ubuntu" ];then
+    sed -in 's#NCCOMMAND#nc -q 1#g'  ~/.config/nvim/init.vim
+else
+    sed -in 's#NCCOMMAND#nc -c#g' ~/.config/nvim/init.vim
+fi
 export shell=/bin/bash
 nvim +'PlugInstall --sync' +qall
 if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
@@ -64,8 +76,6 @@ chmod u+x  /usr/local/bin/phpxd
     cd ctags && ./autogen.sh && ./configure && make && make install &&\
     cd .. && rm -rf ctags
 
-    
-
 if which go;then
     pxy nvim +'GoInstallBinaries' +qall
     pxy go get -u github.com/derekparker/delve/cmd/dlv
@@ -86,3 +96,5 @@ fi
 [ ! -d /usr/local/vimsplain ] &&\
     git clone https://github.com/pafcu/vimsplain.git  /usr/local/vimsplain
 rm -rf  ~/.gdbinit  && cp tools/neovim/gdbinit ~/.gdbinit
+
+
