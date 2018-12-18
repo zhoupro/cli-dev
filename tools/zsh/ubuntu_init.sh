@@ -6,8 +6,10 @@
 
 set -o nounset                                  # Treat unset variables as an error
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-[ ! -d "$HOME/.zplug" ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-sudo usermod -s /bin/zsh root
+if [ ! -d "$HOME/.zplug" ];then 
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+    sudo usermod -s /bin/zsh root
+fi
 
 ! (grep -F 'LC_ALL' ~/.env &>/dev/null )  && \
 echo 'export LC_ALL=zh_CN.UTF-8' >> "$HOME/.env" && \

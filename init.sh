@@ -8,6 +8,7 @@
 source "./helper/system_info.sh"
 source "./helper/installer.sh"
 ins dep
+ins pxy
 ins zsh
 ins hyper
 ins neovim
@@ -16,5 +17,4 @@ ins jdk
 ins karabiner
 ins ssh
 ins clipper
-ins pxy
 # vim: set ts=4 sw=4 tw=0 et :
