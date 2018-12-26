@@ -5,7 +5,7 @@ export https_proxy=""
 if nmap localhost -p 8787 | grep open >/dev/null;then
     export http_proxy=http://localhost:8787
     export https_proxy=http://localhost:8787
-elif nmap localhost -p 8787 | grep open >/dev/null;then
+elif nmap host.docker.internal -p 8787 | grep open >/dev/null;then
     ip=$(/sbin/ip route|awk '/default/ { print $3 }')
     export http_proxy=http://$ip:8787
     export https_proxy=http://$ip:8787
