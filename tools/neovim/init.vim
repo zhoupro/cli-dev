@@ -25,7 +25,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'fatih/vim-go'
     Plug 'zchee/deoplete-go', { 'do': 'make'}
     " debug
-    Plug 'sakhnik/nvim-gdb'
+    Plug 'sakhnik/nvim-gdb' , { 'branch': 'legacy' }
     Plug 'vim-vdebug/vdebug'
     Plug 'sebdah/vim-delve'
     " c
