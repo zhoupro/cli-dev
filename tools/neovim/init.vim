@@ -201,8 +201,8 @@ func! GenCscope()
         exec '!find . -name "*.php"  > cscope.files'
         exec "!cscope -bkq -i cscope.files"
         exec "!(cat cscope.files |  ctags -f .tags --languages=php --php-kinds=ctif  --fields=+aimS -L -)"
-    elseif &filetype == 'c'
-        exec '!find . -name "*.c" -o -name "*.h" > cscope.files'
+    elseif &filetype == 'c' || &filetype == 'cpp' || $filetype == 'h'
+        exec '!find . -name "*.c" -o -name "*.h" -name "*.cpp" > cscope.files'
         exec "!cscope -bkq -i cscope.files"
         exec "!(cat cscope.files | ctags -f .tags --c++-kinds=+p --fields=+iaS --extras=+q -L -)"
     endif
