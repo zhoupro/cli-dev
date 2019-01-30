@@ -57,7 +57,7 @@ END
     echo 'if [ -f ~/.env ];then; source ~/.env;fi' >> ~/.zshrc
 
 #themes
-! (grep -F 'spaceship' ~/.zshrc &>/dev/null )  && \
+! (grep -F 'avit' ~/.zshrc &>/dev/null )  && \
     sed -i 's#ZSH_THEME="robbyrussell"#ZSH_THEME="avit"#g' ~/.zshrc
 
 
