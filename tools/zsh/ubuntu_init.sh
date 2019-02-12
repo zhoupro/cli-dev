@@ -85,5 +85,5 @@ export KEYTIMEOUT=1
 END
 # avit theme show ip address
 ! (grep -F 'ifconfig' ~/.oh-my-zsh/themes/avit.zsh-theme &>/dev/null )  && \
-sed -i '/if.*n.*me.*then/i  ip=`ifconfig | grep "inet " | grep -v 127.0.0.1 | awk \'{print $2}\'`' ~/.oh-my-zsh/themes/avit.zsh-theme && \
+sed -i "/if.*n.*me.*then/i  ip=\`ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'\`" ~/.oh-my-zsh/themes/avit.zsh-theme && \
 sed -i '/if.*n.*me.*then/i me="%n@$ip"' ~/.oh-my-zsh/themes/avit.zsh-theme
