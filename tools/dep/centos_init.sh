@@ -9,7 +9,7 @@ wget https://github.com/junegunn/fzf-bin/releases/download/0.17.5/fzf-0.17.5-lin
 tar xzvf fzf-0.17.5-linux_amd64.tgz && sudo mv fzf "/usr/local/bin" && rm fzf-*.tgz
 
 sudo yum install -y python34-pip
-sudo yum install -y python2-pip
+sudo yum install -y python2-pip zsh
 
 
 ! which netcat && \
