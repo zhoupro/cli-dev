@@ -395,3 +395,7 @@ function! AppendModeline()
   call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+" add current file to ignore file
+command Gg call system('echo '.expand("%"). '>> .git/info/exclude')
+" remove current file from ignore file
+command Gr call system('sed  -i "s#'.expand("%").'##g"  .git/info/exclude')
