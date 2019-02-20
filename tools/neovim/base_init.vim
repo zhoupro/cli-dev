@@ -55,6 +55,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'Yggdroot/indentLine'
     "undo
     Plug 'mbbill/undotree'
+    "markdown
+    " have nodejs and yarn
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 call plug#end()
 

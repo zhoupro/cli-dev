@@ -13,6 +13,8 @@ done
 ! brew list | grep gnu-sed && brew install gnu-sed --with-default-names
 ! brew list | grep python && brew install python3
 ! brew list | grep python@2 && brew install python2
+! brew list | grep node && brew install node
+! brew list | grep yarn && brew install yarn
 ! ls /Library/Fonts | grep Fura &&
 wget https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/FiraCode/Retina/complete/Fura%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf && \
 mv Fura*Mono.ttf /Library/Fonts
