@@ -6,7 +6,7 @@ echo $PATH | awk -F ':' '{print $NF}'|grep -q '/usr/local/bin'; [ $? -ne 0 ] && 
 #auto suggest
 ! (grep -F 'zsh-autosuggestions' ~/.zshrc &>/dev/null )  && \
 git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" && \
-sed -E -i "s/plugins=\((.*)\)/plugins=\(\1 zsh-autosuggestions\)/g" ~/.zshrc
+gsed -E -i "s/plugins=\((.*)\)/plugins=\(\1 zsh-autosuggestions\)/g" ~/.zshrc
 echo 'no'
 
 [ ! -d "$HOME/.zplug" ] && curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
@@ -21,10 +21,10 @@ END
 
 # language
 !  (grep -F 'LANGUAGE' ~/.zshrc &>/dev/null )  && \
-sed -i '1iexport LANGUAGE=en_US.UTF-8' ~/.zshrc &&\
-sed -i '1iexport LC_ALL=en_US.UTF-8' ~/.zshrc &&\
-sed -i '1iexport LANG=en_US.UTF-8' ~/.zshrc &&\
-sed -i '1iexport LC_TYPE=en_US.UTF-8' ~/.zshrc
+gsed -i '1iexport LANGUAGE=en_US.UTF-8' ~/.zshrc &&\
+gsed -i '1iexport LC_ALL=en_US.UTF-8' ~/.zshrc &&\
+gsed -i '1iexport LANG=en_US.UTF-8' ~/.zshrc &&\
+gsed -i '1iexport LC_TYPE=en_US.UTF-8' ~/.zshrc
 #zsh plugin
 ! (grep -F '.cus_zshrc' ~/.zshrc &>/dev/null )  && \
     echo 'if [ -f ~/.cus_zshrc ];then; source ~/.cus_zshrc;fi' >> ~/.zshrc && \
@@ -51,7 +51,7 @@ END
 
 #themes
 ! (grep -F 'avit' ~/.zshrc &>/dev/null )  && \
-    sed -i 's#ZSH_THEME="robbyrussell"#ZSH_THEME="avit"#g' ~/.zshrc
+    gsed -i 's#ZSH_THEME="robbyrussell"#ZSH_THEME="avit"#g' ~/.zshrc
 
 ! (grep -F 'history-incremental-search-backward' ~/.cus_zshrc &>/dev/null )  && \
 cat >> ~/.cus_zshrc <<END
@@ -77,5 +77,5 @@ export KEYTIMEOUT=1
 END
 # avit theme show ip address
 ! (grep -F 'ifconfig' ~/.oh-my-zsh/themes/avit.zsh-theme &>/dev/null )  && \
-sed -i "/if.*n.*me.*then/i  ip=\`ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'\`" ~/.oh-my-zsh/themes/avit.zsh-theme && \
-sed -i '/if.*n.*me.*then/i me="%n@$ip"' ~/.oh-my-zsh/themes/avit.zsh-theme
+gsed -i "/if.*n.*me.*then/i  ip=\`ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'\`" ~/.oh-my-zsh/themes/avit.zsh-theme && \
+gsed -i '/if.*n.*me.*then/i me="%n@$ip"' ~/.oh-my-zsh/themes/avit.zsh-theme

@@ -13,9 +13,9 @@ ins zsh
 ins hyper
 ins neovim
 ins tmux
-ins jdk
 ins karabiner
 ins ssh
 ins clipper
 ins phoenix
+ins jdk
 # vim: set ts=4 sw=4 tw=0 et :
