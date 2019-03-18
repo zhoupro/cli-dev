@@ -1,8 +1,4 @@
 call plug#begin('~/.local/share/nvim/plugged')
-    "for php 
-    Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
-    Plug 'arnaud-lb/vim-php-namespace' 
-    Plug 'stephpy/vim-php-cs-fixer'
     Plug 'w0rp/ale'
     "complete
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -21,16 +17,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'airblade/vim-gitgutter'
     Plug 'gregsexton/gitv'
     Plug 'Xuyuanp/nerdtree-git-plugin'
-    " go
-    Plug 'fatih/vim-go'
-    Plug 'zchee/deoplete-go', { 'do': 'make'}
-    " debug
-    Plug 'sakhnik/nvim-gdb' , { 'branch': 'legacy' }
-    Plug 'vim-vdebug/vdebug'
-    Plug 'sebdah/vim-delve'
-    " c
-    Plug 'vim-scripts/a.vim'
-    Plug 'Valloric/YouCompleteMe'
     " fold
     Plug 'pseewald/vim-anyfold'
     " transform
@@ -63,22 +49,10 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     " tmux
     Plug 'christoomey/vim-tmux-navigator'
-    " markdown
-    " Plug 'vim-scripts/vim-auto-save',{'for':'markdown'}
-
-    Plug 'zhoupro/markdown-remote'
-    Plug 'junegunn/goyo.vim'
     " auto root
     Plug 'airblade/vim-rooter'
-    " lua dev
-    Plug 'xolox/vim-misc'
-    Plug 'xolox/vim-lua-ftplugin'
     " emmet
     Plug 'mattn/emmet-vim'
-    "python
-    Plug 'zchee/deoplete-jedi'
-    "java
-    Plug 'artur-shaik/vim-javacomplete2'
     "indent
     Plug 'Yggdroot/indentLine'
     "undo

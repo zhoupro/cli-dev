@@ -1,5 +1,4 @@
-#!/bin/bash -
-set -o nounset                                  # Treat unset variables as an error
+#!/bin/bash
 #读取参数
 # install neovim
 if [ ! -f /usr/local/bin/vim ];then
@@ -17,7 +16,7 @@ pip3 install neovim --upgrade
 pip2 install neovim --upgrade
 
 #-------------------------------------------------------------------------------
-# install vim-plug 
+# install vim-plug
 #-------------------------------------------------------------------------------
 if  [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ] ; then
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
@@ -32,12 +31,6 @@ if [ ! -f ~/.vim/c_cnt.sh ] ; then
 	cp tools/neovim/c_cnt.sh  ~/.config/nvim/c_cnt.sh
 	cp tools/neovim/add_swap.sh  ~/.config/nvim/add_swap.sh
 	cp tools/neovim/del_swap.sh  ~/.config/nvim/del_swap.sh
-fi
-if [ ! -f ~/.config/nvim/ycm.c.py ] ; then
-    wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.c.py
-    mkdir -p ~/.config/nvim
-    cp ycm.c.py ~/.config/nvim/ycm.c.py
-    rm -f ycm.c.py
 fi
 rm -f ~/.config/nvim/init.vim
 #common config
@@ -55,33 +48,43 @@ if [ "$sys_os" == "ubuntu" ];then
 else
     sed -in 's#NCCOMMAND#nc -c#g' ~/.config/nvim/init.vim
 fi
-export shell=/bin/bash
-nvim +'PlugInstall --sync' +qall
-if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
-    bash ~/.config/nvim/add_swap.sh
-    pxy python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
-    bash ~/.config/nvim/del_swap.sh
-    rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
+
+#language
+
+if [ "Y$OPT_VIM_GO" == "Yyes" ];then
+	go_ins
 fi
 
-cat > /usr/local/bin/phpxd <<END
-#!/bin/zsh
-export XDEBUG_CONFIG="idekey=xdebug remote_host=localhost"
-php "\$@"
-END
-chmod u+x  /usr/local/bin/phpxd
+if [ "Y$OPT_VIM_PHP" == "Yyes" ];then
+	php_ins
+fi
 
+if [ "Y$OPT_VIM_C" == "Yyes" ];then
+	c_ins
+fi
+
+if [ "Y$OPT_VIM_YCM" == "Yyes" ];then
+	ycm_ins
+fi
+
+if [ "Y$WITH_LUA" == "Yyes" ];then
+	lua_ins
+fi
+
+if [ "Y$WITH_JAVA" == "Yyes" ];then
+	java_ins
+fi
+if [ "Y$WITH_PYTHON" == "Yyes" ];then
+	python_ins
+fi
+#language end
+
+export shell=/bin/bash
+nvim +'PlugInstall --sync' +qall
 ! which ctags >/dev/null && \
     git clone https://github.com/universal-ctags/ctags.git &&\
     cd ctags && ./autogen.sh && ./configure && make && make install &&\
     cd .. && rm -rf ctags
-
-if which go;then
-    pxy nvim +'GoInstallBinaries' +qall
-    pxy go get -u github.com/derekparker/delve/cmd/dlv
-    pxy go get -u github.com/mdempsky/gocode
-    pxy go get -u github.com/labstack/echo/...
-fi
 
 ! ( grep -F "color onedark" ~/.config/nvim/init.vim ) && \
     echo "color onedark" >> ~/.config/nvim/init.vim && \
@@ -98,3 +101,58 @@ fi
 rm -rf  ~/.gdbinit  && cp tools/neovim/gdbinit ~/.gdbinit
 
 
+function ycm_ins(){
+    if [ ! -f ~/.config/nvim/ycm.c.py ] ; then
+        wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.c.py
+        mkdir -p ~/.config/nvim
+        cp ycm.c.py ~/.config/nvim/ycm.c.py
+        rm -f ycm.c.py
+    fi
+    if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
+        bash ~/.config/nvim/add_swap.sh
+        pxy python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
+        bash ~/.config/nvim/del_swap.sh
+        rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
+    fi
+}
+
+function c_ins(){
+    ! (grep -F 'YouCompleteMe' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/plug#begin/aPlug 'vim-scripts/a.vim'" ~/.config/nvim/init.vim && \
+    sed -i "/plug#begin/aPlug 'Valloric/YouCompleteMe'"  ~/.config/nvim/init.vim && \
+    sed -i "/plug#begin/aPlug 'sakhnik/nvim-gdb' , { 'branch': 'legacy' }" ~/.config/nvim/init.vim
+}
+function python_ins(){
+    ! (grep -F 'deoplete-jedi' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/plug#begin/aPlug 'zchee/deoplete-jedi'" ~/.config/nvim/init.vim
+}
+function java_ins(){
+    ! (grep -F 'vim-javacomplete2' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/plug#begin/aPlug 'artur-shaik/vim-javacomplete2'" ~/.config/nvim/init.vim
+}
+
+function go_ins(){
+    ! (grep -F 'deoplete-go' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/plug#begin/aPlug 'fatih/vim-go'" ~/.config/nvim/init.vim &&\
+    sed -i "/plug#begin/aPlug 'zchee/deoplete-go', { 'do': 'make'}" ~/.config/nvim/init.vim &&\
+    sed -i "/plug#begin/aPlug 'sebdah/vim-delve'" ~/.config/nvim/init.vim
+    if which go;then
+        pxy nvim +'GoInstallBinaries' +qall
+        pxy go get -u github.com/derekparker/delve/cmd/dlv
+        pxy go get -u github.com/mdempsky/gocode
+    fi
+}
+
+function php_ins(){
+    ! (grep -F 'vim-php-namespace' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/plug#begin/aPlug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }" ~/.config/nvim/init.vim && \
+    sed -i "/plug#begin/aPlug 'arnaud-lb/vim-php-namespace'" ~/.config/nvim/init.vim &&\
+    sed -i "/plug#begin/aPlug 'stephpy/vim-php-cs-fixer'" ~/.config/nvim/init.vim && \
+    sed -i "/plug#begin/aPlug 'vim-vdebug/vdebug'" ~/.config/nvim/init.vim
+    cat > /usr/local/bin/phpxd <<END
+    #!/bin/zsh
+    export XDEBUG_CONFIG="idekey=xdebug remote_host=localhost"
+    php "\$@"
+END
+    chmod u+x  /usr/local/bin/phpxd
+}

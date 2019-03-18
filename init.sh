@@ -7,6 +7,7 @@
 
 source "./helper/system_info.sh"
 source "./helper/installer.sh"
+source "./helper/option.sh"
 ins dep
 ins pxy
 ins zsh
