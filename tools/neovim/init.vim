@@ -77,7 +77,7 @@ autocmd FileType lua call deoplete#custom#var('omni', 'functions', {
 
 "words
 "call deoplete#custom#source('ultisnips', 'rank', 1000)
-set dictionary=/usr/share/dict/words
+"set dictionary=/usr/share/dict/words
 " Highlight search results
 set hlsearch
 " Makes search act like search in modern browsers
