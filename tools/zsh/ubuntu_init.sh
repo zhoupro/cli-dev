@@ -10,6 +10,9 @@ if [ ! -d "$HOME/.zplug" ];then
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
     sudo usermod -s /bin/zsh root
 fi
+! (grep -F 'zsh-autosuggestions' ~/.zshrc &>/dev/null )  && \
+git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" && \
+sed -E -i "s/plugins=\((.*)\)/plugins=\(\1 zsh-autosuggestions\)/g" ~/.zshrc
 
 ! (grep -F 'LC_ALL' ~/.env &>/dev/null )  && \
 echo 'export LC_ALL=zh_CN.UTF-8' >> "$HOME/.env" && \
@@ -44,14 +47,6 @@ man() {
           man "\$@"
 }
 END
-
-#autojump
-! (grep -F 'autojump' ~/.zshrc &>/dev/null )  && \
-    sed -in '/^plugins=/a autojump' ~/.zshrc
-#auto suggest
-! (grep -F 'zsh-autosuggestions' ~/.zshrc &>/dev/null )  && \
-    git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" && \
-    sed -in '/^plugins=/a zsh-autosuggestions' ~/.zshrc
 #env
 ! (grep -F '.env' ~/.zshrc &>/dev/null )  && \
     echo 'if [ -f ~/.env ];then; source ~/.env;fi' >> ~/.zshrc
