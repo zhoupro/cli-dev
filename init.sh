@@ -18,5 +18,7 @@ ins karabiner
 ins ssh
 ins clipper
 ins phoenix
-ins jdk
+if [ "Y$OPT_JAVA" == "Yyes" ];then
+    ins jdk
+fi
 # vim: set ts=4 sw=4 tw=0 et :
