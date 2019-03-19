@@ -12,6 +12,7 @@ do
 	case "$option" in
 		--with_vim_php)                          OPT_VIM_PHP=yes                   ;;
 		--with_vim_c)                          OPT_VIM_C=yes                   ;;
+		--with_vim_ycm)                          OPT_VIM_YCM=yes                   ;;
 		--with_vim_lua)                          OPT_VIM_LUA=yes                   ;;
 		--with_vim_go)                          OPT_VIM_GO=yes                   ;;
 		--with_java)                          OPT_JAVA=yes                   ;;

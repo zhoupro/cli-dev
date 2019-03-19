@@ -1,6 +1,9 @@
 #!/bin/bash
 
 function ycm_ins(){
+    ! (grep -F 'YouCompleteMe' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/plug#begin/aPlug 'Valloric/YouCompleteMe'"  ~/.config/nvim/init.vim 
+
     if [ ! -f ~/.config/nvim/ycm.c.py ] ; then
         wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.c.py
         mkdir -p ~/.config/nvim
@@ -16,9 +19,8 @@ function ycm_ins(){
 }
 
 function c_ins(){
-    ! (grep -F 'YouCompleteMe' ~/.config/nvim/init.vim &>/dev/null ) && \
+    ! (grep -F 'nvim-gdb' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'vim-scripts/a.vim'" ~/.config/nvim/init.vim && \
-    sed -i "/plug#begin/aPlug 'Valloric/YouCompleteMe'"  ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'sakhnik/nvim-gdb' , { 'branch': 'legacy' }" ~/.config/nvim/init.vim
 }
 function python_ins(){
@@ -157,5 +159,3 @@ nvim +'PlugInstall --sync' +qall
 [ ! -d /usr/local/vimsplain ] &&\
     git clone https://github.com/pafcu/vimsplain.git  /usr/local/vimsplain
 rm -rf  ~/.gdbinit  && cp tools/neovim/gdbinit ~/.gdbinit
-
-
