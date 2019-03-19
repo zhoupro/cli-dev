@@ -67,14 +67,14 @@ if [ "Y$OPT_VIM_YCM" == "Yyes" ];then
 	ycm_ins
 fi
 
-if [ "Y$WITH_LUA" == "Yyes" ];then
+if [ "Y$OPT_LUA" == "Yyes" ];then
 	lua_ins
 fi
 
-if [ "Y$WITH_JAVA" == "Yyes" ];then
+if [ "Y$OPT_JAVA" == "Yyes" ];then
 	java_ins
 fi
-if [ "Y$WITH_PYTHON" == "Yyes" ];then
+if [ "Y$OPT_PYTHON" == "Yyes" ];then
 	python_ins
 fi
 #language end
