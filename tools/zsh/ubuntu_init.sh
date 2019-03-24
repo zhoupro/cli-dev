@@ -7,7 +7,7 @@
 set -o nounset                                  # Treat unset variables as an error
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 if [ ! -d "$HOME/.zplug" ];then 
-    $( curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh )
+    ( curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh )
     sudo usermod -s /bin/zsh root
 fi
 ! (grep -F 'zsh-autosuggestions' ~/.zshrc &>/dev/null )  && \
@@ -82,5 +82,4 @@ END
 ! (grep -F 'ifconfig' ~/.oh-my-zsh/themes/avit.zsh-theme &>/dev/null )  && \
 sed -i "/if.*n.*me.*then/i  ip=\`ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'\`" ~/.oh-my-zsh/themes/avit.zsh-theme && \
 sed -i '/if.*n.*me.*then/i me="%n@$ip"' ~/.oh-my-zsh/themes/avit.zsh-theme
-$( zsh )
-$( zsh )
+( zsh )
