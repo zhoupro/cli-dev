@@ -21,4 +21,5 @@ ins phoenix
 if [ "Y$OPT_JAVA" == "Yyes" ];then
     ins jdk
 fi
+zsh
 # vim: set ts=4 sw=4 tw=0 et :
