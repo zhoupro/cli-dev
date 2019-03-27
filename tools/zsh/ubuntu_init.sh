@@ -8,7 +8,7 @@ set -o nounset                                  # Treat unset variables as an er
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -| sed  's/env zsh -l//g')"
 
 if [ ! -d "$HOME/.zplug" ];then
-    ( curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh )
+    git clone https://github.com/zplug/zplug.git ~/.zplug
     sudo usermod -s /bin/zsh root
 fi
 ! (grep -F 'zsh-autosuggestions' ~/.zshrc &>/dev/null )  && \
