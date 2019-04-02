@@ -87,6 +87,13 @@ map J <Plug>(expand_region_shrink)
 " Mappings configurationn
 """""""""""""""""""""""""""""""""""""
 map <leader>n :Vexplore<CR>
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 0
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+let g:netrw_banner = 0
+
 map <leader>m :TagbarOpenAutoClose<CR>
 
 " vim-php-namespace
