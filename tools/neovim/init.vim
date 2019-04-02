@@ -7,7 +7,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     " explore
-    Plug 'scrooloose/nerdtree'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'vim-scripts/ctags.vim'
@@ -16,7 +15,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
     Plug 'gregsexton/gitv'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
     " fold
     Plug 'pseewald/vim-anyfold'
     " transform
@@ -46,7 +44,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'chr4/nginx.vim'
     " icon
     Plug 'ryanoasis/vim-devicons'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     " tmux
     Plug 'christoomey/vim-tmux-navigator'
     " auto root
@@ -89,11 +86,8 @@ map J <Plug>(expand_region_shrink)
 """""""""""""""""""""""""""""""""""""
 " Mappings configurationn
 """""""""""""""""""""""""""""""""""""
-map <leader>n :NERDTreeToggle<CR>
+map <leader>n :Vexplore<CR>
 map <leader>m :TagbarOpenAutoClose<CR>
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeQuitOnOpen=1
 
 " vim-php-namespace
 function! IPhpInsertUse()
@@ -167,18 +161,18 @@ func! RunProgram()
 endfunc
 autocmd VimEnter * noremap  <leader>t  :call RunProgram()<CR>
 " ctags
-set tags=.tags;  " ; 不可省略，表示若当前目录中不存在tags， 则在父目录中寻找。
+set tags=tags;  " ; 不可省略，表示若当前目录中不存在tags， 则在父目录中寻找。
 nmap <silent> ]s  :call GenCscope() <CR>
 func! GenCscope()
     exec "w"
     if &filetype == 'php'
         exec '!find . -name "*.php"  > cscope.files'
         exec "!cscope -bkq -i cscope.files"
-        exec "!(cat cscope.files |  ctags -f .tags --languages=php --php-kinds=ctif  --fields=+aimS -L -)"
+        exec "!(cat cscope.files |  ctags -f tags --languages=php --php-kinds=ctif  --fields=+aimS -L -)"
     elseif &filetype == 'c' || &filetype == 'cpp' || &filetype == 'h' || &filetype  == 'cc' || &filetype == 'c++'
         exec '!find . -name "*.c" -o -name "*.h" -name "*.cpp" -name "*.cc" -name "*.c++" > cscope.files'
         exec "!cscope -bkq -i cscope.files"
-        exec "!(cat cscope.files | ctags -f .tags --c++-kinds=+p --fields=+iaS --extras=+q -L -)"
+        exec "!(cat cscope.files | ctags -f tags --c++-kinds=+p --fields=+iaS --extras=+q -L -)"
     endif
 endfunc
 
@@ -296,26 +290,13 @@ endif
 set scrolloff=5
 let g:header_auto_add_header = 0
 
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-
 let g:ycm_show_diagnostics_ui = 0
 
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
-let g:rooter_patterns = ['.tags', '.git/']
+let g:rooter_patterns = ['tags', '.git/']
 " ydcv
 nnoremap tr :let a=expand("<cword>")<Bar>exec '!ydcv ' .a<CR>
 
