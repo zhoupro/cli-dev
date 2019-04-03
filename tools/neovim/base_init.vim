@@ -4,16 +4,22 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     " explore
-    Plug 'scrooloose/nerdtree'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'vim-scripts/ctags.vim'
     Plug 'tpope/vim-commentary'
+    " explore
+    if has('nvim')
+	  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+	else
+	  Plug 'Shougo/defx.nvim'
+	  Plug 'roxma/nvim-yarp'
+	  Plug 'roxma/vim-hug-neovim-rpc'
+	endif
     "git
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
     Plug 'gregsexton/gitv'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
     " c
     Plug 'vim-scripts/a.vim'
     " fold
@@ -45,7 +51,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'chr4/nginx.vim'
     " icon
     Plug 'ryanoasis/vim-devicons'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     " tmux
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'junegunn/goyo.vim'
@@ -75,11 +80,8 @@ map J <Plug>(expand_region_shrink)
 """""""""""""""""""""""""""""""""""""
 " Mappings configurationn
 """""""""""""""""""""""""""""""""""""
-map <leader>n :NERDTreeToggle<CR>
+map <leader>n :Defx -toggle<CR>
 map <leader>m :TagbarOpenAutoClose<CR>
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeQuitOnOpen=1
 
 func! RunProgram()
     exec "w"
@@ -103,18 +105,18 @@ func! RunProgram()
 endfunc
 autocmd VimEnter * noremap  <leader>t  :call RunProgram()<CR>
 " ctags
-set tags=.tags;  " ; 不可省略，表示若当前目录中不存在tags， 则在父目录中寻找。
+set tags=tags;  " ; 不可省略，表示若当前目录中不存在tags， 则在父目录中寻找。
 nmap <silent> ]s  :call GenCscope() <CR>
 func! GenCscope()
     exec "w"
     if &filetype == 'php'
         exec '!find . -name "*.php"  > cscope.files'
         exec "!cscope -bkq -i cscope.files"
-        exec "!(cat cscope.files |  ctags -f .tags --languages=php --php-kinds=ctif  --fields=+aimS -L -)"
+        exec "!(cat cscope.files |  ctags -f tags --languages=php --php-kinds=ctif  --fields=+aimS -L -)"
     elseif &filetype == 'c'
         exec '!find . -name "*.c" -o -name "*.h" > cscope.files'
         exec "!cscope -bkq -i cscope.files"
-        exec "!(cat cscope.files | ctags -f .tags --c++-kinds=+p --fields=+iaS --extras=+q -L -)"
+        exec "!(cat cscope.files | ctags -f tags --c++-kinds=+p --fields=+iaS --extras=+q -L -)"
     endif
 endfunc
 
@@ -198,24 +200,11 @@ endif
 set scrolloff=5
 let g:header_auto_add_header = 0
 
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
-let g:rooter_patterns = ['.tags', '.git/']
+let g:rooter_patterns = ['tags', '.git/']
 " ydcv
 nnoremap tr :let a=expand("<cword>")<Bar>exec '!ydcv ' .a<CR>
 
@@ -272,3 +261,78 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 command Gg call system('echo '.expand("%"). '>> .git/info/exclude')
 " remove current file from ignore file
 command Gr call system('sed  -i "s#'.expand("%").'##g"  .git/info/exclude')
+autocmd FileType defx call s:defx_my_settings()
+    function! s:defx_my_settings() abort
+     " Define mappings
+     nnoremap <silent><buffer><expr> <CR>
+     \ defx#do_action('open')
+     nnoremap <silent><buffer><expr> c
+     \ defx#do_action('copy')
+     nnoremap <silent><buffer><expr> m
+     \ defx#do_action('move')
+     nnoremap <silent><buffer><expr> p
+     \ defx#do_action('paste')
+     nnoremap <silent><buffer><expr> l
+     \ defx#do_action('open')
+     nnoremap <silent><buffer><expr> E
+     \ defx#do_action('open', 'vsplit')
+     nnoremap <silent><buffer><expr> P
+     \ defx#do_action('open', 'pedit')
+     nnoremap <silent><buffer><expr> o
+     \ defx#do_action('open_or_close_tree')
+     nnoremap <silent><buffer><expr> K
+     \ defx#do_action('new_directory')
+     nnoremap <silent><buffer><expr> N
+     \ defx#do_action('new_file')
+     nnoremap <silent><buffer><expr> M
+     \ defx#do_action('new_multiple_files')
+     nnoremap <silent><buffer><expr> C
+     \ defx#do_action('toggle_columns',
+     \                'mark:filename:type:size:time')
+     nnoremap <silent><buffer><expr> S
+     \ defx#do_action('toggle_sort', 'time')
+     nnoremap <silent><buffer><expr> d
+     \ defx#do_action('remove')
+     nnoremap <silent><buffer><expr> r
+     \ defx#do_action('rename')
+     nnoremap <silent><buffer><expr> !
+     \ defx#do_action('execute_command')
+     nnoremap <silent><buffer><expr> x
+     \ defx#do_action('execute_system')
+     nnoremap <silent><buffer><expr> yy
+     \ defx#do_action('yank_path')
+     nnoremap <silent><buffer><expr> .
+     \ defx#do_action('toggle_ignored_files')
+     nnoremap <silent><buffer><expr> ;
+     \ defx#do_action('repeat')
+     nnoremap <silent><buffer><expr> h
+     \ defx#do_action('cd', ['..'])
+     nnoremap <silent><buffer><expr> ~
+     \ defx#do_action('cd')
+     nnoremap <silent><buffer><expr> q
+     \ defx#do_action('quit')
+     nnoremap <silent><buffer><expr> <Space>
+     \ defx#do_action('toggle_select') . 'j'
+     nnoremap <silent><buffer><expr> *
+     \ defx#do_action('toggle_select_all')
+     nnoremap <silent><buffer><expr> j
+     \ line('.') == line('$') ? 'gg' : 'j'
+     nnoremap <silent><buffer><expr> k
+     \ line('.') == 1 ? 'G' : 'k'
+     nnoremap <silent><buffer><expr> <C-l>
+     \ defx#do_action('redraw')
+     nnoremap <silent><buffer><expr> <C-g>
+     \ defx#do_action('print')
+     nnoremap <silent><buffer><expr> cd
+     \ defx#do_action('change_vim_cwd')
+endfunction
+augroup defx
+    au!
+    au VimEnter * sil! au! FileExplorer *
+    au BufEnter * if s:isdir(expand('%')) | bd | exe 'Defx' | endif
+augroup END
+
+fu! s:isdir(dir) abort
+    return !empty(a:dir) && (isdirectory(a:dir) ||
+             \ (!empty($SYSTEMDRIVE) && isdirectory('/'.tolower($SYSTEMDRIVE[0]).a:dir)))
+endfu
