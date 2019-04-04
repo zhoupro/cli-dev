@@ -45,7 +45,7 @@ function go_ins(){
 }
 
 function php_ins(){
-    ! (grep -F 'vim-php-namespace' ~/.config/nvim/init.vim &>/dev/null ) && \
+    ! (grep -F 'arnaud-lb/vim-php-namespace' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'arnaud-lb/vim-php-namespace'" ~/.config/nvim/init.vim &&\
     sed -i "/plug#begin/aPlug 'stephpy/vim-php-cs-fixer'" ~/.config/nvim/init.vim && \
