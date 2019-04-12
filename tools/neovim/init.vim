@@ -53,8 +53,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'ryanoasis/vim-devicons'
     " tmux
     Plug 'christoomey/vim-tmux-navigator'
-    " auto root
-    Plug 'airblade/vim-rooter'
     " emmet
     Plug 'mattn/emmet-vim'
     "indent
@@ -303,9 +301,6 @@ let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
-let g:rooter_patterns = ['tags', '.git/']
-" ydcv
-nnoremap tr :let a=expand("<cword>")<Bar>exec '!ydcv ' .a<CR>
 
 autocmd Filetype * AnyFoldActivate
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
