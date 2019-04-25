@@ -22,8 +22,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'gregsexton/gitv'
     " c
     Plug 'vim-scripts/a.vim'
-    " fold
-    Plug 'pseewald/vim-anyfold'
     " transform
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-surround'
@@ -152,10 +150,6 @@ au BufEnter /* call LoadCscope()
 
 set background=dark
 
-" fold
-let anyfold_fold_comments=1
-set foldlevel=10
-hi Folded term=NONE cterm=NONE
 
 " for debug
 set nu
@@ -206,7 +200,6 @@ nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
 
-autocmd Filetype * AnyFoldActivate
 " backward
 noremap \ ,
 let g:polyglot_disabled = ['markdown']
@@ -334,4 +327,4 @@ fu! s:isdir(dir) abort
     return !empty(a:dir) && (isdirectory(a:dir) ||
              \ (!empty($SYSTEMDRIVE) && isdirectory('/'.tolower($SYSTEMDRIVE[0]).a:dir)))
 endfu
-
+set foldmethod=manual

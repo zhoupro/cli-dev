@@ -8,12 +8,12 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     " explore
     if has('nvim')
-	  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-	else
-	  Plug 'Shougo/defx.nvim'
-	  Plug 'roxma/nvim-yarp'
-	  Plug 'roxma/vim-hug-neovim-rpc'
-	endif
+      Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+      Plug 'Shougo/defx.nvim'
+      Plug 'roxma/nvim-yarp'
+      Plug 'roxma/vim-hug-neovim-rpc'
+    endif
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'vim-scripts/ctags.vim'
@@ -22,8 +22,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
     Plug 'gregsexton/gitv'
-    " fold
-    Plug 'pseewald/vim-anyfold'
     " transform
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-surround'
@@ -221,11 +219,6 @@ let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_key_invoke_completion = '<C-a>'
 
-" fold
-let anyfold_fold_comments=1
-set foldlevel=10
-hi Folded term=NONE cterm=NONE
-
 
 " for debug
 set nu
@@ -305,8 +298,6 @@ let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
-
-autocmd Filetype * AnyFoldActivate
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 " backward
 noremap \ ,
@@ -436,3 +427,4 @@ fu! s:isdir(dir) abort
     return !empty(a:dir) && (isdirectory(a:dir) ||
              \ (!empty($SYSTEMDRIVE) && isdirectory('/'.tolower($SYSTEMDRIVE[0]).a:dir)))
 endfu
+set foldmethod=manual
