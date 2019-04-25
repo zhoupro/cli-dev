@@ -10,12 +10,12 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-commentary'
     " explore
     if has('nvim')
-	  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-	else
-	  Plug 'Shougo/defx.nvim'
-	  Plug 'roxma/nvim-yarp'
-	  Plug 'roxma/vim-hug-neovim-rpc'
-	endif
+      Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+    else
+      Plug 'Shougo/defx.nvim'
+      Plug 'roxma/nvim-yarp'
+      Plug 'roxma/vim-hug-neovim-rpc'
+    endif
     "git
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
@@ -46,7 +46,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'alpertuna/vim-header'
     " select
     Plug 'terryma/vim-expand-region'
-    Plug 'mg979/vim-visual-multi'
+    Plug 'terryma/vim-multiple-cursors'
     "nginx
     Plug 'chr4/nginx.vim'
     " icon
@@ -54,8 +54,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     " tmux
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'junegunn/goyo.vim'
-    " auto root
-    Plug 'airblade/vim-rooter'
     "indent
     Plug 'Yggdroot/indentLine'
     "undo
@@ -63,12 +61,15 @@ call plug#begin('~/.local/share/nvim/plugged')
     "markdown
     " have nodejs and yarn
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+    Plug 'wellle/targets.vim'
+    Plug 'forevernull/vim-json-format'
 
 call plug#end()
 
 " our <leader> will be the space key
 let mapleader=","
-
+set noswapfile
+map <leader>js :call json_format#parse("l")<cr>
 " Highlight search results
 set hlsearch
 " Makes search act like search in modern browsers
@@ -80,7 +81,7 @@ map J <Plug>(expand_region_shrink)
 """""""""""""""""""""""""""""""""""""
 " Mappings configurationn
 """""""""""""""""""""""""""""""""""""
-map <leader>n :Defx -toggle<CR>
+map <leader>n :Defx -resume<CR>
 map <leader>m :TagbarOpenAutoClose<CR>
 
 func! RunProgram()
@@ -204,9 +205,6 @@ let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
-let g:rooter_patterns = ['tags', '.git/']
-" ydcv
-nnoremap tr :let a=expand("<cword>")<Bar>exec '!ydcv ' .a<CR>
 
 autocmd Filetype * AnyFoldActivate
 " backward
@@ -336,3 +334,4 @@ fu! s:isdir(dir) abort
     return !empty(a:dir) && (isdirectory(a:dir) ||
              \ (!empty($SYSTEMDRIVE) && isdirectory('/'.tolower($SYSTEMDRIVE[0]).a:dir)))
 endfu
+

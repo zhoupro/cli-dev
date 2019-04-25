@@ -46,7 +46,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'alpertuna/vim-header'
     " select
     Plug 'terryma/vim-expand-region'
-    Plug 'mg979/vim-visual-multi'
     "nginx
     Plug 'chr4/nginx.vim'
     " icon
@@ -59,11 +58,16 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'Yggdroot/indentLine'
     "undo
     Plug 'mbbill/undotree'
+    Plug 'wellle/targets.vim'
+    Plug 'forevernull/vim-json-format'
+
 
 call plug#end()
 
 " our <leader> will be the space key
 let mapleader=","
+set noswapfile
+map <leader>js :call json_format#parse("l")<cr>
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 let g:deoplete#ignore_sources.php = ['omni']
