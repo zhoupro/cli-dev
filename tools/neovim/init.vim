@@ -58,8 +58,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'mbbill/undotree'
     Plug 'wellle/targets.vim'
     Plug 'forevernull/vim-json-format'
-
-
+    Plug 'paroxayte/vwm.vim'
 call plug#end()
 
 " our <leader> will be the space key
@@ -428,3 +427,15 @@ fu! s:isdir(dir) abort
              \ (!empty($SYSTEMDRIVE) && isdirectory('/'.tolower($SYSTEMDRIVE[0]).a:dir)))
 endfu
 set foldmethod=manual
+
+let s:bot = {
+\ 'name': 'bot',
+\ 'set_all': ['nonu', 'nornu'],
+\ 'bot':
+\ {
+\ 'h_sz': 12,
+\ 'init': [ 'term zsh' ]
+\ }
+\ }
+
+let g:vwm#layouts = [s:bot]

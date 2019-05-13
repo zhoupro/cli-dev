@@ -61,6 +61,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
     Plug 'wellle/targets.vim'
     Plug 'forevernull/vim-json-format'
+    Plug 'paroxayte/vwm.vim'
 
 call plug#end()
 
@@ -328,3 +329,15 @@ fu! s:isdir(dir) abort
              \ (!empty($SYSTEMDRIVE) && isdirectory('/'.tolower($SYSTEMDRIVE[0]).a:dir)))
 endfu
 set foldmethod=manual
+
+let s:bot = {
+\ 'name': 'bot',
+\ 'set_all': ['nonu', 'nornu'],
+\ 'bot':
+\ {
+\ 'h_sz': 12,
+\ 'init': [ 'term zsh' ]
+\ }
+\ }
+
+let g:vwm#layouts = [s:bot]
