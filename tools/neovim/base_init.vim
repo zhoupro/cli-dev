@@ -341,3 +341,5 @@ let s:bot = {
 \ }
 
 let g:vwm#layouts = [s:bot]
+"https://github.com/Shougo/deoplete.nvim/issues/440
+let g:deoplete#auto_complete_delay = 150
