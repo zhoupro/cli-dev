@@ -63,6 +63,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'forevernull/vim-json-format'
     Plug 'paroxayte/vwm.vim'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'iandingx/leetcode.vim'
 
 call plug#end()
 

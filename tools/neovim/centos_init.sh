@@ -11,6 +11,7 @@ if [ ! -f /usr/local/bin/vim ];then
 fi
 sudo pip3 install neovim --upgrade
 sudo pip2 install neovim --upgrade
+pip3 install requests beautifulsoup4
 #-------------------------------------------------------------------------------
 # install vim-plug
 #-------------------------------------------------------------------------------

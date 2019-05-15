@@ -23,6 +23,12 @@ function c_ins(){
     sed -i "/plug#begin/aPlug 'vim-scripts/a.vim'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'sakhnik/nvim-gdb' , { 'branch': 'legacy' }" ~/.config/nvim/init.vim
 }
+function leetcode_ins(){
+    ! (grep -F 'leetcode' ~/.config/nvim/init.vim &>/dev/null ) && \
+    pip3 install requests beautifulsoup4 && \
+    sed -i "/plug#begin/aPlug 'ianding1/leetcode.vim' , { 'branch': 'legacy' }" ~/.config/nvim/init.vim
+}
+
 function python_ins(){
     ! (grep -F 'deoplete-jedi' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'zchee/deoplete-jedi'" ~/.config/nvim/init.vim
@@ -139,6 +145,10 @@ fi
 if [ "Y$OPT_PYTHON" == "Yyes" ];then
 	python_ins
 fi
+if [ "Y$OPT_LEETCODE" == "Yyes" ];then
+	leetcode_ins
+fi
+
 #language end
 
 export shell=/bin/bash

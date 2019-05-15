@@ -12,7 +12,7 @@ if [ ! -f /usr/local/bin/vim ];then
 fi
 pip3 install neovim --upgrade
 pip2 install neovim --upgrade
-
+pip3 install requests beautifulsoup4
 #-------------------------------------------------------------------------------
 # install vim-plug
 #-------------------------------------------------------------------------------

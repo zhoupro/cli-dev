@@ -6,6 +6,7 @@ OPT_VIM_GO=
 OPT_JAVA=
 OPT_LUA=
 OPT_PYTHON=
+OPT_LEETCODE=
 
 for option
 do
@@ -18,5 +19,6 @@ do
 		--with_java)                          OPT_JAVA=yes                   ;;
 		--with_lua)                          OPT_LUA=yes                   ;;
 		--with_python)                          OPT_PYTHON=yes                   ;;
+		--with_leetcode)                          OPT_leetcode=yes                   ;;
     esac
 done
