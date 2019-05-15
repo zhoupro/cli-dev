@@ -59,6 +59,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'wellle/targets.vim'
     Plug 'forevernull/vim-json-format'
     Plug 'paroxayte/vwm.vim'
+    Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 " our <leader> will be the space key
