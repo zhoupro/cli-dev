@@ -19,6 +19,6 @@ do
 		--with_java)                          OPT_JAVA=yes                   ;;
 		--with_lua)                          OPT_LUA=yes                   ;;
 		--with_python)                          OPT_PYTHON=yes                   ;;
-		--with_leetcode)                          OPT_leetcode=yes                   ;;
+		--with_leetcode)                          OPT_LEETCODE=yes                   ;;
     esac
 done
