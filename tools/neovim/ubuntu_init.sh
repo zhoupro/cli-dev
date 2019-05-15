@@ -26,7 +26,7 @@ function c_ins(){
 function leetcode_ins(){
     ! (grep -F 'leetcode' ~/.config/nvim/init.vim &>/dev/null ) && \
     pip3 install requests beautifulsoup4 && \
-    sed -i "/plug#begin/aPlug 'ianding1/leetcode.vim' , { 'branch': 'legacy' }" ~/.config/nvim/init.vim
+    sed -i "/plug#begin/aPlug 'ianding1/leetcode.vim'" ~/.config/nvim/init.vim
 }
 
 function python_ins(){
