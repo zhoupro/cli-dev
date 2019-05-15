@@ -14,6 +14,8 @@ call plug#begin('~/.local/share/nvim/plugged')
       Plug 'roxma/nvim-yarp'
       Plug 'roxma/vim-hug-neovim-rpc'
     endif
+    Plug 'kristijanhusak/defx-icons'
+    Plug 'kristijanhusak/defx-git'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'vim-scripts/ctags.vim'
@@ -352,7 +354,55 @@ command Gg call system('echo '.expand("%"). '>> .git/info/exclude')
 " remove current file from ignore file
 command Gr call system('sed  -i "s#'.expand("%").'##g"  .git/info/exclude')
 
-autocmd FileType defx call s:defx_my_settings()
+
+"defx config
+call defx#custom#column('size','')
+call defx#custom#column('filename', {
+    \ 'directory_icon': '▸',
+    \ 'opened_icon': '▾',
+    \ 'root_icon': ' ',
+    \ 'min_width': 30,
+    \ 'max_width': 30,
+    \ })
+call defx#custom#column('mark', {
+    \ 'readonly_icon': '',
+    \ 'selected_icon': '',
+    \ })
+call defx#custom#option('_',{
+    \ 'columns'   : 'git:mark:filename:icons',
+    \ 'show_ignored_files': 0,
+    \ 'buffer_name': '',
+    \ 'toggle': 1,
+    \ 'resume': 1,
+    \ })
+"defx-git config
+let g:defx_git#indicators = {
+  \ 'Modified'  : '✹',
+  \ 'Staged'    : '✚',
+  \ 'Untracked' : '✭',
+  \ 'Renamed'   : '➜',
+  \ 'Unmerged'  : '═',
+  \ 'Ignored'   : '☒',
+  \ 'Deleted'   : '✖',
+  \ 'Unknown'   : '?',
+  \ }
+
+let g:defx_git#column_length = 1
+let g:defx_git#raw_mode = 1
+" defx-icons config
+let g:defx_icons_enable_syntax_highlight = 1
+let g:defx_icons_column_length = 2
+let g:defx_icons_directory_icon = ''
+let g:defx_icons_mark_icon = '*'
+let g:defx_icons_parent_icon = ''
+let g:defx_icons_default_icon = ''
+let g:defx_icons_directory_symlink_icon = ''
+" Options below are applicable only when using "tree" feature
+let g:defx_icons_root_opened_tree_icon = ''
+let g:defx_icons_nested_opened_tree_icon = ''
+let g:defx_icons_nested_closed_tree_icon = ''
+
+autocm defx call s:defx_my_settings()
     function! s:defx_my_settings() abort
      " Define mappings
      nnoremap <silent><buffer><expr> <CR>
