@@ -4,11 +4,13 @@ function ycm_ins(){
     ! (grep -F 'YouCompleteMe' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'Valloric/YouCompleteMe'"  ~/.config/nvim/init.vim 
 
-    if [ ! -f ~/.config/nvim/ycm.c.py ] ; then
+    if [ ! -f ~/.config/nvim/ycm.cpp.py ] ; then
         wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.c.py
+        wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.cpp.py
         mkdir -p ~/.config/nvim
         cp ycm.c.py ~/.config/nvim/ycm.c.py
-        rm -f ycm.c.py
+        cp ycm.cpp.py ~/.config/nvim/ycm.cpp.py
+        rm -f ycm.c.py ycm.cpp.py
     fi
     if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
         bash ~/.config/nvim/add_swap.sh
@@ -171,3 +173,126 @@ nvim +'PlugInstall --sync' +qall
 [ ! -d /usr/local/vimsplain ] &&\
     git clone https://github.com/pafcu/vimsplain.git  /usr/local/vimsplain
 rm -rf  ~/.gdbinit  && cp tools/neovim/gdbinit ~/.gdbinit
+
+
+! ( grep -F "defx_icons_directory_icon" ~/.config/nvim/init.vim ) && \
+cat >> ~/.config/nvim/init.vim <<END
+"defx config
+call defx#custom#column('size','')
+call defx#custom#column('filename', {
+    \ 'directory_icon': '▸',
+    \ 'opened_icon': '▾',
+    \ 'root_icon': ' ',
+    \ 'min_width': 30,
+    \ 'max_width': 30,
+    \ })
+call defx#custom#column('mark', {
+    \ 'readonly_icon': '',
+    \ 'selected_icon': '',
+    \ })
+call defx#custom#option('_',{
+    \ 'columns'   : 'git:mark:filename:icons',
+    \ 'show_ignored_files': 0,
+    \ 'buffer_name': '',
+    \ 'toggle': 1,
+    \ 'resume': 1,
+    \ })
+"defx-git config
+let g:defx_git#indicators = {
+  \ 'Modified'  : '✹',
+  \ 'Staged'    : '✚',
+  \ 'Untracked' : '✭',
+  \ 'Renamed'   : '➜',
+  \ 'Unmerged'  : '═',
+  \ 'Ignored'   : '☒',
+  \ 'Deleted'   : '✖',
+  \ 'Unknown'   : '?',
+  \ }
+
+let g:defx_git#column_length = 1
+let g:defx_git#raw_mode = 1
+" defx-icons config
+let g:defx_icons_enable_syntax_highlight = 1
+let g:defx_icons_column_length = 2
+let g:defx_icons_directory_icon = ''
+let g:defx_icons_mark_icon = '*'
+let g:defx_icons_parent_icon = ''
+let g:defx_icons_default_icon = ''
+let g:defx_icons_directory_symlink_icon = ''
+" Options below are applicable only when using "tree" feature
+let g:defx_icons_root_opened_tree_icon = ''
+let g:defx_icons_nested_opened_tree_icon = ''
+let g:defx_icons_nested_closed_tree_icon = ''
+
+
+autocmd FileType defx call s:defx_my_settings()
+    function! s:defx_my_settings() abort
+     " Define mappings
+     nnoremap <silent><buffer><expr> <CR>
+     \ defx#do_action('open')
+     nnoremap <silent><buffer><expr> c
+     \ defx#do_action('copy')
+     nnoremap <silent><buffer><expr> m
+     \ defx#do_action('move')
+     nnoremap <silent><buffer><expr> p
+     \ defx#do_action('paste')
+     nnoremap <silent><buffer><expr> l
+     \ defx#do_action('open')
+     nnoremap <silent><buffer><expr> E
+     \ defx#do_action('open', 'vsplit')
+     nnoremap <silent><buffer><expr> P
+     \ defx#do_action('open', 'pedit')
+     nnoremap <silent><buffer><expr> o
+     \ defx#do_action('open_or_close_tree')
+     nnoremap <silent><buffer><expr> K
+     \ defx#do_action('new_directory')
+     nnoremap <silent><buffer><expr> N
+     \ defx#do_action('new_file')
+     nnoremap <silent><buffer><expr> M
+     \ defx#do_action('new_multiple_files')
+     nnoremap <silent><buffer><expr> C
+     \ defx#do_action('toggle_columns',
+     \                'mark:filename:type:size:time')
+     nnoremap <silent><buffer><expr> S
+     \ defx#do_action('toggle_sort', 'time')
+     nnoremap <silent><buffer><expr> d
+     \ defx#do_action('remove')
+     nnoremap <silent><buffer><expr> r
+     \ defx#do_action('rename')
+     nnoremap <silent><buffer><expr> !
+     \ defx#do_action('execute_command')
+     nnoremap <silent><buffer><expr> x
+     \ defx#do_action('execute_system')
+     nnoremap <silent><buffer><expr> yy
+     \ defx#do_action('yank_path')
+     nnoremap <silent><buffer><expr> .
+     \ defx#do_action('toggle_ignored_files')
+     nnoremap <silent><buffer><expr> ;
+     \ defx#do_action('repeat')
+     nnoremap <silent><buffer><expr> h
+     \ defx#do_action('cd', ['..'])
+     nnoremap <silent><buffer><expr> ~
+     \ defx#do_action('cd')
+     nnoremap <silent><buffer><expr> q
+     \ defx#do_action('quit')
+     nnoremap <silent><buffer><expr> <Space>
+     \ defx#do_action('toggle_select') . 'j'
+     nnoremap <silent><buffer><expr> *
+     \ defx#do_action('toggle_select_all')
+     nnoremap <silent><buffer><expr> j
+     \ line('.') == line('$') ? 'gg' : 'j'
+     nnoremap <silent><buffer><expr> k
+     \ line('.') == 1 ? 'G' : 'k'
+     nnoremap <silent><buffer><expr> <C-l>
+     \ defx#do_action('redraw')
+     nnoremap <silent><buffer><expr> <C-g>
+     \ defx#do_action('print')
+     nnoremap <silent><buffer><expr> cd
+     \ defx#do_action('change_vim_cwd')
+endfunction
+augroup defx
+    au!
+    au VimEnter * sil! au! FileExplorer *
+    au BufEnter * if s:isdir(expand('%')) | bd | exe 'Defx' | endif
+augroup END
+END
