@@ -153,6 +153,9 @@ func! RunProgram()
     if &filetype == 'c'
         exec "!gcc % -o %<"
         exec "! ./%<"
+    elseif &filetype == 'cpp'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
     elseif &filetype == 'sh'
         exec "!bash %"
     elseif &filetype == 'go'
@@ -219,6 +222,7 @@ set background=dark
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:ycm_key_invoke_completion = '<C-a>'
+let g:ycm_global_ycm_extra_conf='~/.config/nvim/ycm.cpp.py'
 autocmd FileType c  let g:ycm_global_ycm_extra_conf='~/.config/nvim/ycm.c.py'
 autocmd FileType cpp let g:ycm_global_ycm_extra_conf='~/.config/nvim/ycm.cpp.py'
 

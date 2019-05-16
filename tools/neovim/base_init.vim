@@ -92,6 +92,9 @@ func! RunProgram()
     if &filetype == 'c'
         exec "!gcc % -o %<"
         exec "! ./%<"
+    elseif &filetype == 'cpp'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
     elseif &filetype == 'sh'
         exec "!bash %"
     elseif &filetype == 'go'
