@@ -21,3 +21,7 @@
  ```
 #### mac and centos
 ./init.sh
+
+### usage
+* leader  ,
+* <Leader>cf  clang format
