@@ -1,4 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
+    "deop
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     "outline
     Plug 'majutsushi/tagbar'
     Plug 'vim-airline/vim-airline'
@@ -66,8 +68,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'paroxayte/vwm.vim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'iandingx/leetcode.vim'
-
-call plug#end()
+    " graphviz
+    Plug 'liuchengxu/graphviz.vim'
+    call plug#end()
 
 " our <leader> will be the space key
 let mapleader=","
@@ -397,4 +400,7 @@ let s:bot = {
 
 let g:vwm#layouts = [s:bot]
 "https://github.com/Shougo/deoplete.nvim/issues/440
+let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 150
+let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
+autocmd FileType dot let g:deoplete#omni#input_patterns.dot = '\w+|[^. *\t][.:]\w*'
