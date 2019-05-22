@@ -108,6 +108,9 @@ func! RunProgram()
         exec "!php %"
     elseif &filetype == 'lua'
         exec "!lua %"
+    elseif &filetype == 'dot'
+        exec "GraphvizCompile png"
+        exec "Graphviz png"
     elseif &filetype == 'java'
         exec "!javac %"
         exec "!java -cp %:p:h %:t:r"
