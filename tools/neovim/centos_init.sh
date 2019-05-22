@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ ! -f /usr/local/bin/vim ];then
     if [ ! -f nvim.appimage ];then
-        wget https://github.com/neovim/neovim/releases/download/v0.3.5/nvim.appimage
+        wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
     fi
         sudo chmod u+x nvim.appimage && sudo ./nvim.appimage --appimage-extract
     mkdir -p ~/opt/soft

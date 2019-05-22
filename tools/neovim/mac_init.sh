@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ ! -f /usr/local/bin/vim ];then
     if [ ! -f nvim-macos.tar.gz ];then
-        wget https://github.com/neovim/neovim/releases/download/v0.3.5/nvim-macos.tar.gz
+        wget https://github.com/neovim/neovim/releases/download/stable/nvim-macos.tar.gz
     fi
     rm -rf ~/opt/soft/nvim-osx64
     tar xzvf nvim-macos.tar.gz
