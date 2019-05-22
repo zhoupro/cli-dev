@@ -1,13 +1,13 @@
 #!/bin/bash
 if [ ! -f /usr/local/bin/vim ];then
-	if [ ! -f nvim.appimage ];then
-	    wget https://github.com/neovim/neovim/releases/download/v0.3.1/nvim.appimage
-	fi
+    if [ ! -f nvim.appimage ];then
+        wget https://github.com/neovim/neovim/releases/download/v0.3.5/nvim.appimage
+    fi
         sudo chmod u+x nvim.appimage && sudo ./nvim.appimage --appimage-extract
-	mkdir -p ~/opt/soft
+    mkdir -p ~/opt/soft
         sudo mv squashfs-root ~/opt/soft/nvim
-	sudo ln -s  ~/opt/soft/nvim/usr/bin/nvim /usr/local/bin/vim
-	rm -rf nvim.appimage
+    sudo ln -s  ~/opt/soft/nvim/usr/bin/nvim /usr/local/bin/vim
+    rm -rf nvim.appimage
 fi
 sudo pip3 install neovim --upgrade
 sudo pip2 install neovim --upgrade

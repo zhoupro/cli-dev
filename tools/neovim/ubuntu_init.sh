@@ -73,17 +73,17 @@ END
 #读取参数
 # install neovim
 if [ ! -f /usr/local/bin/vim ];then
-	if [ ! -f nvim.appimage ];then
-	    wget https://github.com/neovim/neovim/releases/download/v0.3.4/nvim.appimage
-	fi
+    if [ ! -f nvim.appimage ];then
+        wget https://github.com/neovim/neovim/releases/download/v0.3.5/nvim.appimage
+    fi
     sudo chmod u+x nvim.appimage && sudo ./nvim.appimage --appimage-extract
-	mkdir -p ~/opt/soft
+    mkdir -p ~/opt/soft
     sudo mv squashfs-root ~/opt/soft/nvim
     rm -f /usr/local/bin/vim
-	sudo ln -s  ~/opt/soft/nvim/squashfs-root/usr/bin/nvim /usr/local/bin/vim
+    sudo ln -s  ~/opt/soft/nvim/squashfs-root/usr/bin/nvim /usr/local/bin/vim
     rm -f /usr/local/bin/nvim
-	sudo ln -s  ~/opt/soft/nvim/squashfs-root/usr/bin/nvim /usr/local/bin/nvim
-	rm -rf nvim.appimage
+    sudo ln -s  ~/opt/soft/nvim/squashfs-root/usr/bin/nvim /usr/local/bin/nvim
+    rm -rf nvim.appimage
 fi
 pip3 install neovim --upgrade
 pip2 install neovim --upgrade
@@ -101,9 +101,9 @@ fi
 #-------------------------------------------------------------------------------
 if [ ! -f ~/.vim/c_cnt.sh ] ; then
     mkdir -p  ~/.config/nvim
-	cp tools/neovim/c_cnt.sh  ~/.config/nvim/c_cnt.sh
-	cp tools/neovim/add_swap.sh  ~/.config/nvim/add_swap.sh
-	cp tools/neovim/del_swap.sh  ~/.config/nvim/del_swap.sh
+    cp tools/neovim/c_cnt.sh  ~/.config/nvim/c_cnt.sh
+    cp tools/neovim/add_swap.sh  ~/.config/nvim/add_swap.sh
+    cp tools/neovim/del_swap.sh  ~/.config/nvim/del_swap.sh
 fi
 rm -f ~/.config/nvim/init.vim
 #common config
@@ -125,33 +125,33 @@ fi
 #language
 
 if [ "Y$OPT_VIM_GO" == "Yyes" ];then
-	go_ins
+    go_ins
 fi
 
 if [ "Y$OPT_VIM_PHP" == "Yyes" ];then
-	php_ins
+    php_ins
 fi
 
 if [ "Y$OPT_VIM_C" == "Yyes" ];then
-	c_ins
+    c_ins
 fi
 
 if [ "Y$OPT_VIM_YCM" == "Yyes" ];then
-	ycm_ins
+    ycm_ins
 fi
 
 if [ "Y$OPT_LUA" == "Yyes" ];then
-	lua_ins
+    lua_ins
 fi
 
 if [ "Y$OPT_JAVA" == "Yyes" ];then
-	java_ins
+    java_ins
 fi
 if [ "Y$OPT_PYTHON" == "Yyes" ];then
-	python_ins
+    python_ins
 fi
 if [ "Y$OPT_LEETCODE" == "Yyes" ];then
-	leetcode_ins
+    leetcode_ins
 fi
 
 #language end
