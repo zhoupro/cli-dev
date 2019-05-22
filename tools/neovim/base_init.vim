@@ -285,6 +285,8 @@ let s:bot = {
 let g:vwm#layouts = [s:bot]
 "https://github.com/Shougo/deoplete.nvim/issues/440
 let g:deoplete#enable_at_startup = 1
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 let g:deoplete#auto_complete_delay = 150
 let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
 autocmd FileType dot let g:deoplete#omni#input_patterns.dot = '\w+|[^. *\t][.:]\w*'
