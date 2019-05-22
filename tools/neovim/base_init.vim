@@ -87,7 +87,7 @@ map J <Plug>(expand_region_shrink)
 """""""""""""""""""""""""""""""""""""
 " Mappings configurationn
 """""""""""""""""""""""""""""""""""""
-map <leader>n :Defx -resume<CR>
+map <leader>n :Defx<CR>
 map <leader>m :TagbarOpenAutoClose<CR>
 
 func! RunProgram()
@@ -263,56 +263,57 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 command Gg call system('echo '.expand("%"). '>> .git/info/exclude')
 " remove current file from ignore file
 command Gr call system('sed  -i "s#'.expand("%").'##g"  .git/info/exclude')
-"defx config
-call defx#custom#column('size','')
-call defx#custom#column('filename', {
-    \ 'directory_icon': '▸',
-    \ 'opened_icon': '▾',
-    \ 'root_icon': ' ',
-    \ 'min_width': 30,
-    \ 'max_width': 30,
-    \ })
-call defx#custom#column('mark', {
-    \ 'readonly_icon': '',
-    \ 'selected_icon': '',
-    \ })
-call defx#custom#option('_',{
-    \ 'columns'   : 'git:mark:filename:icons',
-    \ 'show_ignored_files': 0,
-    \ 'buffer_name': '',
-    \ 'toggle': 1,
-    \ 'resume': 1,
-    \ })
-"defx-git config
-let g:defx_git#indicators = {
-  \ 'Modified'  : '✹',
-  \ 'Staged'    : '✚',
-  \ 'Untracked' : '✭',
-  \ 'Renamed'   : '➜',
-  \ 'Unmerged'  : '═',
-  \ 'Ignored'   : '☒',
-  \ 'Deleted'   : '✖',
-  \ 'Unknown'   : '?',
-  \ }
+fu! s:isdir(dir) abort
+    return !empty(a:dir) && (isdirectory(a:dir) ||
+             \ (!empty($SYSTEMDRIVE) && isdirectory('/'.tolower($SYSTEMDRIVE[0]).a:dir)))
+endfu
+set foldmethod=manual
 
-let g:defx_git#column_length = 1
-let g:defx_git#raw_mode = 1
-" defx-icons config
-let g:defx_icons_enable_syntax_highlight = 1
-let g:defx_icons_column_length = 2
-let g:defx_icons_directory_icon = ''
-let g:defx_icons_mark_icon = '*'
-let g:defx_icons_parent_icon = ''
-let g:defx_icons_default_icon = ''
-let g:defx_icons_directory_symlink_icon = ''
-" Options below are applicable only when using "tree" feature
-let g:defx_icons_root_opened_tree_icon = ''
-let g:defx_icons_nested_opened_tree_icon = ''
-let g:defx_icons_nested_closed_tree_icon = ''
+let s:bot = {
+\ 'name': 'bot',
+\ 'set_all': ['nonu', 'nornu'],
+\ 'bot':
+\ {
+\ 'h_sz': 12,
+\ 'init': [ 'term zsh' ]
+\ }
+\ }
 
+let g:vwm#layouts = [s:bot]
+"https://github.com/Shougo/deoplete.nvim/issues/440
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 150
+let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
+autocmd FileType dot let g:deoplete#omni#input_patterns.dot = '\w+|[^. *\t][.:]\w*'
+"defx
+augroup vimrc_defx
+  autocmd!
+  autocmd FileType defx call s:defx_my_settings()                                  "Defx mappings
+  autocmd VimEnter * call s:setup_defx()
+augroup END
+let s:default_columns = 'indent:git:icons:filename'
+function! s:setup_defx() abort
+  call defx#custom#option('_', {
+        \ 'columns': s:default_columns,
+        \ 'show_ignored_files': 0,
+        \ 'buffer_name': '',
+        \ 'toggle': 1,
+        \ 'resume': 1,
+        \ })
 
-autocmd FileType defx call s:defx_my_settings()
-    function! s:defx_my_settings() abort
+  call defx#custom#column('filename', {
+        \ 'min_width': 80,
+        \ 'max_width': 80,
+        \ })
+  call s:defx_open()
+endfunction
+
+function! s:defx_open(...) abort
+    sil! au! FileExplorer *
+    if s:isdir(expand('%')) | bd | exe 'Defx' | endif
+endfunction
+
+function! s:defx_my_settings() abort
      " Define mappings
      nnoremap <silent><buffer><expr> <CR>
      \ defx#do_action('open')
@@ -376,31 +377,3 @@ autocmd FileType defx call s:defx_my_settings()
      nnoremap <silent><buffer><expr> cd
      \ defx#do_action('change_vim_cwd')
 endfunction
-augroup defx
-    au!
-    au VimEnter * sil! au! FileExplorer *
-    au BufEnter * if s:isdir(expand('%')) | bd | exe 'Defx' | endif
-augroup END
-
-fu! s:isdir(dir) abort
-    return !empty(a:dir) && (isdirectory(a:dir) ||
-             \ (!empty($SYSTEMDRIVE) && isdirectory('/'.tolower($SYSTEMDRIVE[0]).a:dir)))
-endfu
-set foldmethod=manual
-
-let s:bot = {
-\ 'name': 'bot',
-\ 'set_all': ['nonu', 'nornu'],
-\ 'bot':
-\ {
-\ 'h_sz': 12,
-\ 'init': [ 'term zsh' ]
-\ }
-\ }
-
-let g:vwm#layouts = [s:bot]
-"https://github.com/Shougo/deoplete.nvim/issues/440
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 150
-let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
-autocmd FileType dot let g:deoplete#omni#input_patterns.dot = '\w+|[^. *\t][.:]\w*'

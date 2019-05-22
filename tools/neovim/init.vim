@@ -95,7 +95,7 @@ map J <Plug>(expand_region_shrink)
 """""""""""""""""""""""""""""""""""""
 " Mappings configurationn
 """""""""""""""""""""""""""""""""""""
-map <leader>n :Defx -toggle<CR>
+map <leader>n :Defx<CR>
 map <leader>m :TagbarOpenAutoClose<CR>
 
 " vim-php-namespace
