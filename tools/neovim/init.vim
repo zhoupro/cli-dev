@@ -31,8 +31,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     " snips
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
-    " themes
-    Plug 'joshdick/onedark.vim'
     " 语言语法高亮
     Plug 'sheerun/vim-polyglot'
     " num rep
@@ -91,7 +89,7 @@ set hlsearch
 set incsearch
 " clear highlight
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
-map K <Plug>(expand_region_expand)
+"map K <Plug>(expand_region_expand)
 map J <Plug>(expand_region_shrink)
 """""""""""""""""""""""""""""""""""""
 " Mappings configurationn
@@ -217,8 +215,6 @@ function! LoadCscope()
   endif
 endfunction
 au BufEnter /* call LoadCscope()
-
-set background=dark
 
 let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_python_binary_path = '/usr/bin/python3'

@@ -23,6 +23,7 @@ function ycm_ins(){
 function c_ins(){
     ! (grep -F 'nvim-gdb' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'vim-scripts/a.vim'" ~/.config/nvim/init.vim && \
+    sed -i "/plug#begin/aPlug 'gauteh/vim-cppman'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'rhysd/vim-clang-format'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'sakhnik/nvim-gdb' , { 'branch': 'legacy' }" ~/.config/nvim/init.vim
 }
@@ -163,8 +164,7 @@ nvim +'PlugInstall --sync' +qall
     cd ctags && ./autogen.sh && ./configure && make && make install &&\
     cd .. && rm -rf ctags
 
-! ( grep -F "color onedark" ~/.config/nvim/init.vim ) && \
-    echo "color onedark" >> ~/.config/nvim/init.vim && \
+! ( grep -F "highlight Normal ctermbg=None" ~/.config/nvim/init.vim ) && \
     echo "highlight Normal ctermbg=None" >> ~/.config/nvim/init.vim
 
 ! ( grep -F "cus_ini_vim" ~/.config/nvim/init.vim ) && \

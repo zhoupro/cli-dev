@@ -7,6 +7,7 @@ OPT_JAVA=
 OPT_LUA=
 OPT_PYTHON=
 OPT_LEETCODE=
+OPT_MAN=
 
 for option
 do
@@ -20,5 +21,6 @@ do
 		--with_lua)                          OPT_LUA=yes                   ;;
 		--with_python)                          OPT_PYTHON=yes                   ;;
 		--with_leetcode)                          OPT_LEETCODE=yes                   ;;
+		--with_man)                          OPT_MAN=yes                   ;;
     esac
 done
