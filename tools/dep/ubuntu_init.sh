@@ -11,7 +11,7 @@ apt-get remove -y neovim exuberant-ctags
 if [ "Y$OPT_MAN" == "Yyes" ];then
     [ -f  /etc/dpkg/dpkg.cfg.d/excludes ] && rm -rf /etc/dpkg/dpkg.cfg.d/excludes
     apt-get install -y \
-    cppman man manpages manpages-dev manpages-posix manpages-posix-dev \
+    cppman man manpages manpages-dev manpages-posix manpages-posix-dev
 fi
 
 if [ "Y$OPT_VIM_C" == "Yyes" ];then
