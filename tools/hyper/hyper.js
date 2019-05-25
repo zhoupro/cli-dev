@@ -133,7 +133,6 @@ module.exports = {
       hotkey: 'Command+P',
       position: 'top', // or left, right, bottom
     },
-    commands: ['cd $HOME/opt/lnmp'],
   },
 
 
@@ -149,7 +148,6 @@ module.exports = {
     "hyper-dark-scrollbar",
     "hyper-search",
     "hyperterm-visor",
-    "hyper-startup"
   ],
 
   
