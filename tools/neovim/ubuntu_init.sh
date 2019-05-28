@@ -275,9 +275,12 @@ endfunction
 
 END
 if [ "Y$OPT_DICT" == "Yyes" ];then
-    ! ( grep -F "!sdcv" ~/.config/nvim/init.vim ) && \
+    ! ( grep -F "QuerySel" ~/.config/nvim/init.vim ) && \
     cat >> ~/.config/nvim/init.vim <<END
-    nmap <leader>w :!sdcv <C-R>=expand("<cword>")<CR><CR>
+    function! QuerySel()
+       execute "!sdcv  " . @0
+    endfunctio
+    nmap  <leader>w :call QuerySel() <CR>
 END
 fi
 

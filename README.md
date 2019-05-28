@@ -25,3 +25,4 @@
 ### usage
 * leader  ,
 * <Leader>cf  clang format
+* <Leader>w   search copy word
