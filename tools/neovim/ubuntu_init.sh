@@ -275,21 +275,9 @@ endfunction
 
 END
 if [ "Y$OPT_DICT" == "Yyes" ];then
-    ! ( grep -F "Mydict" ~/.config/nvim/init.vim ) && \
+    ! ( grep -F "!sdcv" ~/.config/nvim/init.vim ) && \
     cat >> ~/.config/nvim/init.vim <<END
-
-    function!  Mydict() 
-       let  expl=system('sdcv  -n  '  . 
-             \   expand("<cword>")) 
-       windo  if 
-             \  expand("%")=="diCt-tmp"  | 
-             \  q!|endif 
-       50vsp  diCt-tmp 
-       setlocal  buftype=nofile  bufhidden=hide  noswapfile 
-       1s/^/\=expl/ 
-       1 
-    endfunction 
-    nmap  F  :call  Mydict()<cr>
+    nmap <leader>w :!sdcv <C-R>=expand("<cword>")<CR><CR>
 END
 fi
 
