@@ -8,6 +8,7 @@ OPT_LUA=
 OPT_PYTHON=
 OPT_LEETCODE=
 OPT_MAN=
+OPT_DICT=
 
 for option
 do
@@ -22,5 +23,6 @@ do
 		--with_python)                          OPT_PYTHON=yes                   ;;
 		--with_leetcode)                          OPT_LEETCODE=yes                   ;;
 		--with_man)                          OPT_MAN=yes                   ;;
+		--with_dict)                          OPT_DICT=yes                   ;;
     esac
 done
