@@ -15,12 +15,14 @@ if [ "Y$OPT_MAN" == "Yyes" ];then
 fi
 if [ "Y$OPT_DICT" == "Yyes" ];then
     apt-get install -y sdcv
-    mkdir -p /usr/share/stardict/dic/ && \
-    wget http://download.huzheng.org/zh_CN/stardict-langdao-ec-gb-2.4.2.tar.bz2 && \
-    wget http://download.huzheng.org/zh_CN/stardict-langdao-ce-gb-2.4.2.tar.bz2 &&  \
-    tar -xjvf stardict-langdao-ce-gb-2.4.2.tar.bz2 -C /usr/share/stardict/dic && \
-    tar -xjvf stardict-langdao-ec-gb-2.4.2.tar.bz2 -C /usr/share/stardict/dic && \
-    rm -rf stardict-langdao*
+    if [ ! -d /usr/share/stardict/dict/stardict-langdao-ce-gb-2.4.2 ];then
+        mkdir -p /usr/share/stardict/dic/ && \
+        wget http://download.huzheng.org/zh_CN/stardict-langdao-ec-gb-2.4.2.tar.bz2 && \
+        wget http://download.huzheng.org/zh_CN/stardict-langdao-ce-gb-2.4.2.tar.bz2 &&  \
+        tar -xjvf stardict-langdao-ce-gb-2.4.2.tar.bz2 -C /usr/share/stardict/dic && \
+        tar -xjvf stardict-langdao-ec-gb-2.4.2.tar.bz2 -C /usr/share/stardict/dic && \
+        rm -rf stardict-langdao*
+    fi
 fi
 
 if [ "Y$OPT_VIM_C" == "Yyes" ];then

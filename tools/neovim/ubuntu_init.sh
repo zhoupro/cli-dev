@@ -275,7 +275,7 @@ endfunction
 
 END
 if [ "Y$OPT_DICT" == "Yyes" ];then
-    ! ( grep -F "defx_my_settings" ~/.config/nvim/init.vim ) && \
+    ! ( grep -F "Mydict" ~/.config/nvim/init.vim ) && \
     cat >> ~/.config/nvim/init.vim <<END
 
     function!  Mydict() 
