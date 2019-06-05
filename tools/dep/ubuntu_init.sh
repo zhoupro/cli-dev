@@ -9,7 +9,7 @@ apt-get install -y gawk curl  zsh language-pack-zh-hans language-pack-zh-hans-ba
 
 apt-get remove -y neovim exuberant-ctags
 
-if which bash-language-server > /dev/null; then
+if ! which bash-language-server > /dev/null; then
     npm i -g bash-language-server
 fi
 if [ "Y$OPT_MAN" == "Yyes" ];then
