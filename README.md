@@ -1,18 +1,17 @@
-# CLI develop env 
+# cli develop env
 ### os
 * ubuntu
 * centos
 * mac
 ### language
-- c
 - php
-- shell
-- lua
+- c/c++
 - go
+- bash
+- viml
 - java
 - python
-- markdown
-
+- lua
 ### setup
 #### ubuntu
  ```bash

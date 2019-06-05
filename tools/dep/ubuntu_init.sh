@@ -4,10 +4,14 @@ apt-get install -y gawk curl  zsh language-pack-zh-hans language-pack-zh-hans-ba
     git unzip wget curl python-dev cscope  cmake gdb lsof \
     python3-pip python-pip shellcheck libtool-bin gettext sudo \
     automake m4 autoconf libtool build-essential cmake pkg-config lua5.2 wamerican \
-    autojump  nmap iproute2 net-tools sshfs
+    autojump  nmap iproute2 net-tools sshfs \
+    npm
 
 apt-get remove -y neovim exuberant-ctags
 
+if which bash-language-server > /dev/null; then
+    npm i -g bash-language-server
+fi
 if [ "Y$OPT_MAN" == "Yyes" ];then
     [ -f  /etc/dpkg/dpkg.cfg.d/excludes ] && rm -rf /etc/dpkg/dpkg.cfg.d/excludes
     apt-get install -y \

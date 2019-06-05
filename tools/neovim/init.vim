@@ -1,7 +1,15 @@
 call plug#begin('~/.local/share/nvim/plugged')
-    Plug 'w0rp/ale'
+    "lint
+    Plug 'w0rp/ale', { 'on':  'ALEToggle' }
     "complete
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    "viml complete source
+    Plug 'Shougo/neco-vim'
+    "language server
+    Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
     "outline
     Plug 'majutsushi/tagbar'
     Plug 'vim-airline/vim-airline'
@@ -66,6 +74,7 @@ call plug#end()
 let mapleader=","
 set noswapfile
 map <leader>js :call json_format#parse("l")<cr>
+" deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 let g:deoplete#ignore_sources.php = ['omni']
@@ -74,14 +83,24 @@ let g:lua_check_syntax = 0
 let g:lua_complete_omni = 1
 let g:lua_complete_dynamic = 0
 let g:lua_define_completion_mappings = 0
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+call deoplete#custom#source('ultisnips', 'rank', 1000)
 autocmd FileType lua call deoplete#custom#var('omni', 'functions', {
 \ 'lua': 'xolox#lua#omnifunc',
 \ })
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+set hidden
+let g:LanguageClient_diagnosticsEnable = 0
+call deoplete#custom#option('sources', {
+    \ 'sh': []})
+let g:LanguageClient_serverCommands = {
+    \ 'sh': ['bash-language-server', 'start']
+    \ }
+
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "words
-"call deoplete#custom#source('ultisnips', 'rank', 1000)
 "set dictionary=/usr/share/dict/words
 " Highlight search results
 set hlsearch
@@ -131,7 +150,6 @@ let g:ale_linters = {
 let g:ale_php_phpcs_standard = 'psr2'
 " }}}
 
-autocmd FileType php nnoremap <c-]> :call phpactor#GotoDefinition()<CR>
 "----------------------------------------------
 " Language: Golang
 "----------------------------------------------
@@ -147,6 +165,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 
+"  
 func! RunProgram()
     exec "w"
     if &filetype == 'c'
@@ -301,7 +320,6 @@ let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
 " backward
 noremap \ ,
 let g:polyglot_disabled = ['markdown']
