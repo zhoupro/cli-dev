@@ -9,6 +9,7 @@ OPT_PYTHON=
 OPT_LEETCODE=
 OPT_MAN=
 OPT_DICT=
+OPT_BASH=
 
 for option
 do
@@ -24,5 +25,6 @@ do
 		--with_leetcode)                          OPT_LEETCODE=yes                   ;;
 		--with_man)                          OPT_MAN=yes                   ;;
 		--with_dict)                          OPT_DICT=yes                   ;;
+		--with_bash)                          OPT_BASH=yes                   ;;
     esac
 done
