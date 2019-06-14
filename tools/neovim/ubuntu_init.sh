@@ -70,7 +70,7 @@ function go_ins(){
 }
 
 function php_ins(){
-    ! (grep -F 'arnaud-lb/vim-php-namespace' ~/.config/nvim/init.vim &>/dev/null ) && \
+    ! (grep -F 'intelephense' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'stephpy/vim-php-cs-fixer'" ~/.config/nvim/init.vim && \
     sed -i "/LanguageClient_serverCommands/a\\\\\ 'php': ['node', '/usr/local/lib/node_modules/intelephense/lib/intelephense.js', '--stdio']," ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'vim-vdebug/vdebug'" ~/.config/nvim/init.vim
