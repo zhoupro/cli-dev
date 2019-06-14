@@ -1,35 +1,27 @@
 #!/usr/bin/env bash
-#http://www.linuxidc.com/Linux/2016-06/132678.htm
-
-function downloadjdk(){
-	 wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.tar.gz -O "jdk1.8.tar.gz" && \
-	 tar xzvf jdk1.8.tar.gz && rm -rf *.tar.gz && mv jdk* jdk1.8 && tar czvf jdk1.8.tar.gz jdk1.8 && rm -rf jdk1.8
-}
-
 
 function jdk(){
-
-
-	JDK_VERSION=1.8
-	sudo mkdir -p /usr/lib/jvm && sudo chmod 777   /usr/lib/jvm
-	if [ ! -d "/usr/lib/jvm/jdk${JDK_VERSION}" ]; then
-        if [ ! -f jdk1.8.tar.gz ];
+    JDK_VERSION=11
+    DOWN_URL="https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz"
+    sudo mkdir -p /usr/lib/jvm && sudo chmod 777   /usr/lib/jvm
+    if [ ! -d "/usr/lib/jvm/jdk${JDK_VERSION}" ]; then
+        if [ ! -f "openjdk*.tar.gz" ];
             then
             echo "downloading jdk 1.8"
-            downloadjdk
+            wget $DOWN_URL
         fi
-        JAVA_PACKAGE=jdk${JDK_VERSION}.tar.gz
         rm -rf /usr/lib/jvm/*
+        tar xzvf "openjdk*.tar.gz" && rm -rf "openjdk*.tar.gz" && mv openjdk* /usr/lib/jvm/openjdk${JDK_VERSION}
         tar zxvf $JAVA_PACKAGE  -C /usr/lib/jvm/
-          echo "export JAVA_HOME=/usr/lib/jvm/jdk${JDK_VERSION}" >> "$HOME/.cus_zshrc" 
-	  echo "export CLASSPATH=\".:/usr/lib/jvm/jdk${JDK_VERSION}/lib:/usr/lib/jvm/jdk${JDK_VERSION}\""  >> "$HOME/.cus_zshrc"
-	  echo "export PATH=\"/usr/lib/jvm/jdk${JDK_VERSION}/bin:$PATH\"" >>  "$HOME/.cus_zshrc" 
-         export JAVA_HOME="/usr/lib/jdk${JDK_VERSION}"
-         export CLASSPATH=".:/usr/lib/jvm/jdk${JDK_VERSION}/lib:/usr/lib/jvm/jdk${JDK_VERSION}" 
-         export PATH="/usr/lib/jvm/jdk${JDK_VERSION}/bin:$PATH"
-	fi
+        echo "export JAVA_HOME=/usr/lib/jvm/jdk${JDK_VERSION}" >> "$HOME/.cus_zshrc" 
+        echo "export CLASSPATH=\".:/usr/lib/jvm/jdk${JDK_VERSION}/lib:/usr/lib/jvm/jdk${JDK_VERSION}\""  >> "$HOME/.cus_zshrc"
+        echo "export PATH=\"/usr/lib/jvm/jdk${JDK_VERSION}/bin:$PATH\"" >>  "$HOME/.cus_zshrc" 
+        export JAVA_HOME="/usr/lib/jdk${JDK_VERSION}"
+        export CLASSPATH=".:/usr/lib/jvm/jdk${JDK_VERSION}/lib:/usr/lib/jvm/jdk${JDK_VERSION}" 
+        export PATH="/usr/lib/jvm/jdk${JDK_VERSION}/bin:$PATH"
+    fi
 
 }
-if [ ! -f /usr/lib/jvm/jdk1.8/bin/java ];then
+if [ ! -f "/usr/lib/jvm/jdk${JDK_VERSION}/bin/java" ];then
     jdk
 fi
