@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
+JDK_VERSION=11
 function jdk(){
-    JDK_VERSION=11
     DOWN_URL="https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz"
     sudo mkdir -p /usr/lib/jvm && sudo chmod 777   /usr/lib/jvm
     if [ ! -d /usr/lib/jvm/jdk${JDK_VERSION} ]; then
