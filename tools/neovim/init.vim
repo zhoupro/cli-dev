@@ -77,15 +77,11 @@ map <leader>js :call json_format#parse("l")<cr>
 " deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-call deoplete#custom#source('ultisnips', 'rank', 1000)
 set hidden
 let g:LanguageClient_diagnosticsEnable = 0
-call deoplete#custom#option('sources', {
-    \ 'sh': []})
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
     \ }
-
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
