@@ -45,7 +45,7 @@ fi
 pip install python-language-server
 
 if [ "Y$OPT_LUA" == "Yyes" ];then
-    apt install  lua5.3-dev luarocks lua5.3
+    apt install -y lua5.3-dev luarocks lua5.3
     luarocks install --server=http://luarocks.org/dev lua-lsp
 fi
 if [ "Y$OPT_FE" == "Yyes" ];then
