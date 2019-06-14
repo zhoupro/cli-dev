@@ -1,17 +1,13 @@
 #!/bin/bash
 
 apt-get install -y gawk curl  zsh language-pack-zh-hans language-pack-zh-hans-base \
-    git unzip wget curl python-dev cscope  cmake gdb lsof \
-    python3-pip python-pip shellcheck libtool-bin gettext sudo \
-    automake m4 autoconf libtool build-essential cmake pkg-config lua5.2 wamerican \
-    autojump  nmap iproute2 net-tools sshfs \
-    npm
+    git unzip wget  python-dev  python3-pip python-pip lsof \
+    libtool-bin gettext sudo \
+    cmake automake m4 autoconf libtool build-essential  pkg-config lua5.2 wamerican \
+    autojump  nmap iproute2 net-tools sshfs
 
 apt-get remove -y neovim exuberant-ctags
 
-if ! which bash-language-server > /dev/null; then
-    npm i -g bash-language-server
-fi
 if [ "Y$OPT_MAN" == "Yyes" ];then
     [ -f  /etc/dpkg/dpkg.cfg.d/excludes ] && rm -rf /etc/dpkg/dpkg.cfg.d/excludes
     apt-get install -y \
@@ -31,7 +27,15 @@ fi
 
 if [ "Y$OPT_VIM_C" == "Yyes" ];then
     apt-get install -y \
-    valgrind clang-format
+    valgrind clang-format cscope gdb
+fi
+
+if [ "Y$OPT_BASH" == "Yyes" ];then
+    apt-get install -y \
+    npm shellcheck
+    if ! which bash-language-server > /dev/null; then
+        npm i -g bash-language-server
+    fi
 fi
 
 # install ripgrep
