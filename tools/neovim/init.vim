@@ -83,6 +83,7 @@ let g:LanguageClient_diagnosticsEnable = 0
 call deoplete#custom#option('sources', {
     \ 'sh': []})
 let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
     \ }
 
 " <TAB>: completion.

@@ -34,26 +34,25 @@ function leetcode_ins(){
 }
 
 function python_ins(){
-    ! (grep -F 'pyls' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/LanguageClient_serverCommands/a\ 'python': ['pyls']," ~/.config/nvim/init.vim
+    echo "python ins"
 }
 function java_ins(){
     ! (grep -F 'jdtls' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/LanguageClient_serverCommands/a \ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()]," ~/.config/nvim/init.vim
+    sed -i "/LanguageClient_serverCommands/a \\ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()]," ~/.config/nvim/init.vim
 }
 function lua_ins(){
     ! (grep -F 'lua-lsp' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/LanguageClient_serverCommands/a \ 'lua': ['lua-lsp']," ~/.config/nvim/init.vim
+    sed -i "/LanguageClient_serverCommands/a \\ 'lua': ['lua-lsp']," ~/.config/nvim/init.vim
 }
 function fe_ins(){
     ! (grep -F 'typescript-language-server' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/LanguageClient_serverCommands/a \ 'css': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \ 'less': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \ 'sass': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \ 'javascript': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \ 'javascript.jsx': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \ 'typescript': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \ 'typescript.tsx': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim
+    sed -i "/LanguageClient_serverCommands/a \\ 'css': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a \\ 'less': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a \\ 'sass': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a \\ 'javascript': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a \\ 'javascript.jsx': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a \\ 'typescript': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a \\ 'typescript.tsx': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim
 }
 
 function go_ins(){
@@ -73,7 +72,7 @@ function go_ins(){
 function php_ins(){
     ! (grep -F 'arnaud-lb/vim-php-namespace' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'stephpy/vim-php-cs-fixer'" ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a\ 'php': ['node', '/usr/local/lib/node_modules/intelephense/lib/intelephense.js', '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a\\ 'php': ['node', '/usr/local/lib/node_modules/intelephense/lib/intelephense.js', '--stdio']," ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'vim-vdebug/vdebug'" ~/.config/nvim/init.vim
     cat > /usr/local/bin/phpxd <<END
     #!/bin/zsh
@@ -142,7 +141,7 @@ if [ "Y$OPT_VIM_GO" == "Yyes" ];then
     go_ins
 fi
 
-if [ "Y$OPT_VIM_PHP" == "Yyes" ];then
+if [ "Y$OPT_PHP" == "Yyes" ];then
     php_ins
 fi
 

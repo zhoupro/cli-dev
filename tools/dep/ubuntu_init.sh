@@ -41,9 +41,8 @@ if [ "Y$OPT_PHP" == "Yyes" ];then
     apt-get install -y npm
     npm i -g intelephense
 fi
-if [ "Y$OPT_PYTHON" == "Yyes" ];then
-    pip install python-language-server
-fi
+
+pip install python-language-server
 
 if [ "Y$OPT_LUA" == "Yyes" ];then
     apt install  lua5.3-dev luarocks lua5.3
