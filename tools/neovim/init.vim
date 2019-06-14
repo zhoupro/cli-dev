@@ -93,7 +93,7 @@ let g:LanguageClient_diagnosticsEnable = 0
 call deoplete#custom#option('sources', {
     \ 'sh': []})
 let g:LanguageClient_serverCommands = {
-    \ 'sh': ['bash-language-server', 'start']
+    \ 'sh': ['bash-language-server', 'start'],
     \ 'php': ['node', '/usr/local/lib/node_modules/intelephense/lib/intelephense.js', '--stdio'],
     \ }
 

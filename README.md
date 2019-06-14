@@ -98,4 +98,22 @@ let g:LanguageClient_serverCommands = {
 \ 'lua': ['lua-lsp'],
     \ }
 ```
+### fe
+* install css js typescript language server
+```bash
+npm install -g typescript typescript-language-server
+npm install -g vscode-css-languageserver-bin
+```
 
+* add to config
+```viml
+let g:LanguageClient_serverCommands = {
+\ 'css': ['css-languageserver',  '--stdio'],
+\ 'less': ['css-languageserver',  '--stdio'],
+\ 'sass': ['css-languageserver',  '--stdio'],
+\ 'javascript': ['typescript-language-server',  '--stdio'],
+\ 'javascript.jsx': ['typescript-language-server',  '--stdio'],
+\ 'typescript': ['typescript-language-server',  '--stdio'],
+\ 'typescript.tsx': ['typescript-language-server',  '--stdio'],
+\ }
+```
