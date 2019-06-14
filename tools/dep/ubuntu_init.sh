@@ -54,6 +54,7 @@ if [ "Y$OPT_FE" == "Yyes" ];then
     npm install -g vscode-css-languageserver-bin
 fi
 if [ "Y$OPT_JAVA" == "Yyes" ];then
+    OLD_DIR=`pwd`
     if [ ! -d ~/lsp/eclipse.jdt.ls ];then
         mkdir -p ~/lsp/eclipse.jdt.ls && \
         cd ~/lsp/eclipse.jdt.ls && \
@@ -61,6 +62,7 @@ if [ "Y$OPT_JAVA" == "Yyes" ];then
         tar xf jdt-language-server-0.35.0-201903142358.tar.gz && rm jdt-language-server*.tar.gz
     fi
     rm -rf /usr/local/bin/jdtls
+    cd $OLD_DIR
     cp tools/dep/jdtls /usr/local/bin && chmod u+x /usr/local/bin/jdtls
 fi
 
