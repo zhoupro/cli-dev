@@ -34,12 +34,26 @@ function leetcode_ins(){
 }
 
 function python_ins(){
-    ! (grep -F 'deoplete-jedi' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/plug#begin/aPlug 'zchee/deoplete-jedi'" ~/.config/nvim/init.vim
+    ! (grep -F 'pyls' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/LanguageClient_serverCommands/a\ 'python': ['pyls']," ~/.config/nvim/init.vim
 }
 function java_ins(){
-    ! (grep -F 'vim-javacomplete2' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/plug#begin/aPlug 'artur-shaik/vim-javacomplete2'" ~/.config/nvim/init.vim
+    ! (grep -F 'jdtls' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/LanguageClient_serverCommands/a \ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()]," ~/.config/nvim/init.vim
+}
+function lua_ins(){
+    ! (grep -F 'lua-lsp' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/LanguageClient_serverCommands/a \ 'lua': ['lua-lsp']," ~/.config/nvim/init.vim
+}
+function fe_ins(){
+    ! (grep -F 'typescript-language-server' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/LanguageClient_serverCommands/a \ 'css': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a \ 'less': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a \ 'sass': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a \ 'javascript': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a \ 'javascript.jsx': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a \ 'typescript': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a \ 'typescript.tsx': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim
 }
 
 function go_ins(){
@@ -58,9 +72,8 @@ function go_ins(){
 
 function php_ins(){
     ! (grep -F 'arnaud-lb/vim-php-namespace' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/plug#begin/aPlug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }" ~/.config/nvim/init.vim && \
-    sed -i "/plug#begin/aPlug 'arnaud-lb/vim-php-namespace'" ~/.config/nvim/init.vim &&\
     sed -i "/plug#begin/aPlug 'stephpy/vim-php-cs-fixer'" ~/.config/nvim/init.vim && \
+    sed -i "/LanguageClient_serverCommands/a\ 'php': ['node', '/usr/local/lib/node_modules/intelephense/lib/intelephense.js', '--stdio']," ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'vim-vdebug/vdebug'" ~/.config/nvim/init.vim
     cat > /usr/local/bin/phpxd <<END
     #!/bin/zsh
@@ -153,6 +166,9 @@ if [ "Y$OPT_PYTHON" == "Yyes" ];then
 fi
 if [ "Y$OPT_LEETCODE" == "Yyes" ];then
     leetcode_ins
+fi
+if [ "Y$OPT_FE" == "Yyes" ];then
+    fe_ins
 fi
 
 #language end

@@ -3,7 +3,7 @@
 apt-get install -y gawk curl  zsh language-pack-zh-hans language-pack-zh-hans-base \
     git unzip wget  python-dev  python3-pip python-pip lsof \
     libtool-bin gettext sudo \
-    cmake automake m4 autoconf libtool build-essential  pkg-config lua5.2 wamerican \
+    cmake automake m4 autoconf libtool build-essential  pkg-config  wamerican \
     autojump  nmap iproute2 net-tools sshfs
 
 apt-get remove -y neovim exuberant-ctags
@@ -36,6 +36,33 @@ if [ "Y$OPT_BASH" == "Yyes" ];then
     if ! which bash-language-server > /dev/null; then
         npm i -g bash-language-server
     fi
+fi
+if [ "Y$OPT_PHP" == "Yyes" ];then
+    apt-get install -y npm
+    npm i -g intelephense
+fi
+if [ "Y$OPT_PYTHON" == "Yyes" ];then
+    pip install python-language-server
+fi
+
+if [ "Y$OPT_LUA" == "Yyes" ];then
+    apt install  lua5.3-dev luarocks lua5.3
+    luarocks install --server=http://luarocks.org/dev lua-lsp
+fi
+if [ "Y$OPT_FE" == "Yyes" ];then
+    apt-get install -y npm
+    npm install -g typescript typescript-language-server
+    npm install -g vscode-css-languageserver-bin
+fi
+if [ "Y$OPT_JAVA" == "Yyes" ];then
+    if [ ! -d ~/lsp/eclipse.jdt.ls ];then
+        mkdir -p ~/lsp/eclipse.jdt.ls && \
+        cd ~/lsp/eclipse.jdt.ls && \
+        curl -L https://download.eclipse.org/jdtls/milestones/0.35.0/jdt-language-server-0.35.0-201903142358.tar.gz -O && \
+        tar xf jdt-language-server-0.35.0-201903142358.tar.gz && rm jdt-language-server*.tar.gz
+    fi
+    rm -rf /usr/local/bin/jdtls
+    cp tools/dep/jdtls /usr/local/bin && chmod u+x /usr/local/bin/jdtls
 fi
 
 # install ripgrep

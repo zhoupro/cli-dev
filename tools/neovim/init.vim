@@ -77,26 +77,13 @@ map <leader>js :call json_format#parse("l")<cr>
 " deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-let g:deoplete#ignore_sources.php = ['omni']
-"lua
-let g:lua_check_syntax = 0
-let g:lua_complete_omni = 1
-let g:lua_complete_dynamic = 0
-let g:lua_define_completion_mappings = 0
 call deoplete#custom#source('ultisnips', 'rank', 1000)
-autocmd FileType lua call deoplete#custom#var('omni', 'functions', {
-\ 'lua': 'xolox#lua#omnifunc',
-\ })
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
 set hidden
 let g:LanguageClient_diagnosticsEnable = 0
 call deoplete#custom#option('sources', {
     \ 'sh': []})
 let g:LanguageClient_serverCommands = {
-    \ 'sh': ['bash-language-server', 'start'],
-    \ 'php': ['node', '/usr/local/lib/node_modules/intelephense/lib/intelephense.js', '--stdio'],
     \ }
-
 
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -116,14 +103,6 @@ map J <Plug>(expand_region_shrink)
 """""""""""""""""""""""""""""""""""""
 map <leader>n :Defx<CR>
 map <leader>m :TagbarOpenAutoClose<CR>
-
-" vim-php-namespace
-function! IPhpInsertUse()
-    call PhpInsertUse()
-    call feedkeys('a',  'n')
-endfunction
-autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
 " ale-setting {{{
 let g:ale_set_highlights = 0
@@ -389,7 +368,6 @@ let s:bot = {
 \ 'init': [ 'term zsh' ]
 \ }
 \ }
-
 let g:vwm#layouts = [s:bot]
 "https://github.com/Shougo/deoplete.nvim/issues/440
 let g:deoplete#auto_complete_delay = 150
