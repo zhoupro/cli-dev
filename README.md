@@ -15,8 +15,8 @@
 ### setup
 #### ubuntu
  ```bash
- ./init.sh --with_vim_php --with_vim_c --with_vim_ycm --with_vim_lua --with_vim_go --with_java \
---with_lua --with_python --with_leetcode --with_man --with_dict --with_bash
+ ./init.sh --with_php --with_vim_c --with_vim_ycm --with_vim_go --with_java \
+--with_lua  --with_leetcode --with_man --with_dict --with_bash
  ```
 #### mac and centos
 ./init.sh
@@ -39,7 +39,7 @@ cd ~/lsp/eclipse.jdt.ls
 curl -L https://download.eclipse.org/jdtls/milestones/0.35.0/jdt-language-server-0.35.0-201903142358.tar.gz -O
 tar xf jdt-language-server-0.35.0-201903142358.tar.gz
 ```
-* **Create executable jdtls in path (e.g., /usr/local/bin/jdtls), with content
+* Create executable jdtls in path (e.g., /usr/local/bin/jdtls), with content
 
 ```bash
 #!/usr/bin/env sh
