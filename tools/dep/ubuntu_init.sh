@@ -38,7 +38,6 @@ if [ "Y$OPT_BASH" == "Yyes" ];then
     fi
 fi
 if [ "Y$OPT_PHP" == "Yyes" ];then
-    apt-get install -y npm
     npm i -g intelephense
 fi
 
@@ -49,7 +48,6 @@ if [ "Y$OPT_LUA" == "Yyes" ];then
     luarocks install --server=http://luarocks.org/dev lua-lsp
 fi
 if [ "Y$OPT_FE" == "Yyes" ];then
-    apt-get install -y npm
     npm install -g typescript typescript-language-server
     npm install -g vscode-css-languageserver-bin
 fi
