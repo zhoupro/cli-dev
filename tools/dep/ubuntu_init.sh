@@ -32,13 +32,13 @@ fi
 
 if [ "Y$OPT_BASH" == "Yyes" ];then
     apt-get install -y \
-    npm shellcheck
+    shellcheck
     if ! which bash-language-server > /dev/null; then
-        npm i -g bash-language-server
+       sudo npm i -g bash-language-server
     fi
 fi
 if [ "Y$OPT_PHP" == "Yyes" ];then
-    npm i -g intelephense
+   sudo npm i -g intelephense
 fi
 
 pip install python-language-server
@@ -48,8 +48,8 @@ if [ "Y$OPT_LUA" == "Yyes" ];then
     luarocks install --server=http://luarocks.org/dev lua-lsp
 fi
 if [ "Y$OPT_FE" == "Yyes" ];then
-    npm install -g typescript typescript-language-server
-    npm install -g vscode-css-languageserver-bin
+    sudo npm install -g typescript typescript-language-server
+    sudo npm install -g vscode-css-languageserver-bin
 fi
 if [ "Y$OPT_JAVA" == "Yyes" ];then
     OLD_DIR=`pwd`
