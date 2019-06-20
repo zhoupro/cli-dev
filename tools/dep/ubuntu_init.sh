@@ -34,7 +34,7 @@ if [ "Y$OPT_BASH" == "Yyes" ];then
     apt-get install -y \
     shellcheck
     if ! which bash-language-server > /dev/null; then
-       sudo npm i -g bash-language-server
+       sudo npm i -g bash-language-server --unsafe-perm
     fi
 fi
 if [ "Y$OPT_PHP" == "Yyes" ];then

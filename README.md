@@ -68,7 +68,7 @@ let g:LanguageClient_serverCommands = {
 ```bash
 npm -g install intelephense
 ```
-* add to your bashrc
+* add to your vim script
 ```viml
 let g:LanguageClient_serverCommands = {
 \ 'php': ['node', '/usr/local/lib/node_modules/intelephense/lib/intelephense.js', '--stdio'],
@@ -80,7 +80,7 @@ let g:LanguageClient_serverCommands = {
 pip install python-language-server
 ```
 
-* add to your bashrc
+* add to your vimscript
 ```viml
 let g:LanguageClient_serverCommands = {
 \ 'python': ['pyls'],
@@ -92,7 +92,7 @@ let g:LanguageClient_serverCommands = {
 apt install  lua5.3-dev luarocks
 luarocks install --server=http://luarocks.org/dev lua-lsp
 ```
-* add to config
+* add to vim config
 ```viml
 let g:LanguageClient_serverCommands = {
 \ 'lua': ['lua-lsp'],
@@ -105,7 +105,7 @@ npm install -g typescript typescript-language-server
 npm install -g vscode-css-languageserver-bin
 ```
 
-* add to config
+* add to vim config
 ```viml
 let g:LanguageClient_serverCommands = {
 \ 'css': ['css-languageserver',  '--stdio'],
@@ -117,3 +117,14 @@ let g:LanguageClient_serverCommands = {
 \ 'typescript.tsx': ['typescript-language-server',  '--stdio'],
 \ }
 ```
+### bash
+* install bash language server
+```bash
+sudo npm i -g bash-language-server --unsafe-perm
+
+```
+* add to vim config
+let g:LanguageClient_serverCommands = {
+\ 'sh': ['bash-language-server','start'],
+    \ }
+

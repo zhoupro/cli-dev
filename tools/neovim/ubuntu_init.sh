@@ -44,6 +44,10 @@ function lua_ins(){
     ! (grep -F 'lua-lsp' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/LanguageClient_serverCommands/a \\\\\ 'lua': ['lua-lsp']," ~/.config/nvim/init.vim
 }
+function bash_ins(){
+    ! (grep -F 'bash-language-server' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/LanguageClient_serverCommands/a \\\\\ 'sh': ['bash-language-server','start']," ~/.config/nvim/init.vim
+}
 function fe_ins(){
     ! (grep -F 'typescript-language-server' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/LanguageClient_serverCommands/a \\\\\ 'css': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
@@ -168,6 +172,9 @@ if [ "Y$OPT_LEETCODE" == "Yyes" ];then
 fi
 if [ "Y$OPT_FE" == "Yyes" ];then
     fe_ins
+fi
+if [ "Y$OPT_BASH" == "Yyes" ];then
+    bash_ins
 fi
 
 #language end
