@@ -2,14 +2,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     "lint
     Plug 'w0rp/ale', { 'on':  'ALEToggle' }
     "complete
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    "viml complete source
-    Plug 'Shougo/neco-vim'
-    "language server
-    Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "outline
     Plug 'majutsushi/tagbar'
     Plug 'vim-airline/vim-airline'
@@ -74,14 +67,6 @@ call plug#end()
 let mapleader=","
 set noswapfile
 map <leader>js :call json_format#parse("l")<cr>
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-set hidden
-let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ }
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -142,7 +127,6 @@ let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 
-"  
 func! RunProgram()
     exec "w"
     if &filetype == 'c'
@@ -366,8 +350,6 @@ let s:bot = {
 \ }
 \ }
 let g:vwm#layouts = [s:bot]
-"https://github.com/Shougo/deoplete.nvim/issues/440
-let g:deoplete#auto_complete_delay = 150
 
 " clang_format
 let g:clang_format#style_options = {

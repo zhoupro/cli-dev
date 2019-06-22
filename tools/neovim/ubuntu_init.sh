@@ -37,8 +37,7 @@ function python_ins(){
     echo "python ins"
 }
 function java_ins(){
-    ! (grep -F 'jdtls' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()]," ~/.config/nvim/init.vim
+    echo "java ins"
 }
 function lua_ins(){
     ! (grep -F 'lua-lsp' ~/.config/nvim/init.vim &>/dev/null ) && \
