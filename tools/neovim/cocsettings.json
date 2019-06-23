@@ -1,0 +1,28 @@
+{    
+  "suggest.triggerAfterInsertEnter": true,    
+  "suggest.noselect": false,    
+  "suggest.timeout": 500,    
+  "suggest.minTriggerInputLength": 2,    
+  "suggest.echodocSupport": true,    
+  "suggest.enablePreview": true,    
+  "java.autobuild.enabled": true,    
+  "java.trace.server": "verbose",    
+  "java.referencesCodeLens.enabled": true,    
+  "java.implementationsCodeLens.enabled": true,    
+  "java.signatureHelp.enabled": true,    
+  "java.format.enabled": true,    
+  "java.import.gradle.enabled": true,    
+  "java.progressReports.enabled": true,    
+  "java.import.maven.enabled": true,    
+  "java.completion.enabled": true,    
+  "java.contentProvider.preferred": "fernflower",    
+  "java.completion.importOrder": [    
+    "java",    
+    "javax",    
+    "com",    
+    "org"    
+  ],    
+  "java.format.comments.enabled": true,    
+  "java.format.onType.enabled": true,    
+  "java.completion.guessMethodArguments": true    
+}
