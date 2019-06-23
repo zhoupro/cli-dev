@@ -5,9 +5,8 @@ apt-get install -y gawk curl  zsh language-pack-zh-hans language-pack-zh-hans-ba
     libtool-bin gettext sudo \
     cmake automake m4 autoconf libtool build-essential  pkg-config  wamerican \
     autojump  nmap iproute2 net-tools sshfs
-
 apt-get remove -y neovim exuberant-ctags
-
+npm install -g yarn
 if [ "Y$OPT_MAN" == "Yyes" ];then
     [ -f  /etc/dpkg/dpkg.cfg.d/excludes ] && rm -rf /etc/dpkg/dpkg.cfg.d/excludes
     apt-get install -y \
@@ -53,15 +52,13 @@ if [ "Y$OPT_FE" == "Yyes" ];then
 fi
 if [ "Y$OPT_JAVA" == "Yyes" ];then
     OLD_DIR=`pwd`
-    if [ ! -d ~/lsp/eclipse.jdt.ls ];then
-        mkdir -p ~/lsp/eclipse.jdt.ls && \
-        cd ~/lsp/eclipse.jdt.ls && \
+    if [ ! -d ~/.config/coc/extensions/coc-java-data/server/config_linux ];then
+        mkdir -p  ~/.config/coc/extensions/coc-java-data/server && \
+        cd  ~/.config/coc/extensions/coc-java-data/server && \
         curl -L https://download.eclipse.org/jdtls/milestones/0.35.0/jdt-language-server-0.35.0-201903142358.tar.gz -O && \
         tar xf jdt-language-server-0.35.0-201903142358.tar.gz && rm jdt-language-server*.tar.gz
     fi
-    rm -rf /usr/local/bin/jdtls
     cd $OLD_DIR
-    cp tools/dep/jdtls /usr/local/bin && chmod u+x /usr/local/bin/jdtls
 fi
 
 # install ripgrep
