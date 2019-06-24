@@ -63,6 +63,15 @@ if [ "Y$OPT_JAVA" == "Yyes" ];then
         tar xf jdt-language-server-0.35.0-201903142358.tar.gz && rm jdt-language-server*.tar.gz
     fi
     cd $OLD_DIR
+    if which mwn >/dev/null;then
+        # install maven
+        cd /opt && \
+        wget http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz && \
+            tar xf  apache-maven-3.6.1-bin.tar.gz && \
+            export PATH=/opt/apache-maven-3.6.1/bin:$PATH && \
+            echo "export PATH=\"/opt/apache-maven-3.6.1:$PATH\"" >>  "$HOME/.cus_zshrc"
+        cd $OLD_DIR
+    fi
 fi
 
 # install ripgrep
