@@ -125,6 +125,7 @@ rm -f ~/.config/nvim/init.vim
 #common config
 mkdir -p ~/.config/nvim
 cp tools/neovim/init.vim ~/.config/nvim/init.vim
+cp tools/neovim/coc-settings.json ~/.config/nvim/coc-settings.json
 # copy
 if nmap localhost -p 8377 | grep open 2>/dev/null;then
     sed -in 's#NCHOST#localhost#g' ~/.config/nvim/init.vim
