@@ -40,11 +40,8 @@ if [ "Y$OPT_PHP" == "Yyes" ];then
    sudo npm i -g intelephense
 fi
 if [ "Y$OPT_PYTHON" == "Yyes" ];then
-    #pip install python-language-server
-    #sudo npm i -g intelephense
-    echo "python language server"
+    sudo pip3 install jedi
 fi
-
 
 if [ "Y$OPT_LUA" == "Yyes" ];then
     apt install -y lua5.3-dev luarocks lua5.3
