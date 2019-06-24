@@ -304,10 +304,3 @@ if [ "Y$OPT_DICT" == "Yyes" ];then
     nmap  <leader>w :call QuerySel() <CR>
 END
 fi
-
-! ( grep -F "deoplete#custom#source('ultisnips', 'rank', 1000)" ~/.config/nvim/init.vim ) && \
-    cat >> ~/.config/nvim/init.vim <<END
-    call deoplete#custom#source('ultisnips', 'rank', 1000)
-    call deoplete#custom#option('sources', {
-        \ 'sh': []})
-END
