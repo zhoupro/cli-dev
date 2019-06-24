@@ -48,14 +48,7 @@ function bash_ins(){
     sed -i "/LanguageClient_serverCommands/a \\\\\ 'sh': ['bash-language-server','start']," ~/.config/nvim/init.vim
 }
 function fe_ins(){
-    ! (grep -F 'typescript-language-server' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'css': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'less': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'sass': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'javascript': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'javascript.jsx': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'typescript': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'typescript.tsx': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim
+    echo "fe"
 }
 
 function go_ins(){
@@ -73,9 +66,8 @@ function go_ins(){
 }
 
 function php_ins(){
-    ! (grep -F 'intelephense' ~/.config/nvim/init.vim &>/dev/null ) && \
+    ! (grep -F 'vim-php-cs-fixer' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'stephpy/vim-php-cs-fixer'" ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a\\\\\ 'php': ['intelephense', '--stdio']," ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'vim-vdebug/vdebug'" ~/.config/nvim/init.vim
     cat > /usr/local/bin/phpxd <<END
     #!/bin/zsh
