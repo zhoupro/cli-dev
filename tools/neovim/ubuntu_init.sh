@@ -1,32 +1,14 @@
 #!/bin/bash
-
-function ycm_ins(){
-    ! (grep -F 'YouCompleteMe' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/plug#begin/aPlug 'Valloric/YouCompleteMe'"  ~/.config/nvim/init.vim 
-
-    if [ ! -f ~/.config/nvim/ycm.cpp.py ] ; then
-        wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.c.py
-        wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.cpp.py
-        mkdir -p ~/.config/nvim
-        cp ycm.c.py ~/.config/nvim/ycm.c.py
-        cp ycm.cpp.py ~/.config/nvim/ycm.cpp.py
-        rm -f ycm.c.py ycm.cpp.py
-    fi
-    if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
-        bash ~/.config/nvim/add_swap.sh
-        pxy python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
-        bash ~/.config/nvim/del_swap.sh
-        rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
-    fi
-}
-
 function c_ins(){
     ! (grep -F 'nvim-gdb' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'vim-scripts/a.vim'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'gauteh/vim-cppman'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'rhysd/vim-clang-format'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'sakhnik/nvim-gdb' , { 'branch': 'legacy' }" ~/.config/nvim/init.vim
+    ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
+        sed -i '/suggest.timeout/i  "languageserver": { \n "clangd": { \n "command": "clangd",\n"filetypes": ["c", "cpp", "objc", "objcpp"],\n"args": ["-background-index"]\n }\n },'
 }
+
 function leetcode_ins(){
     ! (grep -F 'leetcode' ~/.config/nvim/init.vim &>/dev/null ) && \
     pip3 install requests beautifulsoup4 && \
@@ -141,13 +123,10 @@ if [ "Y$OPT_PHP" == "Yyes" ];then
     php_ins
 fi
 
-if [ "Y$OPT_VIM_C" == "Yyes" ];then
+if [ "Y$OPT_C" == "Yyes" ];then
     c_ins
 fi
 
-if [ "Y$OPT_VIM_YCM" == "Yyes" ];then
-    ycm_ins
-fi
 
 if [ "Y$OPT_LUA" == "Yyes" ];then
     lua_ins
