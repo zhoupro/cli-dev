@@ -6,7 +6,7 @@ function c_ins(){
     sed -i "/plug#begin/aPlug 'rhysd/vim-clang-format'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'sakhnik/nvim-gdb' , { 'branch': 'legacy' }" ~/.config/nvim/init.vim
     ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
-        sed -i '/suggest.timeout/i  "languageserver": { \n "clangd": { \n "command": "clangd",\n"filetypes": ["c", "cpp", "objc", "objcpp"],\n"args": ["-background-index"]\n }\n },'
+        sed -i '/suggest.timeout/i  "languageserver": { \n "clangd": { \n "command": "clangd",\n"filetypes": ["c", "cpp", "objc", "objcpp"],\n"args": ["-background-index"]\n }\n },' ~/.config/nvim/coc-settings.json
 }
 
 function leetcode_ins(){
