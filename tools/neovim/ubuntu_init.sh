@@ -34,16 +34,11 @@ function fe_ins(){
 }
 
 function go_ins(){
-    ! (grep -F 'deoplete-go' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/plug#begin/aPlug 'fatih/vim-go'" ~/.config/nvim/init.vim &&\
-    sed -i "/plug#begin/aPlug 'buoto/gotests-vim'" ~/.config/nvim/init.vim &&\
-    sed -i "/plug#begin/aPlug 'zchee/deoplete-go', { 'do': 'make'}" ~/.config/nvim/init.vim &&\
+    ! (grep -F 'sebdah/vim-delve' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'sebdah/vim-delve'" ~/.config/nvim/init.vim
     if which go;then
-        pxy nvim +'GoInstallBinaries' +qall
         pxy go get -u github.com/derekparker/delve/cmd/dlv
-        pxy go get -u github.com/mdempsky/gocode
-        pxy go get -u github.com/cweill/gotests/...
+        pxy go get -u golang.org/x/tools/cmd/gopls
     fi
 }
 
