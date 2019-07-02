@@ -1,15 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
-    "lint
-    Plug 'w0rp/ale', { 'on':  'ALEToggle' }
-    "complete
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    "viml complete source
-    Plug 'Shougo/neco-vim'
-    "language server
-    Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+   "complete
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "outline
     Plug 'majutsushi/tagbar'
     Plug 'vim-airline/vim-airline'
@@ -74,14 +65,6 @@ call plug#end()
 let mapleader=","
 set noswapfile
 map <leader>js :call json_format#parse("l")<cr>
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-set hidden
-let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ }
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -101,32 +84,6 @@ map J <Plug>(expand_region_shrink)
 map <leader>n :Defx<CR>
 map <leader>m :TagbarOpenAutoClose<CR>
 
-" ale-setting {{{
-let g:ale_set_highlights = 0
-"自定义error和warning图标
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚡'
-"打开文件时不进行检查
-let g:ale_lint_on_enter = 0
-" Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
-
-"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
-nmap sp <Plug>(ale_previous_wrap)
-nmap sn <Plug>(ale_next_wrap)
-"<Leader>s触发/关闭语法检查
-nmap <Leader>s :ALEToggle<CR>
-"<Leader>d查看错误或警告的详细信息
-nmap <Leader>d :ALEDetail<CR>
-" Only run linters named in ale_linters settings.
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-\   'php': ['phpcs','phpmd'],
-\   'sh': ['shellcheck'],
-\}
-let g:ale_php_phpcs_standard = 'psr2'
-" }}}
-
 "----------------------------------------------
 " Language: Golang
 "----------------------------------------------
@@ -142,7 +99,6 @@ let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 
-"  
 func! RunProgram()
     exec "w"
     if &filetype == 'c'
@@ -248,13 +204,6 @@ highlight DbgBreakptLine ctermbg=none ctermfg=none
 highlight DbgBreakptSign ctermbg=none ctermfg=10
 highlight DbgCurrentLine ctermbg=none ctermfg=none
 highlight DbgCurrentSign ctermbg=none ctermfg=red
-" Vim-php-cs-fixer
-" If you use php-cs-fixer version 2.x
-let g:php_cs_fixer_rules = "@PSR2"          " options: --rules (default:@PSR2)
-let g:php_cs_fixer_php_path = "php"               " Path to PHP
-let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
-let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
-let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
 " snips
 " UltiSnips 的 tab 键与 YCM 冲突，重新设定
 let g:UltiSnipsExpandTrigger="<leader><tab>"
@@ -366,8 +315,6 @@ let s:bot = {
 \ }
 \ }
 let g:vwm#layouts = [s:bot]
-"https://github.com/Shougo/deoplete.nvim/issues/440
-let g:deoplete#auto_complete_delay = 150
 
 " clang_format
 let g:clang_format#style_options = {

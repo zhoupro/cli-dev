@@ -1,32 +1,14 @@
 #!/bin/bash
-
-function ycm_ins(){
-    ! (grep -F 'YouCompleteMe' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/plug#begin/aPlug 'Valloric/YouCompleteMe'"  ~/.config/nvim/init.vim 
-
-    if [ ! -f ~/.config/nvim/ycm.cpp.py ] ; then
-        wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.c.py
-        wget https://raw.githubusercontent.com/zhouzheng12/newycm_extra_conf.py/master/ycm.cpp.py
-        mkdir -p ~/.config/nvim
-        cp ycm.c.py ~/.config/nvim/ycm.c.py
-        cp ycm.cpp.py ~/.config/nvim/ycm.cpp.py
-        rm -f ycm.c.py ycm.cpp.py
-    fi
-    if [ ! -f ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so ] ; then
-        bash ~/.config/nvim/add_swap.sh
-        pxy python2  ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer
-        bash ~/.config/nvim/del_swap.sh
-        rm -rf  ~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/clang_archives
-    fi
-}
-
 function c_ins(){
     ! (grep -F 'nvim-gdb' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'vim-scripts/a.vim'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'gauteh/vim-cppman'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'rhysd/vim-clang-format'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'sakhnik/nvim-gdb' , { 'branch': 'legacy' }" ~/.config/nvim/init.vim
+    ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
+        sed -i '/suggest.timeout/i  "languageserver": { \n "clangd": { \n "command": "clangd",\n"filetypes": ["c", "cpp", "objc", "objcpp"],\n"args": ["-background-index"]\n }\n },' ~/.config/nvim/coc-settings.json
 }
+
 function leetcode_ins(){
     ! (grep -F 'leetcode' ~/.config/nvim/init.vim &>/dev/null ) && \
     pip3 install requests beautifulsoup4 && \
@@ -37,8 +19,7 @@ function python_ins(){
     echo "python ins"
 }
 function java_ins(){
-    ! (grep -F 'jdtls' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()]," ~/.config/nvim/init.vim
+    echo "java ins"
 }
 function lua_ins(){
     ! (grep -F 'lua-lsp' ~/.config/nvim/init.vim &>/dev/null ) && \
@@ -49,34 +30,21 @@ function bash_ins(){
     sed -i "/LanguageClient_serverCommands/a \\\\\ 'sh': ['bash-language-server','start']," ~/.config/nvim/init.vim
 }
 function fe_ins(){
-    ! (grep -F 'typescript-language-server' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'css': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'less': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'sass': ['css-languageserver',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'javascript': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'javascript.jsx': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'typescript': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'typescript.tsx': ['typescript-language-server',  '--stdio']," ~/.config/nvim/init.vim
+    echo "fe"
 }
 
 function go_ins(){
-    ! (grep -F 'deoplete-go' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/plug#begin/aPlug 'fatih/vim-go'" ~/.config/nvim/init.vim &&\
-    sed -i "/plug#begin/aPlug 'buoto/gotests-vim'" ~/.config/nvim/init.vim &&\
-    sed -i "/plug#begin/aPlug 'zchee/deoplete-go', { 'do': 'make'}" ~/.config/nvim/init.vim &&\
+    ! (grep -F 'sebdah/vim-delve' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'sebdah/vim-delve'" ~/.config/nvim/init.vim
     if which go;then
-        pxy nvim +'GoInstallBinaries' +qall
         pxy go get -u github.com/derekparker/delve/cmd/dlv
-        pxy go get -u github.com/mdempsky/gocode
-        pxy go get -u github.com/cweill/gotests/...
+        pxy go get -u golang.org/x/tools/cmd/gopls
     fi
 }
 
 function php_ins(){
-    ! (grep -F 'intelephense' ~/.config/nvim/init.vim &>/dev/null ) && \
+    ! (grep -F 'vim-php-cs-fixer' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'stephpy/vim-php-cs-fixer'" ~/.config/nvim/init.vim && \
-    sed -i "/LanguageClient_serverCommands/a\\\\\ 'php': ['intelephense', '--stdio']," ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'vim-vdebug/vdebug'" ~/.config/nvim/init.vim
     cat > /usr/local/bin/phpxd <<END
     #!/bin/zsh
@@ -126,6 +94,7 @@ rm -f ~/.config/nvim/init.vim
 #common config
 mkdir -p ~/.config/nvim
 cp tools/neovim/init.vim ~/.config/nvim/init.vim
+cp tools/neovim/coc-settings.json ~/.config/nvim/coc-settings.json
 # copy
 if nmap localhost -p 8377 | grep open 2>/dev/null;then
     sed -in 's#NCHOST#localhost#g' ~/.config/nvim/init.vim
@@ -149,13 +118,10 @@ if [ "Y$OPT_PHP" == "Yyes" ];then
     php_ins
 fi
 
-if [ "Y$OPT_VIM_C" == "Yyes" ];then
+if [ "Y$OPT_C" == "Yyes" ];then
     c_ins
 fi
 
-if [ "Y$OPT_VIM_YCM" == "Yyes" ];then
-    ycm_ins
-fi
 
 if [ "Y$OPT_LUA" == "Yyes" ];then
     lua_ins
@@ -305,10 +271,3 @@ if [ "Y$OPT_DICT" == "Yyes" ];then
     nmap  <leader>w :call QuerySel() <CR>
 END
 fi
-
-! ( grep -F "deoplete#custom#source('ultisnips', 'rank', 1000)" ~/.config/nvim/init.vim ) && \
-    cat >> ~/.config/nvim/init.vim <<END
-    call deoplete#custom#source('ultisnips', 'rank', 1000)
-    call deoplete#custom#option('sources', {
-        \ 'sh': []})
-END
