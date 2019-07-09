@@ -16,7 +16,8 @@ function leetcode_ins(){
 }
 
 function python_ins(){
-    echo "python ins"
+    ! ( grep -F "python.linting.enabled" ~/.config/nvim/coc-settings.json ) && \
+        sed -i '/suggest.timeout/i  "python.linting.enabled": false,' ~/.config/nvim/coc-settings.json
 }
 function java_ins(){
     echo "java ins"
@@ -162,6 +163,10 @@ fi
 
 if [ "Y$OPT_JAVA" == "Yyes" ];then
     nvim "+CocInstall -sync coc-java" +qall
+fi
+
+if [ "Y$OPT_PYTHON" == "Yyes" ];then
+    nvim "+CocInstall -sync coc-python" +qall
 fi
 
 ! which ctags >/dev/null && \
