@@ -22,12 +22,12 @@ function java_ins(){
     echo "java ins"
 }
 function lua_ins(){
-    ! (grep -F 'lua-lsp' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'lua': ['lua-lsp']," ~/.config/nvim/init.vim
+    ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
+        sed -i '/suggest.timeout/i  "languageserver": {\n"lua": {\n"command": "lua-lsp",\n"filetypes": ["lua"]\n}\n },' ~/.config/nvim/coc-settings.json
 }
 function bash_ins(){
-    ! (grep -F 'bash-language-server' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/LanguageClient_serverCommands/a \\\\\ 'sh': ['bash-language-server','start']," ~/.config/nvim/init.vim
+    ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
+        sed -i '/suggest.timeout/i  "languageserver": {\n"bash": {\n"command": "bash-language-server",\n"args": ["start"],\n"filetypes": ["sh"]",ignoredRootPaths": ["~"]\n}\n},' ~/.config/nvim/coc-settings.json
 }
 function fe_ins(){
     echo "fe"
@@ -40,6 +40,9 @@ function go_ins(){
         pxy go get -u github.com/derekparker/delve/cmd/dlv
         pxy go get -u golang.org/x/tools/cmd/gopls
     fi
+
+    ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
+        sed -i '/suggest.timeout/i  "languageserver": {\n"golang": {\n"command": "gopls",\n"filetypes": ["go"]\n}\n},' ~/.config/nvim/coc-settings.json
 }
 
 function php_ins(){
@@ -52,6 +55,9 @@ function php_ins(){
     php "\$@"
 END
     chmod u+x  /usr/local/bin/phpxd
+
+    ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
+        sed -i '/suggest.timeout/i  "languageserver": { \n"intelephense": {\n"command": "intelephense",\n"args": ["--stdio"],\n"filetypes": ["php"],\n"initializationOptions": {\n"storagePath": "/tmp/intelephense"\n }\n }\n},' ~/.config/nvim/coc-settings.json
 }
 
 
@@ -122,7 +128,6 @@ if [ "Y$OPT_C" == "Yyes" ];then
     c_ins
 fi
 
-
 if [ "Y$OPT_LUA" == "Yyes" ];then
     lua_ins
 fi
@@ -147,6 +152,18 @@ fi
 
 export shell=/bin/bash
 nvim +'PlugInstall --sync' +qall
+
+#language server install
+nvim "+CocInstall -sync coc-snippets" +qall
+
+if [ "Y$OPT_FE" == "Yyes" ];then
+    nvim "+CocInstall -sync coc-html coc-css coc-tsserver coc-emmet" +qall
+fi
+
+if [ "Y$OPT_JAVA" == "Yyes" ];then
+    nvim "+CocInstall -sync coc-java" +qall
+fi
+
 ! which ctags >/dev/null && \
     git clone https://github.com/universal-ctags/ctags.git &&\
     cd ctags && ./autogen.sh && ./configure && make && make install &&\
