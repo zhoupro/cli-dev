@@ -4,7 +4,7 @@ apt-get install -y gawk curl  zsh language-pack-zh-hans language-pack-zh-hans-ba
     git unzip wget  python-dev  python3-pip python-pip lsof \
     libtool-bin gettext sudo \
     cmake automake m4 autoconf libtool build-essential  pkg-config  wamerican \
-    autojump  nmap iproute2 net-tools sshfs
+    autojump  nmap iproute2 net-tools sshfs axel
 apt-get remove -y neovim exuberant-ctags
 npm install -g yarn
 if [ "Y$OPT_MAN" == "Yyes" ];then
@@ -76,7 +76,7 @@ if [ "Y$OPT_JAVA" == "Yyes" ];then
     if [ ! -d ~/.config/coc/extensions/coc-java-data/server/config_linux ];then
         mkdir -p  ~/.config/coc/extensions/coc-java-data/server && \
         cd  ~/.config/coc/extensions/coc-java-data/server && \
-        wget https://download.eclipse.org/jdtls/milestones/0.35.0/jdt-language-server-0.35.0-201903142358.tar.gz && \
+        axel https://download.eclipse.org/jdtls/milestones/0.35.0/jdt-language-server-0.35.0-201903142358.tar.gz && \
         tar xf jdt-language-server-0.35.0-201903142358.tar.gz && rm jdt-language-server*.tar.gz
     fi
     cd $OLD_DIR
