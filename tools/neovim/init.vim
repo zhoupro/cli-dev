@@ -84,21 +84,6 @@ map J <Plug>(expand_region_shrink)
 map <leader>n :Defx<CR>
 map <leader>m :TagbarOpenAutoClose<CR>
 
-"----------------------------------------------
-" Language: Golang
-"----------------------------------------------
-" Run goimports when running gofmt
-let g:go_fmt_command = "goimports"
-let g:go_version_warning = 0
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-
 func! RunProgram()
     exec "w"
     if &filetype == 'c'
@@ -168,13 +153,6 @@ function! LoadCscope()
 endfunction
 au BufEnter /* call LoadCscope()
 
-let g:ycm_server_python_interpreter = '/usr/bin/python'
-let g:ycm_python_binary_path = '/usr/bin/python3'
-let g:ycm_key_invoke_completion = '<C-a>'
-let g:ycm_global_ycm_extra_conf='~/.config/nvim/ycm.cpp.py'
-autocmd FileType c  let g:ycm_global_ycm_extra_conf='~/.config/nvim/ycm.c.py'
-autocmd FileType cpp let g:ycm_global_ycm_extra_conf='~/.config/nvim/ycm.cpp.py'
-
 " for debug
 set nu
 set list
@@ -204,14 +182,9 @@ highlight DbgBreakptLine ctermbg=none ctermfg=none
 highlight DbgBreakptSign ctermbg=none ctermfg=10
 highlight DbgCurrentLine ctermbg=none ctermfg=none
 highlight DbgCurrentSign ctermbg=none ctermfg=red
-" snips
-" UltiSnips 的 tab 键与 YCM 冲突，重新设定
-let g:UltiSnipsExpandTrigger="<leader><tab>"
-let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
-let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
+
 nnoremap <leader>y :call system('NCCOMMAND  NCHOST 8377', @0)<CR>
 nnoremap <leader>] :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
-
 " color change fix in tmux
 set t_Co=256
 "switch windows
@@ -239,8 +212,6 @@ if has('nvim')
 endif
 set scrolloff=5
 let g:header_auto_add_header = 0
-
-let g:ycm_show_diagnostics_ui = 0
 
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
@@ -279,6 +250,7 @@ if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
 endif
+
 " tab 替换为4个空格
 set tabstop=4
 set shiftwidth=4

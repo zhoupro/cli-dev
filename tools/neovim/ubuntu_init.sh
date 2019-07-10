@@ -13,14 +13,30 @@ function leetcode_ins(){
     ! (grep -F 'leetcode' ~/.config/nvim/init.vim &>/dev/null ) && \
     pip3 install requests beautifulsoup4 && \
     sed -i "/plug#begin/aPlug 'ianding1/leetcode.vim'" ~/.config/nvim/init.vim
+
+    ! ( grep -F "LeetCodeList" ~/.config/nvim/init.vim ) && \
+cat >> ~/.config/nvim/init.vim <<END
+    nnoremap <leader>ll :LeetCodeList<cr>
+    nnoremap <leader>lt :LeetCodeTest<cr>
+    nnoremap <leader>ls :LeetCodeSubmit<cr>
+    nnoremap <leader>li :LeetCodeSignIn<cr>
+END
 }
 
 function python_ins(){
     ! ( grep -F "python.linting.enabled" ~/.config/nvim/coc-settings.json ) && \
         sed -i '/suggest.timeout/i  "python.linting.enabled": false,' ~/.config/nvim/coc-settings.json
+    ! ( grep -F "leetcode_solution_filetype" ~/.config/nvim/init.vim ) && \
+    cat >> ~/.config/nvim/init.vim <<END
+        let g:leetcode_solution_filetype=python3
+END
+
 }
 function java_ins(){
-    echo "java ins"
+    ! ( grep -F "leetcode_solution_filetype" ~/.config/nvim/init.vim ) && \
+cat >> ~/.config/nvim/init.vim <<END
+    let g:leetcode_solution_filetype=java
+END
 }
 function lua_ins(){
     ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
@@ -44,6 +60,11 @@ function go_ins(){
 
     ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
         sed -i '/suggest.timeout/i  "languageserver": {\n"golang": {\n"command": "gopls",\n"filetypes": ["go"]\n}\n},' ~/.config/nvim/coc-settings.json
+    ! ( grep -F "leetcode_solution_filetype" ~/.config/nvim/init.vim ) && \
+    cat >> ~/.config/nvim/init.vim <<END
+    let g:leetcode_solution_filetype=golang
+END
+
 }
 
 function php_ins(){
@@ -117,7 +138,7 @@ fi
 
 #language
 
-if [ "Y$OPT_VIM_GO" == "Yyes" ];then
+if [ "Y$OPT_GO" == "Yyes" ];then
     go_ins
 fi
 
@@ -125,7 +146,7 @@ if [ "Y$OPT_PHP" == "Yyes" ];then
     php_ins
 fi
 
-if [ "Y$OPT_C" == "Yyes" ];then
+if [ "Y$OPT_CPP" == "Yyes" ];then
     c_ins
 fi
 

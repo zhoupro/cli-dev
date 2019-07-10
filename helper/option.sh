@@ -1,6 +1,6 @@
 OPT_PHP=
-OPT_C=
-OPT_VIM_GO=
+OPT_CPP=
+OPT_GO=
 OPT_JAVA=
 OPT_LUA=
 OPT_PYTHON=
@@ -14,8 +14,8 @@ for option
 do
     case "$option" in
         --with_php)                          OPT_PHP=yes                   ;;
-        --with_c)                          OPT_C=yes                   ;;
-        --with_vim_go)                          OPT_VIM_GO=yes                   ;;
+        --with_cpp)                          OPT_CPP=yes                   ;;
+        --with_go)                          OPT_GO=yes                   ;;
         --with_java)                          OPT_JAVA=yes                   ;;
         --with_lua)                          OPT_LUA=yes                   ;;
         --with_python)                          OPT_PYTHON=yes                   ;;

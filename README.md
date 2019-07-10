@@ -13,7 +13,7 @@
 ### setup
 #### ubuntu
  ```bash
- ./init.sh --with_php --with_c  --with_vim_go --with_java \
+ ./init.sh --with_php --with_cpp  --with_go --with_python --with_java \
 --with_lua  --with_leetcode --with_man --with_dict --with_bash
  ```
 #### mac and centos
@@ -26,5 +26,7 @@
 
 
 ### language server
-
 > use coc.nvim for lsp client
+
+### leetcode supported langage
+> java cpp and golang

@@ -25,7 +25,7 @@ if [ "Y$OPT_DICT" == "Yyes" ];then
 fi
 
 #install clangd8 url:https://apt.llvm.org/
-if [ "Y$OPT_C" == "Yyes" ];then
+if [ "Y$OPT_CPP" == "Yyes" ];then
     ! ( grep -F "llvm-toolchain-" /etc/apt/sources.list ) && \
     cat >> /etc/apt/sources.list <<END
     # clangd
@@ -44,7 +44,7 @@ END
     sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 100
 fi
 
-if [ "Y$OPT_C" == "Yyes" ];then
+if [ "Y$OPT_CPP" == "Yyes" ];then
     apt-get install -y \
     valgrind clang-format cscope gdb
 fi
