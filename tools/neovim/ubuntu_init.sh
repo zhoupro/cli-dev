@@ -7,10 +7,16 @@ function c_ins(){
     sed -i "/plug#begin/aPlug 'sakhnik/nvim-gdb' , { 'branch': 'legacy' }" ~/.config/nvim/init.vim
     ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
         sed -i '/suggest.timeout/i  "languageserver": { \n "clangd": { \n "command": "clangd",\n"filetypes": ["c", "cpp", "objc", "objcpp"],\n"args": ["-background-index"]\n }\n },' ~/.config/nvim/coc-settings.json
+
+  ! ( grep -F "leetcode_solution_filetype" ~/.config/nvim/init.vim ) && \
+    cat >> ~/.config/nvim/init.vim <<END
+        let g:leetcode_solution_filetype='cpp'
+END
+
 }
 
 function leetcode_ins(){
-    ! (grep -F 'leetcode' ~/.config/nvim/init.vim &>/dev/null ) && \
+    ! (grep -F 'ianding1/leetcode' ~/.config/nvim/init.vim &>/dev/null ) && \
     pip3 install requests beautifulsoup4 && \
     sed -i "/plug#begin/aPlug 'ianding1/leetcode.vim'" ~/.config/nvim/init.vim
 
@@ -26,26 +32,25 @@ END
 function python_ins(){
     ! ( grep -F "python.linting.enabled" ~/.config/nvim/coc-settings.json ) && \
         sed -i '/suggest.timeout/i  "python.linting.enabled": false,' ~/.config/nvim/coc-settings.json
-    ! ( grep -F "leetcode_solution_filetype" ~/.config/nvim/init.vim ) && \
-    cat >> ~/.config/nvim/init.vim <<END
-        let g:leetcode_solution_filetype=python3
-END
-
 }
+
 function java_ins(){
     ! ( grep -F "leetcode_solution_filetype" ~/.config/nvim/init.vim ) && \
 cat >> ~/.config/nvim/init.vim <<END
-    let g:leetcode_solution_filetype=java
+    let g:leetcode_solution_filetype='java'
 END
 }
+
 function lua_ins(){
     ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
         sed -i '/suggest.timeout/i  "languageserver": {\n"lua": {\n"command": "lua-lsp",\n"filetypes": ["lua"]\n}\n },' ~/.config/nvim/coc-settings.json
 }
+
 function bash_ins(){
     ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
         sed -i '/suggest.timeout/i  "languageserver": {\n"bash": {\n"command": "bash-language-server",\n"args": ["start"],\n"filetypes": ["sh"]",ignoredRootPaths": ["~"]\n}\n},' ~/.config/nvim/coc-settings.json
 }
+
 function fe_ins(){
     echo "fe"
 }
@@ -62,7 +67,7 @@ function go_ins(){
         sed -i '/suggest.timeout/i  "languageserver": {\n"golang": {\n"command": "gopls",\n"filetypes": ["go"]\n}\n},' ~/.config/nvim/coc-settings.json
     ! ( grep -F "leetcode_solution_filetype" ~/.config/nvim/init.vim ) && \
     cat >> ~/.config/nvim/init.vim <<END
-    let g:leetcode_solution_filetype=golang
+    let g:leetcode_solution_filetype='golang'
 END
 
 }
