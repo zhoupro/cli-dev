@@ -219,30 +219,8 @@ cat >> ~/.config/nvim/init.vim <<END
 "defx
 augroup vimrc_defx
   autocmd!
-  autocmd FileType defx call s:defx_my_settings()                                  "Defx mappings
-  autocmd VimEnter * call s:setup_defx()
-augroup END
-let s:default_columns = 'indent:git:icons:filename'
-function! s:setup_defx() abort
-  call defx#custom#option('_', {
-        \ 'columns': s:default_columns,
-        \ 'show_ignored_files': 0,
-        \ 'buffer_name': '',
-        \ 'toggle': 1,
-        \ 'resume': 1,
-        \ })
-
-  call defx#custom#column('filename', {
-        \ 'min_width': 80,
-        \ 'max_width': 80,
-        \ })
-  call s:defx_open()
-endfunction
-
-function! s:defx_open(...) abort
-    sil! au! FileExplorer *
-    if s:isdir(expand('%')) | bd | exe 'Defx' | endif
-endfunction
+  autocmd FileType defx call s:defx_my_settings()    "Defx_mappings
+augroup
 
 function! s:defx_my_settings() abort
      " Define mappings
@@ -308,8 +286,8 @@ function! s:defx_my_settings() abort
      nnoremap <silent><buffer><expr> cd
      \ defx#do_action('change_vim_cwd')
 endfunction
-
 END
+
 if [ "Y$OPT_DICT" == "Yyes" ];then
     ! ( grep -F "QuerySel" ~/.config/nvim/init.vim ) && \
     cat >> ~/.config/nvim/init.vim <<END
@@ -359,3 +337,41 @@ function! s:show_documentation()
 endfunction
 nmap <leader>rn <Plug>(coc-rename)
 END
+
+if [ "Y$OPT_NO_DEFX_ICON" == "Yyes" ];then
+! (grep -F 'kristijanhusak/defx-icons' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/plug#begin/aPlug 'kristijanhusak/defx-icons'" ~/.config/nvim/init.vim && \
+    sed -i "/plug#begin/aPlug 'kristijanhusak/defx-git'" ~/.config/nvim/init.vim
+
+! (grep -F 'Defx_mappings' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/Defx_mappings/a autocmd VimEnter * call s:setup_defx()" ~/.config/nvim/init.vim
+
+
+
+! ( grep -F "indent:git:icons:filename" ~/.config/nvim/init.vim ) && \
+cat >> ~/.config/nvim/init.vim <<END
+    function! s:setup_defx() abort
+      call defx#custom#option('_', {
+            \ 'columns': s:default_columns,
+            \ 'show_ignored_files': 0,
+            \ 'buffer_name': '',
+            \ 'toggle': 1,
+            \ 'resume': 1,
+            \ })
+
+      call defx#custom#column('filename', {
+            \ 'min_width': 80,
+            \ 'max_width': 80,
+            \ })
+      call s:defx_open()
+    endfunction
+
+    function! s:defx_open(...) abort
+        sil! au! FileExplorer *
+        if s:isdir(expand('%')) | bd | exe 'Defx' | endif
+    endfunction
+
+    let s:default_columns = 'indent:git:icons:filename'
+END
+fi
+

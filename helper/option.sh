@@ -9,6 +9,7 @@ OPT_MAN=
 OPT_DICT=
 OPT_BASH=
 OPT_FE=
+OPT_NO_DEFX_ICON=
 
 for option
 do
@@ -24,5 +25,6 @@ do
         --with_dict)                          OPT_DICT=yes                   ;;
         --with_bash)                          OPT_BASH=yes                   ;;
         --with_fe)                          OPT_FE=yes                   ;;
+        --without_defx_icon)                          OPT_NO_DEFX_ICON=yes                   ;;
     esac
 done
