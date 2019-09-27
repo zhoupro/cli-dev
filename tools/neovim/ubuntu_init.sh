@@ -342,7 +342,7 @@ END
     sed -i "/plug#begin/aPlug 'kristijanhusak/defx-icons'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'kristijanhusak/defx-git'" ~/.config/nvim/init.vim
 
-! (grep -F 'Defx_mappings' ~/.config/nvim/init.vim &>/dev/null ) && \
+! (grep -F 'call s:setup_defx' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/Defx_mappings/a autocmd VimEnter * call s:setup_defx()" ~/.config/nvim/init.vim
 
 
