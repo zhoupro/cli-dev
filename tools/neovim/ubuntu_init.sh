@@ -220,7 +220,7 @@ cat >> ~/.config/nvim/init.vim <<END
 augroup vimrc_defx
   autocmd!
   autocmd FileType defx call s:defx_my_settings()    "Defx_mappings
-augroup
+augroup END
 
 function! s:defx_my_settings() abort
      " Define mappings
@@ -338,7 +338,6 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 END
 
-if [ "Y$OPT_NO_DEFX_ICON" == "Yyes" ];then
 ! (grep -F 'kristijanhusak/defx-icons' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'kristijanhusak/defx-icons'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'kristijanhusak/defx-git'" ~/.config/nvim/init.vim
@@ -373,5 +372,4 @@ cat >> ~/.config/nvim/init.vim <<END
 
     let s:default_columns = 'indent:git:icons:filename'
 END
-fi
 
