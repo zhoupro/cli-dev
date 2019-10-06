@@ -48,7 +48,7 @@ function lua_ins(){
 
 function bash_ins(){
     ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
-        sed -i '/suggest.timeout/i  "languageserver": {\n"bash": {\n"command": "bash-language-server",\n"args": ["start"],\n"filetypes": ["sh"]",ignoredRootPaths": ["~"]\n}\n},' ~/.config/nvim/coc-settings.json
+        sed -i '/suggest.timeout/i  "languageserver": {\n"bash": {\n"command": "bash-language-server",\n"args": ["start"],\n"filetypes": ["sh"],"ignoredRootPaths": ["~"]\n}\n},' ~/.config/nvim/coc-settings.json
 }
 
 function fe_ins(){
@@ -193,6 +193,10 @@ fi
 
 if [ "Y$OPT_PYTHON" == "Yyes" ];then
     nvim "+CocInstall -sync coc-python" +qall
+fi
+
+if [ "Y$OPT_VIM" == "Yyes" ];then
+    nvim "+CocInstall -sync coc-vimlsp" +qall
 fi
 
 ! which ctags >/dev/null && \

@@ -62,6 +62,9 @@ fi
 if [ "Y$OPT_PYTHON" == "Yyes" ];then
     sudo pip3 install jedi
 fi
+if [ "Y$OPT_VIM" == "Yyes" ];then
+    yarn global add vim-language-server
+fi
 
 if [ "Y$OPT_LUA" == "Yyes" ];then
     apt install -y lua5.3-dev luarocks lua5.3
