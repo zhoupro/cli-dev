@@ -58,10 +58,7 @@ function fe_ins(){
 function go_ins(){
     ! (grep -F 'sebdah/vim-delve' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'sebdah/vim-delve'" ~/.config/nvim/init.vim
-    if which go;then
-        pxy go get -u github.com/derekparker/delve/cmd/dlv
-        pxy go get -u golang.org/x/tools/cmd/gopls
-    fi
+    sed -i "/plug#begin/aPlug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }" ~/.config/nvim/init.vim
 
     ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
         sed -i '/suggest.timeout/i  "languageserver": {\n"golang": {\n"command": "gopls",\n"filetypes": ["go"]\n}\n},' ~/.config/nvim/coc-settings.json
@@ -330,7 +327,15 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> U :call <SID>show_documentation()<CR>
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+
+let g:go_def_mapping_enabled = 0
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
