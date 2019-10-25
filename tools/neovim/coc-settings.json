@@ -1,7 +1,7 @@
 {
   "suggest.triggerAfterInsertEnter": true,
   "suggest.noselect": false,
-  "suggest.timeout": 500,
+  "suggest.timeout": 3500,
   "suggest.minTriggerInputLength": 2,
   "suggest.echodocSupport": true,
   "suggest.enablePreview": false
