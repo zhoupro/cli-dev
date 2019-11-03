@@ -59,8 +59,9 @@ function fe_ins(){
 function go_ins(){
     ! (grep -F 'sebdah/vim-delve' ~/.config/nvim/init.vim &>/dev/null ) && \
     sed -i "/plug#begin/aPlug 'sebdah/vim-delve'" ~/.config/nvim/init.vim
-    sed -i "/plug#begin/aPlug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }" ~/.config/nvim/init.vim
+    sed -i "/plug#begin/aPlug 'fatih/vim-go'" ~/.config/nvim/init.vim
 
+    pxy nvim +'GoInstallBinaries' +qall
     ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
         sed -i '/suggest.timeout/i  "languageserver": {\n"golang": {\n"command": "gopls",\n"filetypes": ["go"]\n}\n},' ~/.config/nvim/coc-settings.json
     ! ( grep -F "leetcode_solution_filetype" ~/.config/nvim/init.vim ) && \
