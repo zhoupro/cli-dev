@@ -32,6 +32,7 @@ END
 function python_ins(){
     ! ( grep -F "python.linting.enabled" ~/.config/nvim/coc-settings.json ) && \
         sed -i '/suggest.timeout/i  "python.linting.enabled": false,' ~/.config/nvim/coc-settings.json
+        sed -i '/suggest.timeout/i  "python.jediEnabled": false,' ~/.config/nvim/coc-settings.json
 }
 
 function java_ins(){
