@@ -18,14 +18,13 @@ END
 function leetcode_ins(){
     ! (grep -F 'ianding1/leetcode' ~/.config/nvim/init.vim &>/dev/null ) && \
     pip3 install requests beautifulsoup4 && \
-    sed -i "/plug#begin/aPlug 'ianding1/leetcode.vim'" ~/.config/nvim/init.vim
+    sed -i "/plug#begin/aPlug 'zhoupro/leetcode.vim', { 'do': 'pip3 install -r requirements.txt' }" ~/.config/nvim/init.vim
 
     ! ( grep -F "LeetCodeList" ~/.config/nvim/init.vim ) && \
 cat >> ~/.config/nvim/init.vim <<END
     nnoremap <leader>ll :LeetCodeList<cr>
     nnoremap <leader>lt :LeetCodeTest<cr>
     nnoremap <leader>ls :LeetCodeSubmit<cr>
-    nnoremap <leader>li :LeetCodeSignIn<cr>
 END
 }
 
