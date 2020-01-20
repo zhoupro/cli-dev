@@ -66,6 +66,14 @@ if [ "Y$OPT_VIM" == "Yyes" ];then
     yarn global add vim-language-server
 fi
 
+if [ "Y$OPT_GO" == "Yyes" ];then
+
+    if [ ! -f /usr/local/bin/gopkgs  ];then
+	wget https://github.com/haya14busa/gopkgs/releases/download/v1.0.0/gopkgs_linux_amd64 && mv gopkgs_linux_amd64 /usr/local/bin/gopkgs && chmod u+x /usr/local/bin/gopkgs
+    fi
+
+fi
+
 if [ "Y$OPT_LUA" == "Yyes" ];then
     apt install -y lua5.3-dev luarocks lua5.3
     luarocks install --server=http://luarocks.org/dev lua-lsp
