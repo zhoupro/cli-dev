@@ -7,6 +7,11 @@ apt-get install -y gawk curl  zsh language-pack-zh-hans language-pack-zh-hans-ba
     autojump  nmap iproute2 net-tools sshfs axel netcat
 apt-get remove -y neovim exuberant-ctags
 npm install -g yarn
+
+#install lazygit
+if [ ! -f /usr/local/bin/lazygit ]; then
+    wget https://github.com/jesseduffield/lazygit/releases/download/v0.13/lazygit_0.13_Linux_x86_64.tar.gz && tar xzvf lazygit_0.13_Linux_x86_64.tar.gz &&  mv lazygit /usr/local/bin/ && chmod u+x /usr/local/bin/lazygit
+fi
 if [ "Y$OPT_MAN" == "Yyes" ];then
     [ -f  /etc/dpkg/dpkg.cfg.d/excludes ] && rm -rf /etc/dpkg/dpkg.cfg.d/excludes
     apt-get install -y \
