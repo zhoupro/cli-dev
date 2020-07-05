@@ -4,16 +4,21 @@
 #       CREATED: 2018/03/24 18时08分31秒
 #===============================================================================
 
-set -o nounset                                  # Treat unset variables as an error
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -| sed  's/env zsh -l//g')"
+if [ -d ~/.oh-my-zsh ];then
+    return
+fi
+
+sh -c "$(pxy wget --no-check-certificate https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -| sed  's/env zsh -l//g')"
 
 if [ ! -d "$HOME/.zplug" ];then
     git clone https://github.com/zplug/zplug.git ~/.zplug
     sudo usermod -s /bin/zsh root
 fi
+
 ! (grep -F 'zsh-autosuggestions' ~/.zshrc &>/dev/null )  && \
 git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" && \
 sed -E -i "s/plugins=\((.*)\)/plugins=\(\1 zsh-autosuggestions\)/g" ~/.zshrc
+
 
 ! (grep -F 'LC_ALL' ~/.env &>/dev/null )  && \
 echo 'export LC_ALL=zh_CN.UTF-8' >> "$HOME/.env" && \
@@ -52,11 +57,6 @@ END
 ! (grep -F '.env' ~/.zshrc &>/dev/null )  && \
     echo 'if [ -f ~/.env ];then; source ~/.env;fi' >> ~/.zshrc
 
-#themes
-! (grep -F 'avit' ~/.zshrc &>/dev/null )  && \
-    sed -i 's#ZSH_THEME="robbyrussell"#ZSH_THEME="avit"#g' ~/.zshrc
-
-
 ! (grep -F 'history-incremental-search-backward' ~/.cus_zshrc &>/dev/null )  && \
 cat >> ~/.cus_zshrc <<END
 
@@ -79,7 +79,4 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
 END
-# avit theme show ip address
-! (grep -F 'ifconfig' ~/.oh-my-zsh/themes/avit.zsh-theme &>/dev/null )  && \
-sed -i "/if.*n.*me.*then/i  ip=\`ifconfig | grep 'inet ' | grep -v 127.0.0.1 | awk '{print \$2}'\`" ~/.oh-my-zsh/themes/avit.zsh-theme && \
-sed -i '/if.*n.*me.*then/i me="%n@$ip"' ~/.oh-my-zsh/themes/avit.zsh-theme
+

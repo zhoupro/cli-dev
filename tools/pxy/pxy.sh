@@ -2,13 +2,13 @@
 export http_proxy=""
 export https_proxy=""
 
-if nmap localhost -p 8787 | grep open >/dev/null;then
-    export http_proxy=http://localhost:8787
-    export https_proxy=http://localhost:8787
-elif nmap host.docker.internal -p 8787 | grep open >/dev/null;then
+if nmap localhost -p 39571 | grep open >/dev/null;then
+    export http_proxy=http://localhost:39571
+    export https_proxy=http://localhost:39571
+elif nmap host.docker.internal -p 39571 | grep open >/dev/null;then
     ip=$(/sbin/ip route|awk '/default/ { print $3 }')
-    export http_proxy=http://$ip:8787
-    export https_proxy=http://$ip:8787
+    export http_proxy=http://$ip:39571
+    export https_proxy=http://$ip:39571
 elif  nmap localhost -p 8087 | grep open >/dev/null;then
     export http_proxy=http://localhost:8087
     export https_proxy=http://localhost:8087

@@ -22,7 +22,9 @@ call plug#begin('~/.local/share/nvim/plugged')
     "git
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
-    Plug 'gregsexton/gitv'
+    "
+    "
+    "Plug 'gregsexton/gitv'
     " transform
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-surround'

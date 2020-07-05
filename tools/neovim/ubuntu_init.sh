@@ -124,31 +124,35 @@ if [ ! -f /usr/local/bin/vim ];then
     sudo ln -s  ~/opt/soft/nvim/squashfs-root/usr/bin/nvim /usr/local/bin/nvim
     rm -rf nvim.appimage
 fi
-pip3 install neovim --upgrade
-pip2 install neovim --upgrade
+
+if [ ! "$(pip3 list | grep neovim)" ];then
+    pip3 install neovim --upgrade
+fi
 
 #-------------------------------------------------------------------------------
 # install vim-plug
 #-------------------------------------------------------------------------------
 if  [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ] ; then
-    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    pxy curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 #-------------------------------------------------------------------------------
 # copy init.vim to home dir, and install from command line
 #-------------------------------------------------------------------------------
-if [ ! -f ~/.vim/c_cnt.sh ] ; then
-    mkdir -p  ~/.config/nvim
-    cp tools/neovim/c_cnt.sh  ~/.config/nvim/c_cnt.sh
-    cp tools/neovim/add_swap.sh  ~/.config/nvim/add_swap.sh
-    cp tools/neovim/del_swap.sh  ~/.config/nvim/del_swap.sh
-fi
+# if [ ! -f ~/.vim/c_cnt.sh ] ; then
+#     mkdir -p  ~/.config/nvim
+#     cp tools/neovim/c_cnt.sh  ~/.config/nvim/c_cnt.sh
+#     cp tools/neovim/add_swap.sh  ~/.config/nvim/add_swap.sh
+#     cp tools/neovim/del_swap.sh  ~/.config/nvim/del_swap.sh
+# fi
+
 rm -f ~/.config/nvim/init.vim
 #common config
 mkdir -p ~/.config/nvim
 cp tools/neovim/init.vim ~/.config/nvim/init.vim
 cp tools/neovim/coc-settings.json ~/.config/nvim/coc-settings.json
+
 # copy
 if nmap localhost -p 8377 | grep open 2>/dev/null;then
     sed -in 's#NCHOST#localhost#g' ~/.config/nvim/init.vim
@@ -232,11 +236,11 @@ fi
     cat tools/neovim/cfg.ini >> ~/.config/nvim/init.vim
 ! ( grep -F "cus_ini_env" ~/.env ) && \
     cat tools/neovim/env.ini >> ~/.env
-[ ! -f /usr/local/bin/genUrl ] &&\
-    cp tools/neovim/genUrl.sh /usr/local/bin/genUrl && chmod u+x /usr/local/bin/genUrl
-[ ! -d /usr/local/vimsplain ] &&\
-    git clone https://github.com/pafcu/vimsplain.git  /usr/local/vimsplain
-rm -rf  ~/.gdbinit  && cp tools/neovim/gdbinit ~/.gdbinit
+# [ ! -f /usr/local/bin/genUrl ] &&\
+#     cp tools/neovim/genUrl.sh /usr/local/bin/genUrl && chmod u+x /usr/local/bin/genUrl
+# [ ! -d /usr/local/vimsplain ] &&\
+#     git clone https://github.com/pafcu/vimsplain.git  /usr/local/vimsplain
+#rm -rf  ~/.gdbinit  && cp tools/neovim/gdbinit ~/.gdbinit
 
 
 ! ( grep -F "defx_my_settings" ~/.config/nvim/init.vim ) && \
@@ -313,15 +317,6 @@ function! s:defx_my_settings() abort
 endfunction
 END
 
-if [ "Y$OPT_DICT" == "Yyes" ];then
-    ! ( grep -F "QuerySel" ~/.config/nvim/init.vim ) && \
-    cat >> ~/.config/nvim/init.vim <<END
-    function! QuerySel()
-       execute "!sdcv  " . @0
-    endfunctio
-    nmap  <leader>w :call QuerySel() <CR>
-END
-fi
 
 #coc setting
 ! ( grep -F "show_documentation" ~/.config/nvim/init.vim ) && \

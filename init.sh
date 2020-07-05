@@ -10,16 +10,20 @@ source "./helper/installer.sh"
 source "./helper/option.sh"
 ins dep
 ins pxy
-ins zsh
-ins hyper
-ins neovim
-ins tmux
-ins karabiner
-ins ssh
-ins clipper
-ins phoenix
+
 if [ "Y$OPT_JAVA" == "Yyes" ];then
     ins jdk
 fi
-zsh
+
+
+# main tools start
+ins tmux
+ins zsh
+ins neovim
+#main tools end
+ins hyper
+ins karabiner
+ins ssh
+ins phoenix
+ins clipper
 # vim: set ts=4 sw=4 tw=0 et :

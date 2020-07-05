@@ -1,6 +1,6 @@
 # cli develop env
 ### os
-* ubuntu
+* ubuntu20.04
 ### language
 - php
 - c/c++
