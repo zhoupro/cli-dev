@@ -15,6 +15,47 @@ END
 
 }
 
+function sql_ins(){
+
+    rm ~/.config/sqls -rf && \
+    mkdir -p ~/.config/sqls/ && \
+    cp tools/neovim/config.yml  ~/.config/sqls/
+
+    ! (grep -F 'lighttiger2505/sqls.vim' ~/.config/nvim/init.vim &>/dev/null ) && \
+    sed -i "/plug#begin/aPlug 'lighttiger2505/sqls.vim'" ~/.config/nvim/init.vim && \
+    sed -i "/plug#begin/aPlug 'prabirshrestha/vim-lsp'" ~/.config/nvim/init.vim && \
+    sed -i "/plug#begin/aPlug 'prabirshrestha/async.vim'" ~/.config/nvim/init.vim
+
+    ! ( grep -F "config.yml" ~/.config/nvim/coc-settings.json ) && \
+        sed -i '/languageserver/a  "sql": {\n"command": "sqls",\n"args":["-config", "/root/.config/sqls/config.yml"],\n"filetypes": ["sql"]\n},' ~/.config/nvim/coc-settings.json
+
+    ! ( grep -F "LspSqls" ~/.config/nvim/init.vim ) && \
+cat >> ~/.config/nvim/init.vim <<END
+if executable('sqls')
+    augroup LspSqls
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+        \   'name': 'sqls',
+        \   'cmd': {server_info->['sqls']},
+        \   'whitelist': ['sql'],
+        \   'workspace_config': {
+        \     'sqls': {
+        \       'connections': [
+        \         {
+        \           'driver': 'mysql',
+        \           'dataSourceName': 'root:zsz123@tcp(127.0.0.1:3306)/test',
+        \         },
+        \       ],
+        \     },
+        \   },
+        \ })
+    augroup END
+endif
+END
+
+}
+
+
 function leetcode_ins(){
     ! (grep -F 'zhoupro/leetcode' ~/.config/nvim/init.vim &>/dev/null ) && \
     pip3 install requests beautifulsoup4 && \
@@ -168,8 +209,10 @@ fi
 
 #language
 
+
 if [ "Y$OPT_GO" == "Yyes" ];then
     go_ins
+	sql_ins
 fi
 
 if [ "Y$OPT_PHP" == "Yyes" ];then
