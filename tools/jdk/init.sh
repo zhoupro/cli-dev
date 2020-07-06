@@ -20,6 +20,9 @@ function jdk(){
         export PATH="/usr/lib/jvm/jdk${JDK_VERSION}/bin:$PATH"
     fi
 }
+
+
 if [ ! -f /usr/lib/jvm/jdk${JDK_VERSION}/bin/java ];then
-    jdk
+    #jdk
+    apt install -y openjdk-14-jdk
 fi

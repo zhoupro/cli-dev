@@ -95,10 +95,7 @@ function python_ins(){
 }
 
 function java_ins(){
-    ! ( grep -F "leetcode_solution_filetype" ~/.config/nvim/init.vim ) && \
-cat >> ~/.config/nvim/init.vim <<END
-    let g:leetcode_solution_filetype='java'
-END
+    return
 }
 
 function lua_ins(){

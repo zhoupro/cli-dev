@@ -70,23 +70,24 @@ if [ "Y$OPT_FE" == "Yyes" ];then
     sudo npm install -g vscode-css-languageserver-bin
 fi
 
-if [ "Y$OPT_JAVA" == "Yyes" ];then
-    OLD_DIR=`pwd`
-    if [ ! -d ~/.config/coc/extensions/coc-java-data/server/config_linux ];then
-        mkdir -p  ~/.config/coc/extensions/coc-java-data/server && \
-        cd  ~/.config/coc/extensions/coc-java-data/server && \
-        axel https://download.eclipse.org/jdtls/milestones/0.35.0/jdt-language-server-0.35.0-201903142358.tar.gz && \
-        tar xf jdt-language-server-0.35.0-201903142358.tar.gz && rm jdt-language-server*.tar.gz
-    fi
-    cd $OLD_DIR
-    if [ ! -d /opt/apache-maven-3.6.1 ];then
-        # install maven
-        cd /opt && \
-        wget http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz && \
-            tar xf  apache-maven-3.6.1-bin.tar.gz && \
-            export PATH=/opt/apache-maven-3.6.1/bin:$PATH && \
-            echo "export PATH=\"/opt/apache-maven-3.6.1:$PATH\"" >>  "$HOME/.cus_zshrc"
-        cd $OLD_DIR
-    fi
-fi
+apt install maven -y
+# if [ "Y$OPT_JAVA" == "Yyes" ];then
+#     OLD_DIR=`pwd`
+#     if [ ! -d ~/.config/coc/extensions/coc-java-data/server/config_linux ];then
+#         mkdir -p  ~/.config/coc/extensions/coc-java-data/server && \
+#         cd  ~/.config/coc/extensions/coc-java-data/server && \
+#         axel https://download.eclipse.org/jdtls/milestones/0.35.0/jdt-language-server-0.35.0-201903142358.tar.gz && \
+#         tar xf jdt-language-server-0.35.0-201903142358.tar.gz && rm jdt-language-server*.tar.gz
+#     fi
+#     cd $OLD_DIR
+#     if [ ! -d /opt/apache-maven-3.6.1 ];then
+#         # install maven
+#         cd /opt && \
+#         wget http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/3.6.1/binaries/apache-maven-3.6.1-bin.tar.gz && \
+#             tar xf  apache-maven-3.6.1-bin.tar.gz && \
+#             export PATH=/opt/apache-maven-3.6.1/bin:$PATH && \
+#             echo "export PATH=\"/opt/apache-maven-3.6.1:$PATH\"" >>  "$HOME/.cus_zshrc"
+#         cd $OLD_DIR
+#     fi
+# fi
 
