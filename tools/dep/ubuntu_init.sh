@@ -38,6 +38,7 @@ if [ "Y$OPT_BASH" == "Yyes" ];then
 fi
 
 if [ "Y$OPT_PHP" == "Yyes" ];then
+    apt install php -y
     npm i -g intelephense
 fi
 

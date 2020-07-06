@@ -138,8 +138,8 @@ function php_ins(){
 END
     chmod u+x  /usr/local/bin/phpxd
 
-    ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
-        sed -i '/suggest.timeout/i  "languageserver": { \n"intelephense": {\n"command": "intelephense",\n"args": ["--stdio"],\n"filetypes": ["php"],\n"initializationOptions": {\n"storagePath": "/tmp/intelephense"\n }\n }\n},' ~/.config/nvim/coc-settings.json
+    ! ( grep -F "intelephense" ~/.config/nvim/coc-settings.json ) && \
+        sed -i '/languageserver/a  "intelephense": {\n"command": "intelephense",\n"args": ["--stdio"],\n"filetypes": ["php"],\n"initializationOptions": {\n"storagePath": "/tmp/intelephense"\n }\n },' ~/.config/nvim/coc-settings.json
 }
 
 
