@@ -5,13 +5,9 @@ function c_ins(){
     sed -i "/plug#begin/aPlug 'gauteh/vim-cppman'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'rhysd/vim-clang-format'" ~/.config/nvim/init.vim && \
     sed -i "/plug#begin/aPlug 'sakhnik/nvim-gdb' , { 'branch': 'legacy' }" ~/.config/nvim/init.vim
-    ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
-        sed -i '/suggest.timeout/i  "languageserver": { \n "clangd": { \n "command": "clangd",\n"filetypes": ["c", "cpp", "objc", "objcpp"],\n"args": ["-background-index"]\n }\n },' ~/.config/nvim/coc-settings.json
 
-  ! ( grep -F "leetcode_solution_filetype" ~/.config/nvim/init.vim ) && \
-    cat >> ~/.config/nvim/init.vim <<END
-        let g:leetcode_solution_filetype='cpp'
-END
+    #! ( grep -F "objcpp" ~/.config/nvim/coc-settings.json ) && \
+    #sed -i '/languageserver/a  "clangd": {\n"command": "clangd",\n"args":["-background-index"],\n"filetypes": ["c", "cpp", "objc", "objcpp"]\n},' ~/.config/nvim/coc-settings.json
 
 }
 
@@ -125,8 +121,8 @@ function go_ins(){
     sed -i "/plug#begin/aPlug 'fatih/vim-go'" ~/.config/nvim/init.vim
 
     pxy nvim +'GoInstallBinaries' +qall
-    ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
-        sed -i '/suggest.timeout/i  "languageserver": {\n"golang": {\n"command": "gopls",\n"filetypes": ["go"]\n}\n},' ~/.config/nvim/coc-settings.json
+    ! ( grep -F "gopls" ~/.config/nvim/coc-settings.json ) && \
+        sed -i '/languageserver/a  "golang": {\n"command": "gopls",\n"filetypes": ["go"]\n},' ~/.config/nvim/coc-settings.json
     ! ( grep -F "leetcode_solution_filetype" ~/.config/nvim/init.vim ) && \
     cat >> ~/.config/nvim/init.vim <<END
     let g:leetcode_solution_filetype='golang'
@@ -261,6 +257,10 @@ fi
 
 if [ "Y$OPT_PYTHON" == "Yyes" ];then
     nvim "+CocInstall -sync coc-python" +qall
+fi
+
+if [ "Y$OPT_CPP" == "Yyes" ];then
+    nvim "+CocInstall -sync coc-clangd" +qall
 fi
 
 if [ "Y$OPT_VIM" == "Yyes" ];then

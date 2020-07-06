@@ -24,25 +24,8 @@ fi
 
 #install clangd8 url:https://apt.llvm.org/
 if [ "Y$OPT_CPP" == "Yyes" ];then
-    ! ( grep -F "llvm-toolchain-" /etc/apt/sources.list ) && \
-    cat >> /etc/apt/sources.list <<END
-    # clangd
-    # i386 not available
-    deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
-    deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic main
-    # 7
-    deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-7 main
-    deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-7 main
-    # 8
-    deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main
-    deb-src http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main
-END
-    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add - &&\
-    apt update && apt install -y clang-tools-8 &&\
-    sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 100
-
     apt-get install -y \
-    valgrind clang-format cscope gdb
+    valgrind clangd cscope gdb
 fi
 
 

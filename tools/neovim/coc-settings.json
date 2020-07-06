@@ -4,5 +4,12 @@
   "suggest.timeout": 3500,
   "suggest.minTriggerInputLength": 2,
   "suggest.echodocSupport": true,
+  "languageserver": {
+
+	"test":{        
+	  "command": "test",               
+	  "filetypes": ["test"]    
+	  } 
+  },
   "suggest.enablePreview": false
 }
