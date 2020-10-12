@@ -29,49 +29,29 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
-    " snips
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-    " 语言语法高亮
-    Plug 'sheerun/vim-polyglot'
     " num rep
     Plug 'glts/vim-magnum'
     Plug 'glts/vim-radical'
     " mru
     Plug 'vim-scripts/mru.vim'
-    " start screen
-    Plug 'mhinz/vim-startify'
-    " add header
-    Plug 'alpertuna/vim-header'
     " select
     Plug 'terryma/vim-expand-region'
-    "nginx
-    Plug 'chr4/nginx.vim'
     " icon
     Plug 'ryanoasis/vim-devicons'
-    " tmux
-    Plug 'christoomey/vim-tmux-navigator'
-    " emmet
-    Plug 'mattn/emmet-vim'
     "indent
     Plug 'Yggdroot/indentLine'
     "undo
     Plug 'mbbill/undotree'
     Plug 'wellle/targets.vim'
-    Plug 'forevernull/vim-json-format'
-    Plug 'paroxayte/vwm.vim'
     Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 " our <leader> will be the space key
 let mapleader=","
 set noswapfile
-map <leader>js :call json_format#parse("l")<cr>
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-"words
-"set dictionary=/usr/share/dict/words
 " Highlight search results
 set hlsearch
 " Makes search act like search in modern browsers
@@ -112,48 +92,6 @@ endfunc
 autocmd VimEnter * noremap  <leader>t  :call RunProgram()<CR>
 " ctags
 set tags=tags;  " ; 不可省略，表示若当前目录中不存在tags， 则在父目录中寻找。
-nmap <silent> ]s  :call GenCscope() <CR>
-func! GenCscope()
-    exec "w"
-    if &filetype == 'php'
-        exec '!find . -name "*.php"  > cscope.files'
-        exec "!cscope -bkq -i cscope.files"
-        exec "!(cat cscope.files |  ctags -f tags --languages=php --php-kinds=ctif  --fields=+aimS -L -)"
-    elseif &filetype == 'c' || &filetype == 'cpp' || &filetype == 'h' || &filetype  == 'cc' || &filetype == 'c++'
-        exec '!find . -name "*.c" -o -name "*.h" -o -name "*.cpp" -o -name "*.cc" -o -name "*.c++" > cscope.files'
-        exec "!cscope -bkq -i cscope.files"
-        exec "!(cat cscope.files | ctags -f tags --c++-kinds=+p --fields=+iaS --extras=+q -L -)"
-    endif
-endfunc
-
-if has("cscope")
-    set cscopetag   " 使支持用 Ctrl+]  和 Ctrl+t 快捷键在代码间跳来跳去
-    " check cscope for definition of a symbol before checking ctags:
-    " set to 1 if you want the reverse search order.
-     set csto=1
-     nmap [s :cs find s <C-R>=expand("<cword>")<CR><CR>
-     nmap [g :cs find g <C-R>=expand("<cword>")<CR><CR>
-     nmap [c :cs find c <C-R>=expand("<cword>")<CR><CR>
-     nmap [t :cs find t <C-R>=expand("<cword>")<CR><CR>
-     nmap [e :cs find e <C-R>=expand("<cword>")<CR><CR>
-     nmap [f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-     nmap [i :cs find i <C-R>=expand("<cfile>")<CR>$<CR>
-     nmap [d :cs find d <C-R>=expand("<cword>")<CR><CR>
-endif
-" Autoloading Cscope Database
-function! LoadCscope()
-  let db = findfile("cscope.out", ".;")
-  if (!empty(db))
-    let path = strpart(db, 0, match(db, "/cscope.out$"))
-    set nocscopeverbose " suppress 'duplicate connection' error
-    exe "cs add " . db . " " . path
-    set cscopeverbose
-  " else add the database pointed to by environment variable 
-  elseif $CSCOPE_DB != "" 
-    cs add $CSCOPE_DB
-  endif
-endfunction
-au BufEnter /* call LoadCscope()
 
 " for debug
 set nu
@@ -163,30 +101,9 @@ set list
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>e :MRU<CR>
 
-" PHP debug
-let g:vdebug_options= {
-    \    "port" : 9010,
-    \    "server" : '0.0.0.0',
-    \    "timeout" : 100,
-    \    "on_close" : 'detach',
-    \    "break_on_open" : 1,
-    \    "ide_key" : 'xdebug',
-    \    "path_maps" : {},
-    \    "debug_window_level" : 0,
-    \    "debug_file_level" : 0,
-    \    "debug_file" : "",
-    \    "watch_window_style" : 'expanded',
-    \    "marker_default" : '⬦',
-    \    "marker_closed_tree" : '▸',
-    \    "marker_open_tree" : '▾'
-    \}
-highlight DbgBreakptLine ctermbg=none ctermfg=none
-highlight DbgBreakptSign ctermbg=none ctermfg=10
-highlight DbgCurrentLine ctermbg=none ctermfg=none
-highlight DbgCurrentSign ctermbg=none ctermfg=red
-
 nnoremap <leader>y :call system('NCCOMMAND  NCHOST 8377', @0)<CR>
 nnoremap <leader>] :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
+
 " color change fix in tmux
 set t_Co=256
 "switch windows
@@ -208,20 +125,13 @@ if has('nvim')
   vnoremap <leader>l <Esc><c-w>l
   " Normal mode:
   nnoremap <leader>h <c-w>h
-  nnoremap <leader>j <c-w>ji
+  nnoremap <leader>j <c-w>j
   nnoremap <leader>k <c-w>k
   nnoremap <leader>l <c-w>l
 endif
-set scrolloff=5
-let g:header_auto_add_header = 0
 
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
 " backward
 noremap \ ,
-let g:polyglot_disabled = ['markdown']
 
 " buf tab
 let g:airline#extensions#tabline#enabled = 1
@@ -241,6 +151,7 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --hidden --ignore-case --ignore-file ~/.fzf_ignore --no-heading --color=always '.<q-args>, 1,
@@ -248,10 +159,6 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
   \   <bang>0)
 nnoremap <silent> <Leader>a :Rg <C-R><C-W><CR>
-if has("persistent_undo")
-    set undodir=~/.undodir/
-    set undofile
-endif
 
 " tab 替换为4个空格
 set tabstop=4
@@ -268,6 +175,7 @@ function! AppendModeline()
   call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
 " add current file to ignore file
 command Gg call system('echo '.expand("%"). '>> .git/info/exclude')
 " remove current file from ignore file
@@ -277,28 +185,5 @@ fu! s:isdir(dir) abort
     return !empty(a:dir) && (isdirectory(a:dir) ||
              \ (!empty($SYSTEMDRIVE) && isdirectory('/'.tolower($SYSTEMDRIVE[0]).a:dir)))
 endfu
+
 set foldmethod=manual
-
-let s:bot = {
-\ 'name': 'bot',
-\ 'set_all': ['nonu', 'nornu'],
-\ 'bot':
-\ {
-\ 'h_sz': 12,
-\ 'init': [ 'term zsh' ]
-\ }
-\ }
-let g:vwm#layouts = [s:bot]
-
-" clang_format
-let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -4,
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++11"}
-
-" map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-" Toggle auto formatting:
-nmap <Leader>C :ClangFormatAutoToggle<CR>

@@ -1,54 +1,12 @@
 #!/bin/bash
 function c_ins(){
-    ! (grep -F 'nvim-gdb' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/plug#begin/aPlug 'vim-scripts/a.vim'" ~/.config/nvim/init.vim && \
-    sed -i "/plug#begin/aPlug 'gauteh/vim-cppman'" ~/.config/nvim/init.vim && \
-    sed -i "/plug#begin/aPlug 'rhysd/vim-clang-format'" ~/.config/nvim/init.vim && \
-    sed -i "/plug#begin/aPlug 'sakhnik/nvim-gdb' , { 'branch': 'legacy' }" ~/.config/nvim/init.vim
 
-    #! ( grep -F "objcpp" ~/.config/nvim/coc-settings.json ) && \
-    #sed -i '/languageserver/a  "clangd": {\n"command": "clangd",\n"args":["-background-index"],\n"filetypes": ["c", "cpp", "objc", "objcpp"]\n},' ~/.config/nvim/coc-settings.json
+	echo "no"
 
 }
 
 function sql_ins(){
-
-    rm ~/.config/sqls -rf && \
-    mkdir -p ~/.config/sqls/ && \
-    cp tools/neovim/config.yml  ~/.config/sqls/
-
-    ! (grep -F 'lighttiger2505/sqls.vim' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/plug#begin/aPlug 'lighttiger2505/sqls.vim'" ~/.config/nvim/init.vim && \
-    sed -i "/plug#begin/aPlug 'prabirshrestha/vim-lsp'" ~/.config/nvim/init.vim && \
-    sed -i "/plug#begin/aPlug 'prabirshrestha/async.vim'" ~/.config/nvim/init.vim
-
-    ! ( grep -F "config.yml" ~/.config/nvim/coc-settings.json ) && \
-        sed -i '/languageserver/a  "sql": {\n"command": "sqls",\n"args":["-config", "/root/.config/sqls/config.yml"],\n"filetypes": ["sql"]\n},' ~/.config/nvim/coc-settings.json
-
-    ! ( grep -F "LspSqls" ~/.config/nvim/init.vim ) && \
-cat >> ~/.config/nvim/init.vim <<END
-if executable('sqls')
-    augroup LspSqls
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-        \   'name': 'sqls',
-        \   'cmd': {server_info->['sqls']},
-        \   'whitelist': ['sql'],
-        \   'workspace_config': {
-        \     'sqls': {
-        \       'connections': [
-        \         {
-        \           'driver': 'mysql',
-        \           'dataSourceName': 'root:zsz123@tcp(127.0.0.1:3306)/test',
-        \         },
-        \       ],
-        \     },
-        \   },
-        \ })
-    augroup END
-endif
-END
-
+       echo "no" 
 }
 
 
@@ -99,8 +57,7 @@ function java_ins(){
 }
 
 function lua_ins(){
-    ! ( grep -F "languageserver" ~/.config/nvim/coc-settings.json ) && \
-        sed -i '/suggest.timeout/i  "languageserver": {\n"lua": {\n"command": "lua-lsp",\n"filetypes": ["lua"]\n}\n },' ~/.config/nvim/coc-settings.json
+	echo "no"
 }
 
 function bash_ins(){
@@ -128,18 +85,7 @@ END
 }
 
 function php_ins(){
-    ! (grep -F 'vim-php-cs-fixer' ~/.config/nvim/init.vim &>/dev/null ) && \
-    sed -i "/plug#begin/aPlug 'stephpy/vim-php-cs-fixer'" ~/.config/nvim/init.vim && \
-    sed -i "/plug#begin/aPlug 'vim-vdebug/vdebug'" ~/.config/nvim/init.vim
-    cat > /usr/local/bin/phpxd <<END
-    #!/bin/zsh
-    export XDEBUG_CONFIG="idekey=xdebug remote_host=localhost"
-    php "\$@"
-END
-    chmod u+x  /usr/local/bin/phpxd
-
-    ! ( grep -F "intelephense" ~/.config/nvim/coc-settings.json ) && \
-        sed -i '/languageserver/a  "intelephense": {\n"command": "intelephense",\n"args": ["--stdio"],\n"filetypes": ["php"],\n"initializationOptions": {\n"storagePath": "/tmp/intelephense"\n }\n },' ~/.config/nvim/coc-settings.json
+	echo "no"
 }
 
 
@@ -147,15 +93,15 @@ END
 # install neovim
 if [ ! -f /usr/local/bin/vim ];then
     if [ ! -f nvim.appimage ];then
-        wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+        pxy wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
     fi
     sudo chmod u+x nvim.appimage && sudo ./nvim.appimage --appimage-extract
-    mkdir -p ~/opt/soft
-    sudo mv squashfs-root ~/opt/soft/nvim
+    mkdir -p ~/opt/soft/nvim
+    sudo mv squashfs-root/* ~/opt/soft/nvim/
     rm -f /usr/local/bin/vim
-    sudo ln -s  ~/opt/soft/nvim/squashfs-root/usr/bin/nvim /usr/local/bin/vim
+    sudo ln -s  ~/opt/soft/nvim/usr/bin/nvim /usr/local/bin/vim
     rm -f /usr/local/bin/nvim
-    sudo ln -s  ~/opt/soft/nvim/squashfs-root/usr/bin/nvim /usr/local/bin/nvim
+    sudo ln -s  ~/opt/soft/nvim/usr/bin/nvim /usr/local/bin/nvim
     rm -rf nvim.appimage
 fi
 
@@ -171,15 +117,6 @@ if  [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ] ; then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-#-------------------------------------------------------------------------------
-# copy init.vim to home dir, and install from command line
-#-------------------------------------------------------------------------------
-# if [ ! -f ~/.vim/c_cnt.sh ] ; then
-#     mkdir -p  ~/.config/nvim
-#     cp tools/neovim/c_cnt.sh  ~/.config/nvim/c_cnt.sh
-#     cp tools/neovim/add_swap.sh  ~/.config/nvim/add_swap.sh
-#     cp tools/neovim/del_swap.sh  ~/.config/nvim/del_swap.sh
-# fi
 
 rm -f ~/.config/nvim/init.vim
 #common config
@@ -201,7 +138,6 @@ else
 fi
 
 #language
-
 
 if [ "Y$OPT_GO" == "Yyes" ];then
     go_ins
@@ -276,12 +212,6 @@ fi
     cat tools/neovim/cfg.ini >> ~/.config/nvim/init.vim
 ! ( grep -F "cus_ini_env" ~/.env ) && \
     cat tools/neovim/env.ini >> ~/.env
-# [ ! -f /usr/local/bin/genUrl ] &&\
-#     cp tools/neovim/genUrl.sh /usr/local/bin/genUrl && chmod u+x /usr/local/bin/genUrl
-# [ ! -d /usr/local/vimsplain ] &&\
-#     git clone https://github.com/pafcu/vimsplain.git  /usr/local/vimsplain
-#rm -rf  ~/.gdbinit  && cp tools/neovim/gdbinit ~/.gdbinit
-
 
 ! ( grep -F "defx_my_settings" ~/.config/nvim/init.vim ) && \
 cat >> ~/.config/nvim/init.vim <<END

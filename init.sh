@@ -20,10 +20,5 @@ fi
 ins tmux
 ins zsh
 ins neovim
-#main tools end
-ins hyper
-ins karabiner
-ins ssh
-ins phoenix
-ins clipper
+#ins ssh
 # vim: set ts=4 sw=4 tw=0 et :

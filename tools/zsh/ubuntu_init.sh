@@ -20,11 +20,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-$HOME/
 sed -E -i "s/plugins=\((.*)\)/plugins=\(\1 zsh-autosuggestions\)/g" ~/.zshrc
 
 
-! (grep -F 'LC_ALL' ~/.env &>/dev/null )  && \
-echo 'export LC_ALL=zh_CN.UTF-8' >> "$HOME/.env" && \
-echo 'export LANG=zh_CN.UTF-8' >> "$HOME/.env" && \
-echo "export PATH=\$PATH:$HOME/.composer/vendor/bin" >> "$HOME/.env"
-
 
 ! (grep -F 'zsh-syntax-highlighting' ~/.cus_zshrc &>/dev/null )  && \
 cat >> ~/.cus_zshrc <<END
@@ -53,30 +48,3 @@ man() {
           man "\$@"
 }
 END
-#env
-! (grep -F '.env' ~/.zshrc &>/dev/null )  && \
-    echo 'if [ -f ~/.env ];then; source ~/.env;fi' >> ~/.zshrc
-
-! (grep -F 'history-incremental-search-backward' ~/.cus_zshrc &>/dev/null )  && \
-cat >> ~/.cus_zshrc <<END
-
-bindkey -v
-
-bindkey '^P' up-history
-bindkey '^N' down-history
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
-
-function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{\$fg_bold[yellow]%} [% NORMAL]%  %{\$reset_color%}"
-    RPS1="\${\${KEYMAP/vicmd/\$VIM_PROMPT}/(main|viins)/} \$EPS1"
-    zle reset-prompt
-}
-
-zle -N zle-line-init
-zle -N zle-keymap-select
-export KEYTIMEOUT=1
-END
-
