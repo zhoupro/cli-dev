@@ -1,4 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
+   Plug 'puremourning/vimspector', { 'dir': '~/.vim/vimspector-config', 'do': './install_gadget.py ' }
    "complete
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "outline
