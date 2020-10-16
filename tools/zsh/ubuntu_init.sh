@@ -8,10 +8,11 @@ if [ -d ~/.oh-my-zsh ];then
     return
 fi
 
-sh -c "$(pxy wget --no-check-certificate https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -| sed  's/env zsh -l//g')"
+
+sh -c "$(pxy curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 if [ ! -d "$HOME/.zplug" ];then
-    git clone https://github.com/zplug/zplug.git ~/.zplug
+    pxy git clone https://github.com/zplug/zplug.git ~/.zplug
     sudo usermod -s /bin/zsh root
 fi
 
@@ -32,8 +33,11 @@ END
 #zsh plugin
 ! (grep -F '.cus_zshrc' ~/.zshrc &>/dev/null )  && \
     echo 'if [ -f ~/.cus_zshrc ];then; source ~/.cus_zshrc;fi' >> ~/.zshrc && \
+    echo 'if [ -f ~/.env ];then; source ~/.env;fi' >> ~/.zshrc && \
     echo 'zplug install' >> ~/.zshrc
 
+
+#man highlight
 ! (grep -F 'LESS_TERMCAP_mb' ~/.env &>/dev/null )  && \
 cat >> ~/.env <<END
 man() {
@@ -47,4 +51,17 @@ man() {
      LESS_TERMCAP_us=\$(printf "\\e[1;32m") \\
           man "\$@"
 }
+END
+
+
+#zsh pure
+if [ ! -d "$HOME/.zsh/pure" ];then
+    pxy git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+fi
+
+! (grep -F 'pure' ~/.zshrc &>/dev/null )  && \
+cat >> ~/.zshrc <<END
+fpath+=\$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
 END

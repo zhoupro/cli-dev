@@ -1,139 +1,61 @@
 {
-
-  "configurations": {
-
-    "Python: Attach To Vim": {
-
-      "variables": {
-
-        "port": "5678",
-
-        "host": "localhost"
-
-      },
-
-      "adapter": "multi-session",
-
-      "configuration": {
-
-        "request": "attach"
-
-      }
-
-    },
-
-    "Python: Run current script": {
-
+"configurations": {
+    "Py: Run current script": {
       "adapter": "debugpy",
-
       "configuration": {
-
         "request": "launch",
-
         "program": "${file}",
-
         "args": [ "*${args:--update-gadget-config}" ],
-
         "justMyCode#json": "${justMyCode:false}"
-
       }
-
     },
 
-
-
-    "cpp Launch": {
-
+    "linux debug": {
       "adapter": "vscode-cpptools",
-
      "configuration": {
-
         "request": "launch",
-
         "args": [ "*${args:-x /root/workspace/linux-0.12/oslab/bochs/.gdbrc}" ],
-
         "program": "/root/workspace/linux-0.12/linux-0.12/tools/system",
-
         "MIMode": "gdb",
-
         "stopAtEntry": true,
-
         "miDebuggerServerAddress": "localhost:1234"
-
-
-
-
-
       }
-
      },
 
      "run go": {
-
       "adapter": "vscode-go",
-
       "configuration": {
-
         "request": "launch",
-
         "program": "${fileDirname}",
-
         "mode": "debug",
-
         "dlvToolPath": "$HOME/go/bin/dlv"
-
       }
-
     },
 
     "Listen for XDebug": {
-
       "adapter": "vscode-php-debug",
-
       "configuration": {
-
         "name": "Listen for XDebug",
-
         "type": "php",
-
         "request": "launch",
-
         "port": 9000,
-
         "stopOnEntry": false,
-
         "pathMappings": {
-
           "/var/www/html": "${workspaceRoot}"
-
         }
-
       }
-
     },
 
     "Launch currently open script": {
-
       "adapter": "vscode-php-debug",
-
       "configuration": {
-
         "name": "Launch currently open script",
-
         "type": "php",
-
         "request": "launch",
-
         "program": "${file}",
-
         "cwd": "${fileDirname}",
-
         "port": 9000
-
       }
-
     }
-
 }
-
 }

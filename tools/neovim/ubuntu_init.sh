@@ -184,16 +184,27 @@ if [ "Y$OPT_FE" == "Yyes" ];then
     nvim "+CocInstall -sync coc-html coc-css coc-tsserver coc-emmet" +qall
 fi
 
+if [ "Y$OPT_PHP" == "Yyes" ];then
+    ~/.local/share/nvim/plugged/vimspector/install_gadget.py --force-enable-php
+fi
+
+if [ "Y$OPT_GO" == "Yyes" ];then
+    ~/.local/share/nvim/plugged/vimspector/install_gadget.py --enable-go
+fi
+
+
 if [ "Y$OPT_JAVA" == "Yyes" ];then
     nvim "+CocInstall -sync coc-java" +qall
 fi
 
 if [ "Y$OPT_PYTHON" == "Yyes" ];then
     nvim "+CocInstall -sync coc-python" +qall
+    ~/.local/share/nvim/plugged/vimspector/install_gadget.py --enable-python
 fi
 
 if [ "Y$OPT_CPP" == "Yyes" ];then
     nvim "+CocInstall -sync coc-clangd" +qall
+    ~/.local/share/nvim/plugged/vimspector/install_gadget.py --enable-c
 fi
 
 if [ "Y$OPT_VIM" == "Yyes" ];then
@@ -208,10 +219,6 @@ fi
 ! ( grep -F "highlight Normal ctermbg=None" ~/.config/nvim/init.vim ) && \
     echo "highlight Normal ctermbg=None" >> ~/.config/nvim/init.vim
 
-! ( grep -F "cus_ini_vim" ~/.config/nvim/init.vim ) && \
-    cat tools/neovim/cfg.ini >> ~/.config/nvim/init.vim
-! ( grep -F "cus_ini_env" ~/.env ) && \
-    cat tools/neovim/env.ini >> ~/.env
 
 ! ( grep -F "defx_my_settings" ~/.config/nvim/init.vim ) && \
 cat >> ~/.config/nvim/init.vim <<END
@@ -370,4 +377,6 @@ cat >> ~/.config/nvim/init.vim <<END
 
     let s:default_columns = 'indent:git:icons:filename'
 END
+
+
 

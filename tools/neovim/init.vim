@@ -1,5 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
-   Plug 'puremourning/vimspector', { 'dir': '~/.vim/vimspector-config', 'do': './install_gadget.py ' }
+   Plug 'puremourning/vimspector'
    "complete
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "outline
@@ -188,3 +188,13 @@ fu! s:isdir(dir) abort
 endfu
 
 set foldmethod=manual
+
+
+
+nmap <F3> <Plug>VimspectorToggleBreakpoint
+nmap <F4> <Plug>VimspectorToggleConditionalBreakpoint
+nmap <F5> <Plug>VimspectorAddFunctionBreakpoint
+nmap <F6> <Plug>VimspectorContinue
+nmap <F7> <Plug>VimspectorStepOver
+nmap <F8> <Plug>VimspectorStepInto
+nmap <F9> <Plug>VimspectorStepOut

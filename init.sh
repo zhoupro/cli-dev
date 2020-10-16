@@ -9,16 +9,10 @@ source "./helper/system_info.sh"
 source "./helper/installer.sh"
 source "./helper/option.sh"
 ins dep
-ins pxy
 
-if [ "Y$OPT_JAVA" == "Yyes" ];then
-    ins jdk
-fi
-
-
-# main tools start
-ins tmux
-ins zsh
 ins neovim
-#ins ssh
+#ins tmux
+#ins zsh
+
+
 # vim: set ts=4 sw=4 tw=0 et :
