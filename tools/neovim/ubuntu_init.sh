@@ -177,8 +177,6 @@ fi
 export shell=/bin/bash
 nvim +'PlugInstall --sync' +qall
 
-#language server install
-nvim "+CocInstall -sync coc-snippets" +qall
 
 if [ "Y$OPT_FE" == "Yyes" ];then
     nvim "+CocInstall -sync coc-html coc-css coc-tsserver coc-emmet" +qall
@@ -210,6 +208,18 @@ fi
 if [ "Y$OPT_VIM" == "Yyes" ];then
     nvim "+CocInstall -sync coc-vimlsp" +qall
 fi
+
+if [ "Y$OPT_PHP" == "Yyes" ];then
+    nvim "+CocInstall -sync coc-phpls" +qall
+fi
+
+
+if [ "Y$OPT_BASH" == "Yyes" ];then
+    nvim "+CocInstall -sync coc-sh" +qall
+fi
+
+nvim "+CocInstall -sync coc-snippets" +qall
+
 
 ! which ctags >/dev/null && \
     git clone https://github.com/universal-ctags/ctags.git &&\

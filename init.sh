@@ -11,8 +11,9 @@ source "./helper/option.sh"
 ins dep
 
 ins neovim
-#ins tmux
-#ins zsh
+ins tmux
+ins zsh
+
 
 
 # vim: set ts=4 sw=4 tw=0 et :

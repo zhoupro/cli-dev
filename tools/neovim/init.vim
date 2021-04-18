@@ -1,4 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'honza/vim-snippets'
+   Plug 'morhetz/gruvbox'
    Plug 'puremourning/vimspector'
    "complete
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -198,3 +200,8 @@ nmap <F6> <Plug>VimspectorContinue
 nmap <F7> <Plug>VimspectorStepOver
 nmap <F8> <Plug>VimspectorStepInto
 nmap <F9> <Plug>VimspectorStepOut
+
+let g:airline_powerline_fonts = 1
+colorscheme gruvbox
+set background=dark
+autocmd Filetype json let g:indentLine_enabled = 0
