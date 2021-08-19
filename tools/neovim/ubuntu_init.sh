@@ -11,9 +11,9 @@ function sql_ins(){
 
 
 function leetcode_ins(){
-    ! (grep -F 'zhoupro/leetcode' ~/.config/nvim/init.vim &>/dev/null ) && \
+    ! (grep -F 'ianding1/leetcode' ~/.config/nvim/init.vim &>/dev/null ) && \
     pip3 install requests beautifulsoup4 && \
-    sed -i "/plug#begin/aPlug 'zhoupro/leetcode.vim', { 'do': 'pip3 install -r requirements.txt' }" ~/.config/nvim/init.vim
+    sed -i "/plug#begin/aPlug 'ianding1/leetcode.vim', { 'do': 'pip3 install -r requirements.txt' }" ~/.config/nvim/init.vim
 
     ! ( grep -F "LeetCodeList" ~/.config/nvim/init.vim ) && \
 cat >> ~/.config/nvim/init.vim <<END
