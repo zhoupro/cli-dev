@@ -186,10 +186,6 @@ if [ "Y$OPT_PHP" == "Yyes" ];then
     ~/.local/share/nvim/plugged/vimspector/install_gadget.py --force-enable-php
 fi
 
-if [ "Y$OPT_GO" == "Yyes" ];then
-    ~/.local/share/nvim/plugged/vimspector/install_gadget.py --enable-go
-fi
-
 
 if [ "Y$OPT_JAVA" == "Yyes" ];then
     nvim "+CocInstall -sync coc-java" +qall

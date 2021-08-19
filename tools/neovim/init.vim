@@ -1,53 +1,47 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'honza/vim-snippets'
+
+   Plug 'honza/vim-snippets'
+
    Plug 'morhetz/gruvbox'
-   Plug 'puremourning/vimspector'
+
+   Plug 'tpope/vim-commentary'
+
    "complete
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    "outline
+   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+   Plug 'kristijanhusak/defx-icons'
+   Plug 'kristijanhusak/defx-git'
+
+    " explore
+   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+   Plug 'junegunn/fzf.vim'
+
+   Plug 'puremourning/vimspector'
+
     Plug 'majutsushi/tagbar'
+
+    "outline
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    " explore
-    if has('nvim')
-      Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-      Plug 'Shougo/defx.nvim'
-      Plug 'roxma/nvim-yarp'
-      Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-    Plug 'kristijanhusak/defx-icons'
-    Plug 'kristijanhusak/defx-git'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
+
     Plug 'vim-scripts/ctags.vim'
-    Plug 'tpope/vim-commentary'
     "git
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
-    "
-    "
-    "Plug 'gregsexton/gitv'
-    " transform
+
+
+    Plug 'wellle/targets.vim'
+    Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
-    " num rep
-    Plug 'glts/vim-magnum'
-    Plug 'glts/vim-radical'
-    " mru
-    Plug 'vim-scripts/mru.vim'
-    " select
-    Plug 'terryma/vim-expand-region'
-    " icon
-    Plug 'ryanoasis/vim-devicons'
-    "indent
-    Plug 'Yggdroot/indentLine'
-    "undo
-    Plug 'mbbill/undotree'
-    Plug 'wellle/targets.vim'
-    Plug 'jiangmiao/auto-pairs'
+
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+
 call plug#end()
+
 
 " our <leader> will be the space key
 let mapleader=","
